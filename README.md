@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/LibbyH52/Unicorn-Attractor.svg?branch=master)](https://travis-ci.org/LibbyH52/Unicorn-Attractor)
+
 # Issue Tracker
 An Django app for reporting bugs and purchasing features. 
 
@@ -20,7 +22,7 @@ An Django app for reporting bugs and purchasing features.
 
 
 ## Testing
-[![Build Status](https://travis-ci.org/LibbyH52/Unicorn-Attractor.svg?branch=master)](https://travis-ci.org/LibbyH52/Unicorn-Attractor)
+
 
 ## Credits
 
