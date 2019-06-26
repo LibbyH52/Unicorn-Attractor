@@ -31,3 +31,7 @@ An Django app for reporting bugs and purchasing features.
 #### Media
 
 #### Acknowledgements
+Thanks to my coursemate John Longgately for providing this line of code 'dist: xenial' to solve the issue with Travis integration.
+
+navbar right https://stackoverflow.com/questions/53339351/how-to-create-navigation-bar-with-login-sign-up-button-in-bootstrap-4
+First answer by Razvan Zamfir
