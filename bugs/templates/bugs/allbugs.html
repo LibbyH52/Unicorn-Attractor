@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+   <table class="col-sm-12 col-md-12 col-lg-6 offset-lg-3 table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Progress</th>
+                <th scope="col">Title</th>
+                <th scope="col">Date Posted</th>
+                <th scope="col">Author</th>
+            </tr>
+        </thead>
+        {% for bug in bugs %}
+            <tr>
+                {% if bug.fix_status == 'Fixing' %}
+                    <td><span class="badge badge-primary">{{bug.fix_status}}</span></td>
+                {% elif bug.fix_status == 'Fixed' %}
+                    <td><span class="badge badge-success">{{bug.fix_status}}</span></td>
+                {% elif bug.fix_status == 'To Do' %}
+                    <td><span class="badge badge-danger">{{bug.fix_status}}</span></td>
+                {% endif %}
+                <td>{{bug.title}}</td> 
+                <td>{{bug.posted_on}}</td>  
+                <td>{{bug.author}}</td>                                           
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+</div>
+{% endblock %}
