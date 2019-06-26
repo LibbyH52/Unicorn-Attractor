@@ -3,12 +3,22 @@ from django.utils import timezone
 
 class Bug(models.Model):
     """
-    A single bug report
+    Creates a single bug report in the database
     """
-    author = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
-    details = models.TextField(max_length=300)
-    published_date = models.DateField(null=True, blank=True, default=timezone.now)
+    details = models.TextField()
+    FIXED = 'Fixed'
+    FIXING = 'Fixing'
+    TODO = 'To Do'
+    fix_status_choices =[
+        (FIXED, 'Fixed'),
+        (FIXING, 'Fixing'),
+        (TODO, 'To Do'),
+        ]
+    fix_status = models.CharField(max_length=10, choices=fix_status_choices, default='To Do')
+    posted_on = models.DateField(null=True, blank=True, default=timezone.now)
+    #author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.CharField(max_length=20)
     views = models.IntegerField(default=0)
 
     def __str__(self):
@@ -16,8 +26,10 @@ class Bug(models.Model):
 
 class Comment(models.Model):
     comment = models.TextField(max_length=300)
-    published_date = models.DateField(null=True, blank=True, default=timezone.now)
-    author = models.CharField(max_length=100)
+    posted_on = models.DateField(null=True, blank=True, default=timezone.now)
+    #author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.CharField(max_length=20)
+    bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.comment
