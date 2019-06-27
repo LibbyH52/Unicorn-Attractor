@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{bug.title}}</h5>
+              <p class="card-text">{{bug.details}}</p>
+            </div>
+            <div class="card-footer">
+                - <strong>{{bug.author}}</strong> on {{bug.posted_on}}
+            </div>
+          </div>
+    </div>
+</div>
+{% endblock %}
