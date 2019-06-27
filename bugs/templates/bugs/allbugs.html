@@ -9,6 +9,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Date Posted</th>
                 <th scope="col">Author</th>
+                <th scope="col">Views</th>
             </tr>
         </thead>
         {% for bug in bugs %}
@@ -20,9 +21,10 @@
                 {% elif bug.fix_status == 'To Do' %}
                     <td><span class="badge badge-danger">{{bug.fix_status}}</span></td>
                 {% endif %}
-                <td>{{bug.title}}</td> 
+                <td><a href="{% url 'bug_description' bug.id %}">{{bug.title}}</a></td> 
                 <td>{{bug.posted_on}}</td>  
-                <td>{{bug.author}}</td>                                           
+                <td>{{bug.author}}</td>  
+                <td>{{bug.views}}</td>                                           
             </tr>
         {% endfor %}
     </table>
