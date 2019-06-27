@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="row">
-   <table class="col-sm-12 col-md-12 col-lg-6 offset-lg-3 table table-striped">
+    <div class="row">
+   <table class="col-sm-12 col-md-12 col-lg-6">
         <thead>
-            <tr>
+            <tr class="bug-row">
                 <th scope="col">Progress</th>
                 <th scope="col">Title</th>
                 <th scope="col">Date Posted</th>
-                <th scope="col">Author</th>
                 <th scope="col">Views</th>
             </tr>
         </thead>
         {% for bug in bugs %}
-            <tr>
+            <tr class = "bug-row">
                 {% if bug.fix_status == 'Fixing' %}
                     <td><span class="badge badge-primary">{{bug.fix_status}}</span></td>
                 {% elif bug.fix_status == 'Fixed' %}
@@ -23,11 +22,9 @@
                 {% endif %}
                 <td><a href="{% url 'bug_description' bug.id %}">{{bug.title}}</a></td> 
                 <td>{{bug.posted_on}}</td>  
-                <td>{{bug.author}}</td>  
-                <td><i class="fas fa-eye"></i> {{bug.views}}</td>                                           
+                <td><i class="fas fa-eye"></i> {{bug.views}}</td>                   
             </tr>
         {% endfor %}
     </table>
     </div>
-</div>
 {% endblock %}
