@@ -1,0 +1,26 @@
+/********************Button Styles*/
+.btn-primary{
+    float: right;
+}
+
+/*********************Card Styles*/
+.card{
+    margin: 1rem auto;
+    border: 1px solid navy;
+}
+
+.card-body,
+.card-header{
+    border: none;
+   }
+.card-body{
+    padding: .2rem 1.25rem .75rem 1.25rem;
+ }
+.card-header{
+    background-color: #ffffff;
+    padding: .75rem 1.25rem .2rem 1.25rem;
+}
+
+.views{
+    float: right;
+}
