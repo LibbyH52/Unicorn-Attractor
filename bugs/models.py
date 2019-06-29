@@ -20,7 +20,6 @@ class Bug(models.Model):
     fix_status = models.CharField(max_length=10, choices=fix_status_choices, default='To Do')
     posted_on = models.DateField(null=True, blank=True, default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    #author = models.CharField(max_length=100, null=False, blank=False)
     views = models.IntegerField(default=0)
 
     def __str__(self):
@@ -30,7 +29,6 @@ class Comment(models.Model):
     comment = models.TextField(max_length=300)
     created_on = models.DateField(null=True, blank=True, default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    #author = models.CharField(max_length=100, null=False, blank=False)
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
 
     def __str__(self):
