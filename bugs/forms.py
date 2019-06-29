@@ -1,7 +1,7 @@
 from .django import forms
 from .models import Bug, Comment
 
-class BugCommentForm(forms.ModelForm):
+class AddBugForm(forms.ModelForm):
     class Meta:
         model = Bug
         fields = ('title', 'details')
