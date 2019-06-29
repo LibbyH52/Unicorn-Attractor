@@ -1,4 +1,4 @@
-from .django import forms
+from django import forms
 from .models import Bug, Comment
 
 class AddBugForm(forms.ModelForm):
@@ -9,4 +9,4 @@ class AddBugForm(forms.ModelForm):
 class BugCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('comment')
+        fields = ('comment',)
