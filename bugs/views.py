@@ -27,6 +27,9 @@ def bug_description(request, pk):
     return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
 
 def add_bug(request):
+    """
+    View that allows a user to submit a bug report
+    """
     if request.method =="POST":
         form = AddBugForm(request.POST or None)
         if form.is_valid():
@@ -37,6 +40,11 @@ def add_bug(request):
         return render(request, "bugs/addbug.html", {"form":form})
 
 def add_comment(request):
+     """
+    View that allows a user to comment on 
+    a particular bug.It will appear underneath the 
+    the bug
+    """
     if request.method =="POST":
         form = AddCommentForm(request.POST or None)
         if form.is_valid():
