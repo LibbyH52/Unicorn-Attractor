@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Bug, Comment
-from .forms import AddBugForm
+from .forms import AddBugForm, BugCommentForm
 
 
 def show_bugs(request):
@@ -19,10 +19,12 @@ def bug_description(request, pk):
     bug to find out more details about it and add a
     comment
     """
+    form = BugCommentForm(request.POST or None)
+    comments = Comment.objects.order_by('-posted_on').all() 
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
-    return render(request, "bugs/bugdescription.html", {"bug":bug})
+    return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
 
 def add_bug(request):
     if request.method =="POST":
@@ -33,4 +35,16 @@ def add_bug(request):
     else:
         form = AddBugForm()
         return render(request, "bugs/addbug.html", {"form":form})
+
+def add_comment(request):
+    if request.method =="POST":
+        form = AddCommentForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+        return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
+    else:
+        form = AddCommentForm()
+    return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
+
+
 
