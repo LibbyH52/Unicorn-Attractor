@@ -1,16 +1,32 @@
 {% extends 'base.html' %}
+{% load bootstrap_tags %}
+
 {% block content %}
 <div class="row">
-    <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+    <div class="col-sm-12 col-md-10 col-lg-8">
         <div class="card">
+          <div class="card-header">
+              <h1 class="card-title">{{bug.title}}</h1>
+          </div>
             <div class="card-body">
-              <h5 class="card-title">{{bug.title}}</h5>
+              <p>{% if bug.fix_status == 'Fixing' %}
+                  <span class="badge badge-primary">{{bug.fix_status}}</span>
+              {% elif bug.fix_status == 'Fixed' %}
+                  <span class="badge badge-success">{{bug.fix_status}}</span>
+              {% elif bug.fix_status == 'To Do' %}
+                  <span class="badge badge-danger">{{bug.fix_status}}</span>
+              {% endif %}
+              <strong>{{bug.author}}</strong> posted this on {{bug.posted_on}}</p>
               <p class="card-text">{{bug.details}}</p>
             </div>
-            <div class="card-footer">
-                - <strong>{{bug.author}}</strong> on {{bug.posted_on}}
-            </div>
-          </div>
+          </div>      
+    </div>
+    <div class="col-sm-12 col-md-9 offset-md-1 col-lg-8 offset-lg-1">
+        <form method="POST">
+              {% csrf_token %}
+              {{ form | as_bootstrap }}
+              <button type="submit" class="btn btn-success">Comment</button>
+          </form>  
     </div>
 </div>
 {% endblock %}
