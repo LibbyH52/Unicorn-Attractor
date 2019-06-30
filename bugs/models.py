@@ -26,7 +26,7 @@ class Bug(models.Model):
         return self.title
 
 class Comment(models.Model):
-    comment = models.TextField(max_length=300)
+    comment = models.TextField()
     created_on = models.DateField(null=True, blank=True, default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
