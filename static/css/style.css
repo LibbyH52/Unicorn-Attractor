@@ -1,11 +1,40 @@
+/********************Nav Styles*/
+.navbar-expand-lg{
+    background-color: #003f5c;
+}      
+
+.navbar-brand,
+.nav-link{
+    color: #f1f1f1;
+}
+
+/********************Heading Styles*/
+h1{
+    line-height: 4rem;
+    color: #665191;
+}
+
+h5 a{
+    color:  #003f5c;
+}
 /********************Button Styles*/
-.btn-primary{
+.btn-add{
+    background-color: #dd5182;
+    border-color: #dd5182;
+    color:  #f1f1f1;
     float: right;
+    margin: 1rem auto;   
+}
+
+.btn-comment{
+    background-color: #dd5182;
+    color: #f1f1f1;
 }
 
 /*********************Card Styles*/
 .card{
-    border: 1px solid navy;
+    border: 1px solid #58508d;
+    color: #003f5c;
     margin-top: .5rem;
 }
 
@@ -23,4 +52,19 @@
 .comments {
     float: right;
     padding: 0 1rem;
+    color: #dd5182;
+}
+
+/*********************Badge Styles*/
+.badge{
+    color: #f1f1f1;
+}
+.badge-fixed{
+   background-color: #955196;
+}
+.badge-fixing{
+    background-color: #dd5182;
+}
+.badge-todo{
+    background-color: #ff6e54;
 }

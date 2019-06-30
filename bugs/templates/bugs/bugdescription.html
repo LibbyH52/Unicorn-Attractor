@@ -7,11 +7,11 @@
         <div class="card description-card">
             <h1 class="card-title">{{bug.title}}</h1>
             <p>{% if bug.fix_status == 'Fixing' %}
-                    <span class="badge badge-primary">{{bug.fix_status}}</span>
+                    <span class="badge badge-fixed">{{bug.fix_status}}</span>
                 {% elif bug.fix_status == 'Fixed' %}
-                    <span class="badge badge-success">{{bug.fix_status}}</span>
+                    <span class="badge badge-fixing">{{bug.fix_status}}</span>
                 {% elif bug.fix_status == 'To Do' %}
-                    <span class="badge badge-danger">{{bug.fix_status}}</span>
+                    <span class="badge badge-todo">{{bug.fix_status}}</span>
                 {% endif %}
                     - <strong>{{bug.author}}</strong> posted this on {{bug.posted_on}}</p>
                 <p class="card-text">{{bug.details}}</p>
@@ -37,7 +37,7 @@
         <form method="POST">
             {% csrf_token %}
             {{ form | as_bootstrap }}
-            <button type="submit" class="btn btn-success">Comment</button>
+            <button type="submit" class="btn btn-comment">Comment</button>
         </form>  
     </div>
 </div>
