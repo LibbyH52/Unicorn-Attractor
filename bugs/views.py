@@ -20,7 +20,7 @@ def bug_description(request, pk):
     comment
     """
     form = BugCommentForm(request.POST or None)
-    comments = Comment.objects.order_by('-posted_on').all() 
+    comments = Comment.objects.order_by('-created_on').all() 
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
