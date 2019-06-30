@@ -24,6 +24,7 @@
                     <a href="{% url 'bug_description' bug.id %}">{{bug.title}}</a></h5>
                     posted {{bug.posted_on}}
                     <span class="views"><i class="fas fa-eye"></i> {{bug.views}}</span>
+                    <span class="comments"><i class="far fa-comment"></i> </span>
                 </div>
             </div>
             {% endfor %}

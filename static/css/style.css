@@ -5,18 +5,22 @@
 
 /*********************Card Styles*/
 .card{
-    margin: 0 auto;
     border: 1px solid navy;
+    margin-top: .5rem;
+}
+
+.description-card{
+    border: none;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
 }
 
 .card-body{
-    border: none;
-   }
-
-   .card-body{
     padding-bottom: .5rem 1.25rem .3rem 1.25rem;
  }
 
-.views{
+.views,
+.comments {
     float: right;
+    padding: 0 1rem;
 }
