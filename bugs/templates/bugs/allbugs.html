@@ -6,7 +6,7 @@
         <h1>All Bugs</h1>
     </div>
      <div class="col-sm-12 col-md-4 col-lg-2">
-        <a href="{% url 'add_bug' %}" class="btn btn-primary" type="button">Report a Bug </a>
+        <a href="{% url 'add_bug' %}" class="btn btn-add" type="button">Report a Bug </a>
     </div>
 </div>
 <div class="row">
@@ -15,11 +15,11 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"> {% if bug.fix_status == 'Fixing' %}
-                        <span class="badge badge-primary">{{bug.fix_status}}</span>
+                        <span class="badge badge-fixed">{{bug.fix_status}}</span>
                     {% elif bug.fix_status == 'Fixed' %}
-                        <span class="badge badge-success">{{bug.fix_status}}</span>
+                        <span class="badge badge-fixing">{{bug.fix_status}}</span>
                     {% elif bug.fix_status == 'To Do' %}
-                        <span class="badge badge-danger">{{bug.fix_status}}</span>
+                        <span class="badge badge-todo">{{bug.fix_status}}</span>
                     {% endif %}
                     <a href="{% url 'bug_description' bug.id %}">{{bug.title}}</a></h5>
                     posted {{bug.posted_on}}
