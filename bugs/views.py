@@ -40,7 +40,7 @@ def add_bug(request):
         return render(request, "bugs/addbug.html", {"form":form})
 
 def add_comment(request):
-     """
+    """
     View that allows a user to comment on 
     a particular bug.It will appear underneath the 
     the bug
@@ -49,6 +49,7 @@ def add_comment(request):
         form = AddCommentForm(request.POST or None)
         if form.is_valid():
             form.save()
+            bug.comments += 1
         return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
     else:
         form = AddCommentForm()
