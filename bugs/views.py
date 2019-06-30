@@ -49,7 +49,6 @@ def add_comment(request):
         form = AddCommentForm(request.POST or None)
         if form.is_valid():
             form.save()
-            bug.comments += 1
         return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
     else:
         form = AddCommentForm()
