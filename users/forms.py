@@ -12,7 +12,7 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'passwoard2']
+        fields = ['username', 'email', 'password1', 'password2']
     
     def clean_email(self):
         """
@@ -25,7 +25,7 @@ class UserRegistrationForm(UserCreationForm):
         return email
 
 
-     def clean_password2(self):
+    def clean_password2(self):
         """
         Function to validate password of new users
         """
