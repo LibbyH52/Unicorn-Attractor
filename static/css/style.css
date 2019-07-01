@@ -18,19 +18,26 @@ h5 a{
     color:  #003f5c;
 }
 /********************Button Styles*/
+.btn{
+    color: #f1f1f1;
+}
+
 .btn-add{
     background-color: #dd5182;
     border-color: #dd5182;
-    color:  #f1f1f1;
     float: right;
     margin: 1rem auto;   
 }
 
 .btn-comment{
     background-color: #dd5182;
-    color: #f1f1f1;
+    border-color: #dd5182;
 }
 
+.btn-register{
+    background-color: #d45087;
+    border-color: #d45087;
+}
 /*********************Card Styles*/
 .card{
     border: 1px solid #58508d;
@@ -67,4 +74,12 @@ h5 a{
 }
 .badge-todo{
     background-color: #ff6e54;
+}
+
+/***********************Form Styles*/
+fieldset{
+    background-color: #f1f1f1;
+    color: #58508d;
+    margin-top: 2rem;
+    padding: 1rem;
 }
