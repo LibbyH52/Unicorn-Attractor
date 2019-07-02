@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, UserLoginForm
+
 
 
 def registration(request):
@@ -19,3 +20,10 @@ def registration(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'users/registration.html', {'form':form})
+
+def login(request):
+    """
+    Creates a view to allow users to login
+    """
+    form = UserLoginForm
+    return render(request, 'users/login.html', {'form':form})
