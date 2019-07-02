@@ -7,12 +7,12 @@
         <form method="POST" class="registration-form">
             {% csrf_token %}
             <fieldset class="border p-2">
-                <legend>Create an account</legend>
+                <legend>Sign in to your account</legend>
                 {{ form | as_bootstrap }} 
-                <button type="submit" class="btn btn-register">Register</button>
+                <button type="submit" class="btn btn-register">Log In</button>
             </fieldset>
         </form>
-        <p>Already have an account? <a href="{% url 'login' %}"> Log in</a></p>
+        <p>Don't have an account? Sign up <a href="{% url 'registration' %}">here</a></p>
     </div>
 </div>
 {% endblock %}
