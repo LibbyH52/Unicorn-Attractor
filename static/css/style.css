@@ -18,7 +18,10 @@ h5 a{
     color:  #003f5c;
 }
 /********************Button Styles*/
-.btn{
+.btn,
+.btn:active,
+.btn:focus,
+.btn:hover{
     color: #f1f1f1;
 }
 
@@ -34,10 +37,17 @@ h5 a{
     border-color: #dd5182;
 }
 
+.btn-login{
+    color: #665191;
+    margin-bottom: 1rem;
+}
+
 .btn-register{
     background-color: #d45087;
     border-color: #d45087;
+    margin-bottom: 1rem;
 }
+
 /*********************Card Styles*/
 .card{
     border: 1px solid #58508d;
@@ -74,4 +84,11 @@ h5 a{
 }
 .badge-todo{
     background-color: #ff6e54;
+}
+
+/**********************Form Styles*/
+
+form{
+    margin-top: 2rem;
+    color: #003f5c;
 }
