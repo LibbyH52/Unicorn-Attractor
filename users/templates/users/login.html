@@ -3,12 +3,12 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-sm-12 col-md-6 offset-md-3 offset-lg-6 col-lg-6">
-        <form method="POST" class="registration-form">
+    <div class="col-sm-12 col-md-6 offset-md-3 offset-lg-7 col-lg-5">
+        <form method="POST" class="login-form">
             {% csrf_token %}
             <legend>Sign in to your account</legend>
             {{ form | as_bootstrap }} 
-            <button type="submit" class="btn btn-register">Log In</button>
+            <button type="submit" class="btn btn-login">Log In</button>
         </form>
         <p>Don't have an account? Sign up <a href="{% url 'registration' %}">here</a></p>
     </div>
