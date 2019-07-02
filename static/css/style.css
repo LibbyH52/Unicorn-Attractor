@@ -75,11 +75,3 @@ h5 a{
 .badge-todo{
     background-color: #ff6e54;
 }
-
-/***********************Form Styles*/
-fieldset{
-    background-color: #f1f1f1;
-    color: #58508d;
-    margin-top: 2rem;
-    padding: 1rem;
-}
