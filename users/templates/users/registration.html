@@ -6,11 +6,9 @@
     <div class="col-sm-12 col-md-6 offset-md-3 offset-lg-6 col-lg-6">
         <form method="POST" class="registration-form">
             {% csrf_token %}
-            <fieldset class="border p-2">
-                <legend>Create an account</legend>
-                {{ form | as_bootstrap }} 
-                <button type="submit" class="btn btn-register">Register</button>
-            </fieldset>
+            <legend>Create an account</legend>
+            {{ form | as_bootstrap }} 
+            <button type="submit" class="btn btn-register">Register</button>
         </form>
         <p>Already have an account? <a href="{% url 'login' %}"> Log in</a></p>
     </div>
