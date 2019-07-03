@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.shortcuts import render, redirect, reverse
+from django.contrib import auth, messages
 from .forms import UserRegistrationForm, UserLoginForm
 
 
@@ -40,3 +40,11 @@ def login(request):
     else:
         form = UserLoginForm
     return render(request, 'users/login.html', {'form':form})
+
+def logout(request):
+    """
+    Allows a user to logout 
+    """
+    auth.logout(request)
+    messages.success(request, "You have successfully logged out!")
+    return redirect(reverse('registration'))
