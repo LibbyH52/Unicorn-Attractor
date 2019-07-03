@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from .views import show_bugs, bug_description, add_bug
 
 urlpatterns = [
-    path('', views.show_bugs, name="show_bugs"),
-    path('<int:pk>/', views.bug_description, name="bug_description"),
-    path('add_bug/', views.add_bug, name="add_bug"),
+    path('show_bugs', show_bugs, name="show_bugs"),
+    path('<int:pk>/', bug_description, name="bug_description"),
+    path('add_bug/', add_bug, name="add_bug"),
 ]
