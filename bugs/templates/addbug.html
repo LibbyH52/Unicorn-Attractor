@@ -3,6 +3,7 @@
 
 {% block content %}
 <h1> Add a New Bug </h1>
+<!--Displays a form that allows users to file a bug report-->
 <form method="POST">
     {% csrf_token %}
     {{ form | as_bootstrap}}

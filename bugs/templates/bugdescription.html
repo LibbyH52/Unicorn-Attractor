@@ -20,6 +20,7 @@
 </div>
 <div class="row comment-row">
     <div class="col-sm-11  offset-sm-1 offset-md-1 col-md-8 col-lg-7 offset-lg-1">
+        <!--Displays each comment in a Bootstrap card-->
         {% for comment in comments %}
             <div class="card comment-card">
                 <div class="card-header">
@@ -34,6 +35,7 @@
 </div>
 <div class="row">
     <div class="col-sm-11  offset-sm-1 offset-md-1 col-md-8 col-lg-7 offset-lg-1">
+        <!--Form to allow users comment on a bug-->
         <form method="POST">
             {% csrf_token %}
             {{ form | as_bootstrap }}
