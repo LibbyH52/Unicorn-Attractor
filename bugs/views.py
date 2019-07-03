@@ -11,7 +11,7 @@ def show_bugs(request):
     'allbugs' template.
     """
     bugs = Bug.objects.order_by('-posted_on').all() 
-    return render(request, 'bugs/allbugs.html', {'bugs':bugs})
+    return render(request, 'allbugs.html', {'bugs':bugs})
 
 def bug_description(request, pk):
     """
@@ -24,7 +24,7 @@ def bug_description(request, pk):
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
-    return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
+    return render(request, "bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
 
 def add_bug(request):
     """
@@ -34,10 +34,10 @@ def add_bug(request):
         form = AddBugForm(request.POST or None)
         if form.is_valid():
             form.save()
-        return redirect(request, "bugs/allbugs.html", {"bugs":bugs})
+        return redirect(request, "allbugs.html", {"bugs":bugs})
     else:
         form = AddBugForm()
-        return render(request, "bugs/addbug.html", {"form":form})
+        return render(request, "addbug.html", {"form":form})
 
 def add_comment(request):
     """
@@ -49,10 +49,10 @@ def add_comment(request):
         form = AddCommentForm(request.POST or None)
         if form.is_valid():
             form.save()
-        return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
+        return render(request, "bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
     else:
         form = AddCommentForm()
-    return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
+    return render(request, "bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
 
 
 
