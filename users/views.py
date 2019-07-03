@@ -15,11 +15,11 @@ def registration(request):
             form.save()
             username = request.POST['username']
             messages.success(request, f"Account successfully created for {username}")
-            return redirect('users/login.html')
+            return redirect('login.html')
     
     else:
         form = UserRegistrationForm()
-    return render(request, 'users/registration.html', {'form':form})
+    return render(request, 'registration.html', {'form':form})
 
 def login(request):
     """
@@ -39,7 +39,7 @@ def login(request):
             return redirect('show_bugs')
     else:
         form = UserLoginForm
-    return render(request, 'users/login.html', {'form':form})
+    return render(request, 'login.html', {'form':form})
 
 def logout(request):
     """
