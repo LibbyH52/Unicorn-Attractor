@@ -21,22 +21,28 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    {% if request.user.is_authenticated %}
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'show_bugs' %}">Bugs</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Features</a>
                     </li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                    {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
-                {% else %}
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'registration' %}">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Login</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
