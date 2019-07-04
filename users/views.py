@@ -51,7 +51,7 @@ def login(request):
     return render(request, 'login.html', {'form':form})
 
 
-@login_required
+@login_required(login_url='login')
 def logout(request):
     """
     Allows a user to logout 
