@@ -4,7 +4,7 @@ from django.utils import timezone
 from .models import Bug, Comment
 from .forms import AddBugForm, AddCommentForm
 
-@login_required
+@login_required(login_url='login')
 def show_bugs(request):
     """
     This view will return a list of all
@@ -14,7 +14,7 @@ def show_bugs(request):
     bugs = Bug.objects.order_by('-posted_on').all() 
     return render(request, 'allbugs.html', {'bugs':bugs})
 
-@login_required
+@login_required(login_url='login')
 def bug_description(request, pk):
     """
     This view allows a user to click on a particular
@@ -28,7 +28,7 @@ def bug_description(request, pk):
     bug.save()
     return render(request, "bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
 
-@login_required
+@login_required(login_url='login')
 def add_bug(request):
     """
     View that allows a user to submit a bug report
@@ -42,6 +42,7 @@ def add_bug(request):
         form = AddBugForm()
         return render(request, "addbug.html", {"form":form})
 
+@login_required(login_url='login')
 def add_comment(request):
     """
     View that allows a user to comment on 
