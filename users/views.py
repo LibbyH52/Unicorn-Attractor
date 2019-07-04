@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserLoginForm
 
@@ -51,7 +52,7 @@ def login(request):
     return render(request, 'login.html', {'form':form})
 
 
-@login_required(login_url='login')
+@login_required(login_url=reverse_lazy('login'))
 def logout(request):
     """
     Allows a user to logout 
