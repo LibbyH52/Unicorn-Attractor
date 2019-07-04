@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserLoginForm
 
 
@@ -50,6 +51,7 @@ def login(request):
     return render(request, 'login.html', {'form':form})
 
 
+@login_required
 def logout(request):
     """
     Allows a user to logout 
