@@ -9,12 +9,12 @@ class Bug(models.Model):
     """
     title = models.CharField(max_length=100)
     details = models.TextField()
-    FIXED = 'Fixed'
-    FIXING = 'Fixing'
+    DONE = 'DONE'
+    DOING = 'DOING'
     TODO = 'To Do'
     fix_status_choices =[
-        (FIXED, 'Fixed'),
-        (FIXING, 'Fixing'),
+        (DONE, 'Done'),
+        (DOING, 'Doing'),
         (TODO, 'To Do'),
         ]
     fix_status = models.CharField(max_length=10, choices=fix_status_choices, default='To Do')
