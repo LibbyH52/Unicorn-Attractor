@@ -9,6 +9,7 @@ An Django app for reporting bugs and purchasing features.
 #### Wireframes
 * All Bugs ![allBug](wireframes/allBugs.png/)
 * Single Bug ![bugsingle](wireframes/bugsingle.png/)
+* Report A Bug ![bugreport](wireframes/bugreport.png/)
 * Features ![features](wireframes/features.png/)
 * User Profile ![userProfile](wireframes/profile.png/)
    
