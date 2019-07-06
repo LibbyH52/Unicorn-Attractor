@@ -52,7 +52,7 @@ def login(request):
     return render(request, 'login.html', {'form':form})
 
 
-@login_required(login_url=reverse_lazy('login'))
+@login_required()
 def logout(request):
     """
     Allows a user to logout 
