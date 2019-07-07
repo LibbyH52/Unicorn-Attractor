@@ -27,9 +27,8 @@ def bug_description(request, pk):
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
-    form = AddCommentForm()
     comments = Comment.objects.order_by('-created_on').all() 
-    return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
+    return render(request, "bugs/bugdescription.html", {"bug":bug, 'comments':comments})
 
 @login_required()
 def add_or_edit_bug(request, pk=None):
@@ -44,7 +43,7 @@ def add_or_edit_bug(request, pk=None):
             bug = form.save(commit=False)
             bug.author = request.user
             bug.save()
-            return redirect(bug_description, bug.pk)
+            return redirect('bug_description', pk=bug.pk)
     else:
         form = AddBugForm(instance=bug)
     return render(request, "bugs/addbug.html", {"form":form})
@@ -56,7 +55,7 @@ def add_comment(request, pk):
     Create a view that allows a user to comment 
     on a particular bug.
     """
-    bug = get_object_or_404(Bug, pk=pk)
+    bug = get_object_or_404(Bug, pk=pk) if pk else None
     if request.method =="POST":
         form = AddCommentForm(request.POST)
         if form.is_valid():
@@ -64,7 +63,7 @@ def add_comment(request, pk):
             comment.author = request.user
             comment.bug = bug
             comment.save()
-            return redirect(bug_description, pk=bug.pk)
+            return redirect('bug_description', pk=bug.pk)
     else:
         form = AddCommentForm()
     return render(request, "bugs/addcomment.html", {"form":form})
