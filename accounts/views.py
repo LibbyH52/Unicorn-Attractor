@@ -25,7 +25,7 @@ def registration(request):
             return redirect(reverse('login'))
     else:
         form = UserRegistrationForm()
-    return render(request, 'registration.html', {'form':form})
+    return render(request, 'accounts/registration.html', {'form':form})
 
 
 def login(request):
@@ -49,7 +49,7 @@ def login(request):
                 form.add_error(None, "Your username or password is incorrect")
     else:
         form = UserLoginForm
-    return render(request, 'login.html', {'form':form})
+    return render(request, 'accounts/login.html', {'form':form})
 
 
 @login_required()
