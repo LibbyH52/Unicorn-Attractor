@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
@@ -14,7 +15,7 @@ def show_bugs(request):
     'allbugs' template.
     """
     bugs = Bug.objects.order_by('-posted_on').all() 
-    return render(request, 'allbugs.html', {'bugs':bugs})
+    return render(request, 'bugs/allbugs.html', {'bugs':bugs})
 
 @login_required()
 def bug_description(request, pk):
@@ -23,42 +24,48 @@ def bug_description(request, pk):
     bug to find out more details about it and add a
     comment
     """
-    form = AddCommentForm(request.POST or None)
-    comments = Comment.objects.order_by('-created_on').all() 
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
-    return render(request, "bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
+    form = AddCommentForm()
+    comments = Comment.objects.order_by('-created_on').all() 
+    return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
 
 @login_required()
 def add_bug(request):
     """
-    View that allows a user to submit a bug report
+    Create a view that allows a user to submit 
+    or edit a bug report
     """
     if request.method =="POST":
         form = AddBugForm(request.POST or None)
         if form.is_valid():
-            form.save()
-        return redirect(request, "allbugs.html", {"bugs":bugs})
+            bug = form.save(commit=False)
+            bug.author = request.user
+            bug.save()
+        return redirect(show_bugs)
     else:
         form = AddBugForm()
-        return render(request, "addbug.html", {"form":form})
+    return render(request, "bugs/addbug.html", {"form":form})
+
 
 @login_required()
 def add_comment(request):
     """
-    View that allows a user to comment on 
-    a particular bug.It will appear underneath the 
-    the bug
+    Create a view that allows a user to comment 
+    on a particular bug.
     """
     if request.method =="POST":
         form = AddCommentForm(request.POST or None)
         if form.is_valid():
-            form.save()
-        return render(request, "bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.bug = comment.bug
+            comment.save()
+        return redirect(bug_description, pk=pk)
     else:
         form = AddCommentForm()
-    return render(request, "bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
+    return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
 
 
 
