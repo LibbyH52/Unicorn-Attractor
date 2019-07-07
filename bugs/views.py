@@ -32,40 +32,42 @@ def bug_description(request, pk):
     return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
 
 @login_required()
-def add_bug(request):
+def add_or_edit_bug(request, pk=None):
     """
     Create a view that allows a user to submit 
     or edit a bug report
     """
+    bug = get_object_or_404(Bug, pk=pk) if pk else None
     if request.method =="POST":
-        form = AddBugForm(request.POST or None)
+        form = AddBugForm(request.POST, instance=bug)
         if form.is_valid():
             bug = form.save(commit=False)
             bug.author = request.user
             bug.save()
-        return redirect(show_bugs)
+            return redirect(bug_description, bug.pk)
     else:
-        form = AddBugForm()
+        form = AddBugForm(instance=bug)
     return render(request, "bugs/addbug.html", {"form":form})
 
 
 @login_required()
-def add_comment(request):
+def add_comment(request, pk):
     """
     Create a view that allows a user to comment 
     on a particular bug.
     """
+    bug = get_object_or_404(Bug, pk=pk)
     if request.method =="POST":
-        form = AddCommentForm(request.POST or None)
+        form = AddCommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.author = request.user
-            comment.bug = comment.bug
+            comment.bug = bug
             comment.save()
-        return redirect(bug_description, pk=pk)
+            return redirect(bug_description, pk=bug.pk)
     else:
         form = AddCommentForm()
-    return render(request, "bugs/bugdescription.html", {"bug":bug, "form":form, 'comments':comments})
+    return render(request, "bugs/addcomment.html", {"form":form})
 
 
 

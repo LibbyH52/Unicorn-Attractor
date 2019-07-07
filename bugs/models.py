@@ -21,15 +21,15 @@ class Bug(models.Model):
     posted_on = models.DateField(null=True, blank=True, default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     views = models.IntegerField(default=0)
-
+    
     def __str__(self):
         return self.title
 
 class Comment(models.Model):
-    comment = models.TextField()
+    bug = models.ForeignKey(Bug, on_delete=models.CASCADE, related_name='comments')
     created_on = models.DateField(null=True, blank=True, default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
+    comment = models.TextField()
 
     def __str__(self):
         return self.comment

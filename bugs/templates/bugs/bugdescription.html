@@ -14,9 +14,15 @@
                     <span class="badge badge-todo">{{bug.fix_status}}</span>
                 {% endif %}
                     - <strong>{{bug.author}}</strong> posted this on {{bug.posted_on}}</p>
-                <p class="card-text">{{bug.details}}</p>
+                <p class="card-text">{{bug.details}} <a href="{% url 'edit_bug' bug.id %}"><i class="fas fa-edit"></i></a>
+                </p>
         </div>
     </div>      
+</div>
+<div class="row">
+    <div class="col-sm-11 col-md-2 offset-lg-1 col-lg-2">
+        <a href="{% url 'add_comment' bug.id %}" class="btn btn-comment">Add Comment</a>
+    </div>
 </div>
 <div class="row comment-row">
     <div class="col-sm-11  offset-sm-1 offset-md-1 col-md-8 col-lg-7 offset-lg-1">
@@ -31,16 +37,6 @@
                 </div>
             </div>
         {% endfor %}
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-11  offset-sm-1 offset-md-1 col-md-8 col-lg-7 offset-lg-1">
-        <!--Form to allow users comment on a bug-->
-        <form method="POST">
-            {% csrf_token %}
-            {{ form | as_bootstrap }}
-            <button type="submit" class="btn btn-comment">Comment</button>
-        </form>  
     </div>
 </div>
 {% endblock %}
