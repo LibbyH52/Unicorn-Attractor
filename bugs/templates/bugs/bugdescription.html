@@ -27,7 +27,7 @@
 <div class="row comment-row">
     <div class="col-sm-11  offset-sm-1 offset-md-1 col-md-8 col-lg-7 offset-lg-1">
         <!--Displays each comment in a Bootstrap card-->
-        {% for comment in comments %}
+        {% for comment in bug.comments.all %}
             <div class="card comment-card">
                 <div class="card-header">
                     <p class="card-title"><strong>{{comment.author}}</strong> posted this on {{comment.created_on}} </p>
@@ -36,6 +36,8 @@
                     {{comment.comment}}
                 </div>
             </div>
+            {% empty %}
+            <p> No comments to show </p>
         {% endfor %}
     </div>
 </div>
