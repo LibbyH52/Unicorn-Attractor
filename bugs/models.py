@@ -18,7 +18,7 @@ class Bug(models.Model):
         (TODO, 'To Do'),
         ]
     fix_status = models.CharField(max_length=10, choices=fix_status_choices, default='To Do')
-    posted_on = models.DateField(null=True, blank=True, default=timezone.now)
+    posted_on = models.DateTimeField(null=True, blank=True, default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     views = models.IntegerField(default=0)
     
@@ -27,7 +27,7 @@ class Bug(models.Model):
 
 class Comment(models.Model):
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE, related_name='comments')
-    created_on = models.DateField(null=True, blank=True, default=timezone.now)
+    created_on = models.DateTimeField(null=True, blank=True, default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField()
 
