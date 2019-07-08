@@ -28,7 +28,7 @@
                     posted {{bug.posted_on}}
                     <!--Number of comments and views for a particular bug-->
                     <span class="views"><i class="fas fa-eye"></i> {{bug.views}}</span>
-                    <span class="comments"><i class="far fa-comment"></i> </span>
+                    <span class="comments"><i class="far fa-comment"></i> {{bug.comments.count}} </span>
                 </div>
             </div>
             {% endfor %}
