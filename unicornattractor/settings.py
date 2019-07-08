@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['unicorn-attractor-milestone-4.heroku.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'unicorn-attractor-milestone-4.herokuapp.com']
 
 
 # Application definition
