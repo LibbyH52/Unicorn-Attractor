@@ -17,6 +17,7 @@ def show_bugs(request):
     bugs = Bug.objects.order_by('-posted_on').all() 
     return render(request, 'bugs/allbugs.html', {'bugs':bugs})
 
+
 @login_required()
 def bug_description(request, pk):
     """
