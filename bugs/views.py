@@ -14,8 +14,8 @@ def show_bugs(request):
     bugs in date order and display them on the
     'allbugs' template.
     """
-    bugs = Bug.objects.order_by('-posted_on').all() 
-    return render(request, 'bugs/allbugs.html', {'bugs':bugs})
+    bugs = Bug.objects.order_by('-posted_on').all()
+    return render(request, 'bugs/allbugs.html', {'bugs' : bugs})
 
 
 @login_required()
@@ -66,10 +66,3 @@ def add_comment(request, pk):
     else:
         form = AddCommentForm()
     return render(request, "bugs/addcomment.html", {"form":form})
-
-@login_required
-def edit_comment(request, pk):
-    comment = get_object_or_404(Comment, pk=pk) 
-    form = AddCommentForm(instance=comment)
-    return render(request, "addcomment.html", {"comment":comment})
-

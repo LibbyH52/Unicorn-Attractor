@@ -12,20 +12,20 @@ def registration(request):
     """
     if request.user.is_authenticated:
         return redirect(reverse('login'))
-   
+
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
-    
+
         if form.is_valid():
             form.save()
-            username=request.POST.get('username')
-            password=request.POST.get('password')
+            username = request.POST.get('username')
+            password = request.POST.get('password')
             user = auth.authenticate(username=username, password=password)
-            messages.success(request, f"Account successfully created for {username}. Please log in with your username and password")
+            messages.success(request, f"Account created for {username}.")
             return redirect(reverse('login'))
     else:
         form = UserRegistrationForm()
-    return render(request, 'accounts/registration.html', {'form':form})
+    return render(request, 'accounts/registration.html', {'form': form})
 
 
 def login(request):
@@ -37,8 +37,8 @@ def login(request):
     if request.method == "POST":
         form = UserLoginForm(request.POST)
         if form.is_valid():
-            username=request.POST.get('username')
-            password=request.POST.get('password')
+            username = request.POST.get('username')
+            password = request.POST.get('password')
             user = auth.authenticate(username=username, password=password)
 
             if user:
@@ -49,13 +49,13 @@ def login(request):
                 form.add_error(None, "Your username or password is incorrect")
     else:
         form = UserLoginForm
-    return render(request, 'accounts/login.html', {'form':form})
+    return render(request, 'accounts/login.html', {'form': form})
 
 
 @login_required()
 def logout(request):
     """
-    Allows a user to logout 
+    Allows a user to logout
     """
     auth.logout(request)
     messages.success(request, "You have successfully logged out!")
