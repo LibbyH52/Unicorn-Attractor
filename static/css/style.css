@@ -8,6 +8,32 @@
     color: #f1f1f1;
 }
 
+.navbar-brand{
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.navbar-brand:active,
+.navbar-brand:focus,
+.navbar-brand:hover{
+    color: #f1f1f1;
+    font-size: 1.6rem;
+    font-weight: 900;
+}
+
+.nav-link{
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover{
+    color: #f1f1f1;
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
 /********************Heading Styles*/
 h1{
     line-height: 4rem;
@@ -89,6 +115,21 @@ h5 a{
 /**********************Form Styles*/
 
 form{
-    margin-top: 2rem;
+    border: 2px solid #003f5c;
     color: #003f5c;
+}
+
+.login-form{
+    margin: 20% auto;
+    padding: 2rem;
+}
+
+.registration-form{
+    margin: 5% auto;
+    padding: 1rem;
+}
+
+legend{
+    font-size: 2rem;
+    text-align: center;
 }
