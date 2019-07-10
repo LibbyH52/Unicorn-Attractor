@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
+from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, UserLoginForm
@@ -26,6 +27,13 @@ def registration(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'accounts/registration.html', {'form': form})
+
+def user_profile(request):
+    """
+    Profile page for the logged in user.
+    """
+    user = User.objects.get(username=request.user.username)
+    return render(request, "accounts/profile.html", {"profile": user})
 
 
 def login(request):
