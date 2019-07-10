@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <h1>{{user}}'s profile page</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 offset-md-3 col-md-6 offset-lg-4 col-lg-4 info-col">
+        <img class="profile-image" src="/static/img/springunicorn.png" alt="unicorn image">
+        <p class="profile-paragraph"><strong>Email: </strong> {{user.email}}</p>
+        <p class="profile-paragraph"><strong>Joined: </strong> {{user.date_joined}}</p>
+        <p class="profile-paragraph"><strong>Last Log In: </strong> {{user.last_login}}</p>
+    </div>
+</div> 
+
+{% endblock %}

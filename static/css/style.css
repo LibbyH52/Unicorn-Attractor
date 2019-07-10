@@ -36,8 +36,9 @@
 
 /********************Heading Styles*/
 h1{
-    line-height: 4rem;
     color: #665191;
+    line-height: 4rem;
+    text-align: center;
 }
 
 h5 a{
@@ -114,7 +115,7 @@ h5 a{
 
 /**********************Form Styles*/
 
-form{
+.user-form{
     border: 2px solid #003f5c;
     color: #003f5c;
 }
@@ -133,3 +134,28 @@ legend{
     font-size: 2rem;
     text-align: center;
 }
+
+/*******************Profile Styles*/
+
+.profile-image{
+    display: block;
+    height: 15rem;
+    margin: 0 auto;
+}
+
+.profile-paragraph{
+    color: #2f4b7c;
+    font-size: 1.25rem;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+}
+
+.info-col{
+    padding: 0.5rem 1rem
+}
+
+.info-col{
+    padding: 2rem 1rem 1rem 1rem;
+}
+
+
