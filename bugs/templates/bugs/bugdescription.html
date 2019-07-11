@@ -14,10 +14,18 @@
                     <span class="badge badge-todo">{{bug.fix_status}}</span>
                 {% endif %}
                     - <strong>{{bug.author}}</strong> posted this on {{bug.posted_on}}</p>
-                <p class="card-text">{{bug.details}} <a href="{% url 'edit_bug' bug.id %}"><i class="fas fa-edit"></i></a>
-                </p>
+                {% if request.user == bug.author %}
+                    <p class="card-text">{{bug.details}} <a href="{% url 'edit_bug' bug.id %}"><i class="fas fa-edit"></i></a></p>
+                {% else %}
+                    <p class="card-text">{{bug.details}} </p>
+                {% endif %}
         </div>
     </div>      
+</div>
+<div class="row">
+    <div class="col-sm-11  offset-sm-1 offset-md-1 col-md-8 col-lg-7 offset-lg-1">
+        <h2> Comments: </h2>
+    </div>
 </div>
 <div class="row comment-row">
     <div class="col-sm-11  offset-sm-1 offset-md-1 col-md-8 col-lg-7 offset-lg-1">
@@ -28,7 +36,11 @@
                     <p class="card-title"><strong>{{comment.author}}</strong> posted this on {{comment.created_on}} </p>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{comment.comment}}<a href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit"></i></a></p>
+                    {% if request.user == comment.author %}
+                        <p class="card-text">{{comment.comment}}<a href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit"></i></a></p>
+                    {% else %}
+                        <p class="card-text">{{comment.comment}}</p>
+                    {% endif %}
                 </div>
             </div>
             {% empty %}
