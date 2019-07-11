@@ -80,6 +80,7 @@ def add_comment(request, pk):
         form = AddCommentForm()
     return render(request, "bugs/addcomment.html", {"form":form})
 
+
 @login_required()
 def edit_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
@@ -91,3 +92,4 @@ def edit_comment(request, pk):
     else:
         form = AddCommentForm(instance=comment)
     return render(request, "bugs/addcomment.html", {"form": form})
+
