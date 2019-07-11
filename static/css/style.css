@@ -36,14 +36,21 @@
 
 /********************Heading Styles*/
 h1{
-    color: #665191;
+    color: #ffa600;
+    font-weight: 700;
     line-height: 4rem;
-    text-align: center;
+    text-align: left;
+}
+
+h2{
+    color: #7a5195;
+    font-weight: 600;
 }
 
 h5 a{
     color:  #003f5c;
 }
+
 /********************Button Styles*/
 .btn,
 .btn:active,
@@ -93,13 +100,6 @@ h5 a{
     padding-bottom: .5rem 1.25rem .3rem 1.25rem;
  }
 
-.views,
-.comments {
-    float: right;
-    padding: 0 1rem;
-    color: #dd5182;
-}
-
 /*********************Badge Styles*/
 .badge{
     color: #f1f1f1;
@@ -115,12 +115,6 @@ h5 a{
 }
 
 /**********************Form Styles*/
-
-.user-form{
-    border: 2px solid #003f5c;
-    color: #003f5c;
-}
-
 .login-form{
     margin: 20% auto;
     padding: 2rem;
@@ -129,6 +123,11 @@ h5 a{
 .registration-form{
     margin: 5% auto;
     padding: 1rem;
+}
+
+.user-form{
+    border: 2px solid #003f5c;
+    color: #003f5c;
 }
 
 legend{
@@ -159,4 +158,33 @@ legend{
     padding: 2rem 1rem 1rem 1rem;
 }
 
+/************************Icon Styles*/
+.comments{
+    color: #dd5182;
+}
 
+.fa-edit{
+    color: #003f5c;
+    padding: 1rem;
+}
+
+.views{
+    color: #444e86;
+}
+
+.views,
+.comments {
+    float: right;
+    padding: 0 1rem;
+}
+
+/***********************Link Styles*/
+a,
+a:hover{
+    text-decoration: none;
+    color: #003f5c;
+}
+
+.container{
+    margin-top: 2rem;
+}
