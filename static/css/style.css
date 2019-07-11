@@ -62,6 +62,7 @@ h5 a{
 .btn-comment{
     background-color: #dd5182;
     border-color: #dd5182;
+    margin: 1rem auto; 
 }
 
 .btn-login{

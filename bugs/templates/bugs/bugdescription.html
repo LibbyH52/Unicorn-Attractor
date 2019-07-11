@@ -19,11 +19,6 @@
         </div>
     </div>      
 </div>
-<div class="row">
-    <div class="col-sm-11 col-md-2 offset-lg-1 col-lg-2">
-        <a href="{% url 'add_comment' bug.id %}" class="btn btn-comment">Add Comment</a>
-    </div>
-</div>
 <div class="row comment-row">
     <div class="col-sm-11  offset-sm-1 offset-md-1 col-md-8 col-lg-7 offset-lg-1">
         <!--Displays each comment in a Bootstrap card-->
@@ -33,12 +28,17 @@
                     <p class="card-title"><strong>{{comment.author}}</strong> posted this on {{comment.created_on}} </p>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{comment.comment}}<a href="{% url 'edit_comment' bug.id %}"><i class="fas fa-edit"></i></a></p>
+                    <p class="card-text">{{comment.comment}}<a href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit"></i></a></p>
                 </div>
             </div>
             {% empty %}
             <p> No comments to show </p>
         {% endfor %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-11 col-md-2 offset-lg-1 col-lg-2">
+        <a href="{% url 'add_comment' bug.id %}" class="btn btn-comment">Add Comment</a>
     </div>
 </div>
 {% endblock %}
