@@ -19,11 +19,11 @@
                     <div class="card-body">
                         <h5 class="card-title"> 
                             <!--Genereates different colour badges depending on the fix status of a partiular bug-->
-                            {% if bug.fix_status == 'Fixing' %}
-                                <span class="badge badge-fixed">{{bug.fix_status}}</span>
-                            {% elif bug.fix_status == 'Fixed' %}
-                                <span class="badge badge-fixing">{{bug.fix_status}}</span>
-                            {% elif bug.fix_status == 'To Do' %}
+                            {% if bug.fix_status == 'Doing' %}
+                                <span class="badge badge-done">{{bug.fix_status}}</span>
+                            {% elif bug.fix_status == 'Done' %}
+                                <span class="badge badge-doing">{{bug.fix_status}}</span>
+                            {% elif bug.fix_status == 'ToDo' %}
                                 <span class="badge badge-todo">{{bug.fix_status}}</span>
                             {% endif %}
                             {{bug.title}}

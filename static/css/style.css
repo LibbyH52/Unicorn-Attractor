@@ -104,10 +104,12 @@ h5 a{
 .badge{
     color: #f1f1f1;
 }
-.badge-fixed{
-   background-color: #955196;
+
+.badge-done{
+    background-color: #955196;
 }
-.badge-fixing{
+
+.badge-doing{
     background-color: #dd5182;
 }
 .badge-todo{

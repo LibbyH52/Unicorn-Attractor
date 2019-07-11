@@ -7,17 +7,18 @@ class Bug(models.Model):
     """
     Creates a single bug report in the database
     """
+    Done = 'Done'
+    Doing = 'Doing'
+    ToDo = 'ToDo'
+    FIX_STATUS_CHOICES =[
+        (Done, 'Done'),
+        (Doing, 'Doing'),
+        (ToDo, 'ToDo'),
+        ]
+
     title = models.CharField(max_length=100)
     details = models.TextField()
-    DONE = 'DONE'
-    DOING = 'DOING'
-    TODO = 'To Do'
-    fix_status_choices =[
-        (DONE, 'Done'),
-        (DOING, 'Doing'),
-        (TODO, 'To Do'),
-        ]
-    fix_status = models.CharField(max_length=10, choices=fix_status_choices, default='To Do')
+    fix_status = models.CharField(max_length=6, choices=FIX_STATUS_CHOICES, default='ToDo')
     posted_on = models.DateTimeField(null=True, blank=True, default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     views = models.IntegerField(default=0)
