@@ -60,6 +60,7 @@ def edit_bug(request, pk=None):
         form = AddBugForm(instance=bug)
     return render(request, "bugs/addbug.html", {"form": form})
 
+
 @login_required()
 def add_comment(request, pk):
     """
@@ -84,12 +85,12 @@ def add_comment(request, pk):
 @login_required()
 def edit_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
+    bug = comment.bug
     if request.method =="POST":
         form = AddCommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
-            return redirect('show_bugs')
+            return redirect('bug_description', pk=bug.pk)
     else:
         form = AddCommentForm(instance=comment)
     return render(request, "bugs/addcomment.html", {"form": form})
-
