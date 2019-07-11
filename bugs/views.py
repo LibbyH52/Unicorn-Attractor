@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
@@ -31,23 +32,35 @@ def bug_description(request, pk):
     return render(request, "bugs/bugdescription.html", {"bug":bug})
 
 @login_required()
-def add_or_edit_bug(request, pk=None):
+def add_bug(request):
     """
     Create a view that allows a user to submit 
     or edit a bug report
     """
-    bug = get_object_or_404(Bug, pk=pk) if pk else None
     if request.method =="POST":
-        form = AddBugForm(request.POST, instance=bug)
+        form = AddBugForm(request.POST)
         if form.is_valid():
             bug = form.save(commit=False)
             bug.author = request.user
             bug.save()
             return redirect('bug_description', pk=bug.pk)
     else:
-        form = AddBugForm(instance=bug)
-    return render(request, "bugs/addbug.html", {"form":form})
+        form = AddBugForm()
+    return render(request, "bugs/addbug.html")
 
+@login_required()
+def edit_bug(request, pk=None):
+    bug = get_object_or_404(Bug, pk=pk)
+    if request.method =="POST":
+        form = AddBugForm(request.POST, instance=bug)
+        if form.is_valid():
+            form.save()
+            return redirect('bug_description', pk=bug.pk)
+    else:
+        form = AddBugForm(instance=bug)
+    return render(request, "bugs/addbug.html", {"form": form})
+
+@login_required()
 def add_comment(request, pk):
     """
     Create a view that allows a user to comment 
@@ -66,3 +79,15 @@ def add_comment(request, pk):
     else:
         form = AddCommentForm()
     return render(request, "bugs/addcomment.html", {"form":form})
+
+@login_required()
+def edit_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method =="POST":
+        form = AddCommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('show_bugs')
+    else:
+        form = AddCommentForm(instance=comment)
+    return render(request, "bugs/addcomment.html", {"form": form})
