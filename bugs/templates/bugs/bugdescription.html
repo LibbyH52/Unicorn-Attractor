@@ -23,12 +23,12 @@
     </div>      
 </div>
 <div class="row">
-    <div class="col-sm-12 offset-md-2 col-md-8 col-lg-7 offset-lg-1">
+    <div class="col-12 offset-md-2 col-md-8 col-lg-7 offset-lg-1">
         <h2> Comments: </h2>
     </div>
 </div>
 <div class="row comment-row">
-    <div class="col-sm-12 offset-md-2 col-md-8 col-lg-7 offset-lg-1">
+    <div class="col-12 offset-md-2 col-md-8 col-lg-7 offset-lg-1">
         <!--Displays each comment in a Bootstrap card-->
         {% for comment in bug.comments.all %}
             <div class="card comment-card">
@@ -49,7 +49,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-11 offset-md-2 col-md-4 offset-lg-1 col-lg-2">
+    <div class="col-11 offset-md-2 col-md-4 offset-lg-1 col-lg-2">
         <a href="{% url 'add_comment' bug.id %}" class="btn btn-comment">Add Comment</a>
     </div>
 </div>
