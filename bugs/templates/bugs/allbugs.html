@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-6">
         <!--Displays each bug in a Bootstrap card.-->
-            {% for bug in bugs %}
+        {% for bug in bugs %}
             <div class="card">
                 <a href="{% url 'bug_description' bug.id %}">
                     <div class="card-body">
@@ -35,7 +35,20 @@
                     </div>
                 </a>
             </div>
-            {% endfor %}
+        {% endfor %}
+        <div class="pagination">
+            {% if bugs.has_previous %}
+                <a href="?page=1"> 1 </a>
+                <a href="?page={{ bugs.previous_page_number }}"> &lt;</a>
+            {% endif %}
+            <span class="current">
+                {{ bugs.number }}
+            </span>
+            {% if bugs.has_next %}
+                <a href="?page={{ bugs.next_page_number }}"> &gt;  </a>
+                <a href="?page={{ bugs.paginator.num_pages }}"> {{ bugs.paginator.num_pages }} </a>
+            {% endif %}    
+        </div>
     </div>
 </div>
         
