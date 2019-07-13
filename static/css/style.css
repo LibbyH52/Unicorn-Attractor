@@ -34,13 +34,17 @@
     font-weight: 800;
 }
 
+.navbar-toggler{
+    color: #f1f1f1;
+}
+
 /********************Heading Styles*/
 h1{
     color: #ffa600;
     font-size: 2rem;
     font-weight: 700;
     line-height: 4rem;
-    text-align: center;
+    text-align: left;
 }
 
 .profile-heading{
@@ -206,7 +210,10 @@ a:hover{
 
 .footer{
     background-color: #003f5c;
-    height: 8rem;
+    bottom: 0;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
 }
 
 .footer i{
