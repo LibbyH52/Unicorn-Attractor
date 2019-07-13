@@ -37,18 +37,19 @@
 /********************Heading Styles*/
 h1{
     color: #ffa600;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 4rem;
-    text-align: left;
+    text-align: center;
+}
+
+.profile-heading{
+    text-align: center;
 }
 
 h2{
     color: #7a5195;
     font-weight: 600;
-}
-
-h5 a{
-    color:  #003f5c;
 }
 
 /********************Button Styles*/
@@ -100,6 +101,10 @@ h5 a{
     padding-bottom: .5rem 1.25rem .3rem 1.25rem;
  }
 
+ .bug-title{
+     font-size: 1rem;
+ }
+
 /*********************Badge Styles*/
 .badge{
     color: #f1f1f1;
@@ -138,7 +143,6 @@ legend{
 }
 
 /*******************Profile Styles*/
-
 .profile-image{
     display: block;
     height: 15rem;
@@ -150,6 +154,7 @@ legend{
     font-size: 1.25rem;
     margin: 0 auto;
     padding-top: 1.5rem;
+    text-align: center;
 }
 
 .info-col{
@@ -161,36 +166,32 @@ legend{
 }
 
 /************************Icon Styles*/
-.comments{
-    color: #dd5182;
-}
-
 .fa-edit{
     color: #003f5c;
     padding: 1rem;
 }
 
-.views{
-    color: #444e86;
-}
-
 .views,
 .comments {
     float: right;
-    padding: 0 1rem;
+    color: #444e86;
+
 }
 
 /***********************Link Styles*/
-a,
+a{
+    color: #003f5c;
+}
+
 a:hover{
     text-decoration: none;
-    color: #003f5c;
 }
 
 .container{
     margin-top: 2rem;
 }
 
+/******************Pagination Styles*/
 .pagination{
     color: #665191;
     margin: 0 40%;
@@ -205,4 +206,22 @@ a:hover{
 
 .current{
     font-weight: 800;
+}
+
+.col-sm-6{
+    max-width: 50%;
+}
+
+
+@media screen and (min-width: 768px){
+    h1{
+        color: #ffa600;
+        font-weight: 700;
+        line-height: 4rem;
+        text-align: left;
+    }
+}
+
+@media screen and (min-width: 992px){
+    
 }

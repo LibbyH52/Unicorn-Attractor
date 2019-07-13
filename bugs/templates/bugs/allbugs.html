@@ -2,38 +2,37 @@
 {% load static %}
 {% block content %}
 <div class="row">
-    <div class="col-sm-12 offset-md-2 col-md-4 offset-lg-0 col-lg-4">
-        <h1>All Bugs</h1>
+    <div class="col-sm-6 offset-md-1 col-md-7 offset-lg-2 col-lg-6">
+        <h1 class="bugs-title">All Bugs</h1>
     </div>
-    <!--Button that when clicked will take a user to form that allows them to file a bug report-->
-     <div class="col-sm-12 col-md-4 col-lg-2">
+    <!--Button to  take a user to form that allows them to file a bug report-->
+     <div class="col-sm-6 col-md-4 col-lg-2">
         <a href="{% url 'add_bug' %}" class="btn btn-add" type="button">Report a Bug </a>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-6">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
         <!--Displays each bug in a Bootstrap card.-->
         {% for bug in bugs %}
             <div class="card">
-                <a href="{% url 'bug_description' bug.id %}">
-                    <div class="card-body">
-                        <h5 class="card-title"> 
-                            <!--Genereates different colour badges depending on the fix status of a partiular bug-->
+                <div class="card-body">
+                        <!--Genereates different colour badges depending on the fix status of a partiular bug-->
+                        <a class="card-title" href="{% url 'bug_description' bug.id %}">
                             {% if bug.fix_status == 'Doing' %}
-                                <span class="badge badge-done">{{bug.fix_status}}</span>
+                                <span class="badge badge-done">{{ bug.fix_status }}</span>
                             {% elif bug.fix_status == 'Done' %}
-                                <span class="badge badge-doing">{{bug.fix_status}}</span>
+                                <span class="badge badge-doing">{{ bug.fix_status }}</span>
                             {% elif bug.fix_status == 'ToDo' %}
-                                <span class="badge badge-todo">{{bug.fix_status}}</span>
+                                <span class="badge badge-todo">{{ bug.fix_status }}</span>
                             {% endif %}
-                            {{bug.title}}
-                        </h5>
-                        posted {{bug.posted_on}}
-                    <!--Number of comments and views for a particular bug-->
-                        <span class="views"><i class="fas fa-eye"></i> {{bug.views}}</span>
-                        <span class="comments"><i class="far fa-comment"></i> {{bug.comments.count}} </span>
+                            {{ bug.title }}
+                        </a>
+                        <span class="views">{{ bug.views }} <i class="fas fa-eye"></i></span>
+                        <p class="text-muted">posted on: {{ bug.posted_on }} by {{ bug.author }} 
+                            <!--Number of comments and views for a particular bug-->
+                            <span class="comments">{{ bug.comments.count }} <i class="far fa-comment"></i> </span>
+                        </p>
                     </div>
-                </a>
             </div>
         {% endfor %}
         <div class="pagination">
