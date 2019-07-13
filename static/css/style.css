@@ -101,7 +101,7 @@ h2{
     padding-bottom: .5rem 1.25rem .3rem 1.25rem;
  }
 
- .bug-title{
+ .card-title{
      font-size: 1rem;
  }
 
@@ -158,10 +158,6 @@ legend{
 }
 
 .info-col{
-    padding: 0.5rem 1rem
-}
-
-.info-col{
     padding: 2rem 1rem 1rem 1rem;
 }
 
@@ -208,10 +204,15 @@ a:hover{
     font-weight: 800;
 }
 
-.col-sm-6{
-    max-width: 50%;
+.footer{
+    background-color: #003f5c;
+    height: 8rem;
 }
 
+.footer i{
+    color: #f1f1f1;
+    font-size: 2rem;
+}
 
 @media screen and (min-width: 768px){
     h1{
@@ -220,8 +221,4 @@ a:hover{
         line-height: 4rem;
         text-align: left;
     }
-}
-
-@media screen and (min-width: 992px){
-    
 }
