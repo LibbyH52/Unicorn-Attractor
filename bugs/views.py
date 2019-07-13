@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
@@ -16,6 +17,9 @@ def show_bugs(request):
     'allbugs' template.
     """
     bugs = Bug.objects.order_by('-posted_on').all()
+    paginator = Paginator(bugs, 6)
+    page = request.GET.get('page')
+    bugs = paginator.get_page(page)
     return render(request, 'bugs/allbugs.html', {'bugs' : bugs})
 
 
@@ -46,7 +50,7 @@ def add_bug(request):
             return redirect('bug_description', pk=bug.pk)
     else:
         form = AddBugForm()
-    return render(request, "bugs/addbug.html")
+    return render(request, "bugs/addbug.html", {"form": form})
 
 @login_required()
 def edit_bug(request, pk=None):
