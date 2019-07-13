@@ -190,3 +190,19 @@ a:hover{
 .container{
     margin-top: 2rem;
 }
+
+.pagination{
+    color: #665191;
+    margin: 0 40%;
+    font-size: 1.5rem;
+}
+
+.pagination a{
+    color: #665191;
+    padding: 0 0.4rem;
+    text-align: center;
+}
+
+.current{
+    font-weight: 800;
+}
