@@ -26,7 +26,7 @@
                       <a class="nav-link" href="{% url 'show_bugs' %}">Bugs</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Features</a>
+                      <a class="nav-link" href="{% url 'get_features' %}">Features</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -50,7 +50,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container content-container">
         <!-- Django alert messages to inform users when they have logged in, logged out or registered-->
         {% if messages %}
             {% for message in messages %}
