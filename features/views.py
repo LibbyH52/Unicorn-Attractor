@@ -9,7 +9,7 @@ def get_features(request):
     of all feature requests and render
     them to the template 'allfeatures.html.
     """
-    features = Feature.objects.filter('-posted_on').all()
+    features = Feature.objects.order_by('-posted_on').all()
     return render(request, 'features/allfeatures.html', {'features': features})
 
 
