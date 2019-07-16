@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # custom apps
     'bugs',
     'accounts',
+    'features',
 ]
 
 MIDDLEWARE = [
