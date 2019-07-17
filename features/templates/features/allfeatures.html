@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Features{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-6 offset-0 offset-md-1 col-md-6 offset-lg-2 col-lg-6">
+        <h1 class="feature-title">Feature Requests</h1>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <a href="#" class="btn btn-add" type="btn">Request Feature</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+        {% for feature in features %}
+            <div class="card feature-card">
+                {% if feature.phase_of_development == 'Doing' %}
+                    <div class="card-header bg-color-done">{{ feature.phase_of_development }} 
+                        <span class="dev-phase">{{ feature.phase_of_development }}</span>
+                        <span class="votes"><i class="far fa-thumbs-up"></i> {{ feature.upvote }}</span>
+                        <h5 class="feature-heading">{{ feature.name }} </h5>
+                    </div>
+                {% elif feature.phase_of_development == 'Done' %}
+                    <div class="card-header bg-color-doing">
+                        <span class="dev-phase">{{ feature.phase_of_development }}</span>
+                        <span class="votes"> {{ feature.upvote }} <i class="far fa-thumbs-up"></i><span>
+                        <h5 class="feature-heading">{{ feature.name }} </h5>
+                    </div>
+                {% elif feature.phase_of_development == 'ToDo' %}
+                    <div class="card-header bg-color-todo">
+                        <span class="dev-phase">{{ feature.phase_of_development }}</span>
+                        <span class="votes"> {{ feature.upvote }} <i class="far fa-thumbs-up"></i></span>
+                        <h5 class="feature-heading">{{ feature.name }} </h5> 
+                    </div>
+                {% endif %}
+                <div class="card-body">
+                    {{ feature.details }}
+                </div>
+                <div class="card-footer text-muted">
+                    requested by {{ feature.requested_by }} on {{ feature.posted_on }}
+                </div>
+            </div>
+        {% endfor %}    
+    </div>
+</div>
+{% endblock %}
