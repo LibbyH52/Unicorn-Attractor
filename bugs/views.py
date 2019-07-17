@@ -55,7 +55,7 @@ def add_bug(request):
 @login_required()
 def edit_bug(request, pk=None):
     bug = get_object_or_404(Bug, pk=pk)
-    if request.method =="POST":
+    if request.method == "POST":
         form = AddBugForm(request.POST, instance=bug)
         if form.is_valid():
             form.save()
@@ -72,7 +72,7 @@ def add_comment(request, pk):
     on a particular bug.
     """
     bug = get_object_or_404(Bug, pk=pk)
-    if request.method =="POST":
+    if request.method == "POST":
         form = AddCommentForm(request.POST)
     
         if form.is_valid():
