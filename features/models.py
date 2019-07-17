@@ -11,7 +11,15 @@ class Feature(models.Model):
     details = models.TextField()
     posted_on = models.DateTimeField(null=True, blank=True, default=timezone.now)
     requested_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    views = models.IntegerField(default=0)
+    Done = 'Done'
+    Doing = 'Doing'
+    ToDo = 'ToDo'
+    PHASE_OF_DEVELOPMENT_CHOICES =[
+        (Done, 'Done'),
+        (Doing, 'Doing'),
+        (ToDo, 'ToDo'),
+        ]
+    phase_of_development = models.CharField(max_length=6, choices=PHASE_OF_DEVELOPMENT_CHOICES, default='ToDo')
     upvote = models.IntegerField(default=0)
 
     def __str__(self):
