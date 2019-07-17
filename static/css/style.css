@@ -60,6 +60,13 @@ h2{
     font-weight: 600;
 }
 
+.feature-heading{
+    color: #f1f1f1;
+    font-size: 1.5rem;
+    font-variant: small-caps;
+    text-align: center;
+}
+
 /********************Button Styles*/
 .btn,
 .btn:active,
@@ -105,12 +112,46 @@ h2{
     margin-bottom: 2rem;
 }
 
+.feature-card{
+    margin: 2rem auto;
+}
+
+.feature-card .card-header{
+    font-size: 1.25em;
+}
+
+.feature-card .card-body{
+    padding: 2rem 3rem;
+}
+
 .card-body{
     padding-bottom: .5rem 1.25rem .3rem 1.25rem;
  }
 
  .card-title{
      font-size: 1rem;
+ }
+
+ .card-footer{
+    background-color: #ffffff;
+    border: none;
+    text-align: center;
+ }
+
+ .bg-color-done{
+    background-color: #955196;
+ }
+
+ .bg-color-doing{
+    background-color: #dd5182;
+ }
+
+ .bg-color-todo{
+    background-color: #ff6e54;
+ }
+
+ .dev-phase{
+     color: #f1f1f1;
  }
 
 /*********************Badge Styles*/
@@ -176,10 +217,14 @@ legend{
 }
 
 .views,
-.comments {
+.comments,
+.votes {
     float: right;
     color: #444e86;
+}
 
+.votes{
+    color: #f1f1f1;
 }
 
 /***********************Link Styles*/
