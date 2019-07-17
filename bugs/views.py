@@ -41,7 +41,7 @@ def add_bug(request):
     Create a view that allows a user to submit 
     or edit a bug report
     """
-    if request.method =="POST":
+    if request.method == "POST":
         form = AddBugForm(request.POST)
         if form.is_valid():
             bug = form.save(commit=False)
