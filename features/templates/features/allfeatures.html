@@ -7,13 +7,15 @@
         <h1 class="feature-title">Feature Requests</h1>
     </div>
     <div class="col-6 col-md-4 col-lg-2">
-        <a href="#" class="btn btn-add" type="btn">Request Feature</a>
+        <a href="{% url 'new_feature' %}" class="btn btn-add" type="btn">Request Feature</a>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+        <!--Iterates through the list of feature request displaying each one in a bootstrap card-->
         {% for feature in features %}
             <div class="card feature-card">
+                <!--Background color of header dependes on phase of development-->
                 {% if feature.phase_of_development == 'Doing' %}
                     <div class="card-header bg-color-done">{{ feature.phase_of_development }} 
                         <span class="dev-phase">{{ feature.phase_of_development }}</span>
