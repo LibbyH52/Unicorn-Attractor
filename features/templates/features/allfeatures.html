@@ -31,7 +31,7 @@
                 {% elif feature.phase_of_development == 'ToDo' %}
                     <div class="card-header bg-color-todo">
                         <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <span class="votes"> {{ feature.upvote }} <i class="far fa-thumbs-up"></i></span>
+                        <a href="{% url 'upvote_feature' feature.id %}"><span class="votes">{{ feature.upvote }} <i class="far fa-thumbs-up"></i></span></a>
                         <h5 class="feature-heading">{{ feature.name }} </h5> 
                     </div>
                 {% endif %}

@@ -4,8 +4,12 @@
 {% block title %}Add Feature{% endblock %}
 {% block content %}
 <div class="row">
-    <h1> Request a Feature </h1>
-    <div class="col-sm-12 offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+        <h1> Request a Feature </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
          <!--Form to allow users request a new feature-->
         <form method="POST">
             {% csrf_token %}
