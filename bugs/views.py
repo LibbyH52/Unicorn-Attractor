@@ -90,7 +90,7 @@ def add_comment(request, pk):
 def edit_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     bug = comment.bug
-    if request.method =="POST":
+    if request.method == "POST":
         form = AddCommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
