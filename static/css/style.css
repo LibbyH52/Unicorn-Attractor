@@ -62,9 +62,10 @@ h2{
 
 .feature-heading{
     color: #f1f1f1;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-variant: small-caps;
     text-align: center;
+    padding: inherit;
 }
 
 /********************Button Styles*/
@@ -186,6 +187,14 @@ h2{
     color: #003f5c;
 }
 
+.vote-form{
+    float: right;
+}
+
+.vote-form .btn-add{
+    margin: 0;
+}
+
 legend{
     font-size: 2rem;
     text-align: center;
@@ -284,6 +293,11 @@ a:hover{
 
     .card-title{
         font-size: 1.25rem;
+    }
+
+    .vote-form .btn-add{
+        display: inline-block;
+        margin: 0;
     }
 }
 
