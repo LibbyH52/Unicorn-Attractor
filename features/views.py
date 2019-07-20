@@ -35,9 +35,3 @@ def new_feature(request):
         form = AddFeatureForm()
     return render(request, 'features/addfeature.html', {'form': form})
 
-
-def upvote_feature(request, pk):
-    feature = get_object_or_404(Feature, pk=pk)
-    feature.upvote += 1
-    feature.save()
-    return redirect('get_features')
