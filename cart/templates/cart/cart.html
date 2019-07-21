@@ -1,8 +1,58 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} All Bugs{% endblock %}
+{% load bootstrap_tags}
+{% block title %} Shopping Cart{% endblock %}
 {% block content %}
-<h1> Cart</h1>
-Cart {{ features.feature_count }}
- € {{ price }}
+<div class="row">
+    <div class="col-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+        <h1> Cart</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Feature Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Adjust Quantity</th>
+                </tr>
+            </thead>
+            {% for item in cart_items %}
+                <tr>
+                    <td> 
+                        <h5>{{item.feature.name}}</h5>
+                    </td> 
+                    <td>
+                        <i class="fas fa-euro-sign"></i> {{item.price}}
+                    </td> 
+                    <td>
+                        {{item.quantity}}
+                    </td>
+                    <td>
+                        <form class="form-inline" method="POST" action="{% url 'adjust_cart' item.id %}">
+                            {% csrf_token %}
+                            <div class="input-group">
+                            <input name="quantity" type="number" min="0" max="99" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>
+                    Total :
+                    <i class="fas fa-euro-sign"></i>{{total}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+        <button class="btn btn-add" role="button">Pay now</button>
+    </div>
+</div>
 {% endblock %}

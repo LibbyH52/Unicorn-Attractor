@@ -282,6 +282,12 @@ a:hover{
     font-size: 2.5rem;
 }
 
+/**********************Table Styles*/
+.table td{
+    padding: 1rem;
+} 
+
+
 @media screen and (min-width: 768px){
     h1{
         color: #ffa600;
