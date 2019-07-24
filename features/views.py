@@ -35,3 +35,16 @@ def new_feature(request):
         form = AddFeatureForm()
     return render(request, 'features/addfeature.html', {'form': form})
 
+
+@login_required()
+def edit_feature(request, pk):
+    feature = get_object_or_404(Feature, pk=pk)
+    if request.method == "POST":
+        form = AddFeatureForm(request.POST, instance=feature)
+        if form.is_valid():
+            form.save()
+            return redirect('get_features', pk=feature.pk)
+    else:
+        form = AddCommentForm(instance=feature)
+    return render(request, "features/addfeature.html", {"form": form})
+

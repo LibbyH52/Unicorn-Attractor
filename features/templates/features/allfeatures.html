@@ -45,10 +45,14 @@
                     </div>
                 {% endif %}
                 <div class="card-body">
-                    <p>{{ feature.details }}</p>
+                    {% if request.user == feature.requested_by %}
+                        <p class="card-text">{{feature.details}} <a href="{% url 'edit_feature' feature.id %}"><i class="fas fa-edit"></i></a></p>
+                    {% else %}
+                        <p>{{ feature.details}}</p>
+                    {% endif %}
                 </div>
                 <div class="card-footer text-muted">
-                    requested by {{ feature.requested_by }} on {{ feature.posted_on }}
+                    requested by {{feature.requested_by}} on {{feature.posted_on}}
                 </div>
             </div>
         {% endfor %}    
