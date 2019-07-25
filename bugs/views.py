@@ -98,3 +98,11 @@ def edit_comment(request, pk):
     else:
         form = AddCommentForm(instance=comment)
     return render(request, "bugs/addcomment.html", {"form": form})
+
+
+@login_required()
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    bug = comment.bug
+    comment.delete()
+    return redirect('bug_description', pk=bug.pk)

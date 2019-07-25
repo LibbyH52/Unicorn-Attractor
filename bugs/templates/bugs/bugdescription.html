@@ -35,11 +35,12 @@
         {% for comment in bug.comments.all %}
             <div class="card comment-card">
                 <div class="card-header">
-                    <p class="card-title"><strong>{{comment.author}}</strong> posted this on {{comment.created_on}} </p>
+                    <p class="card-title"><strong>{{comment.author}}</strong> posted this on {{comment.created_on}} <a href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit"></i></a><a href="{% url 'delete_comment' comment.id %}"><i class="far fa-trash-alt"></i>
+                    </a></p>
                 </div>
                 <div class="card-body">
                     {% if request.user == comment.author %}
-                        <p class="card-text">{{comment.comment}}<a href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit"></i></a></p>
+                        <p class="card-text">{{comment.comment}}</p>
                     {% else %}
                         <p class="card-text">{{comment.comment}}</p>
                     {% endif %}
