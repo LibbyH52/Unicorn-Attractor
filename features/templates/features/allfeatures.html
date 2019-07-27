@@ -37,10 +37,9 @@
                 {% elif feature.phase_of_development == 'ToDo' %}
                     <div class="card-header bg-color-todo">
                         <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <form method="POST" class="vote-form" action="{% url 'add_to_cart' feature.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn-add" type="submit"> <span class="votes">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span></button>
-                        </form>
+                        <button type="button" class="btn btn-add votes" data-toggle="modal" data-target="#upVoteModal">
+                            {{feature.upvote }} <i class="far fa-thumbs-up"></i>
+                        </button>
                         <h5 class="feature-heading">{{ feature.name }} </h5> 
                     </div>
                 {% endif %}
@@ -53,6 +52,29 @@
                 </div>
                 <div class="card-footer text-muted">
                     requested by {{feature.requested_by}} on {{feature.posted_on}}
+                </div>
+            </div>
+            <!--Popup modal for upvoting a feature-->
+            <div class="modal fade" id="upVoteModal" tabindex="-1" role="dialog" aria-labelledby="upVoteModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Upvote Feature</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Upvoting a feature costs €10 per vote. You can purchase a maximum of 10 votes. In return for your payment, we promise to spend at least 50% of our time working on the feature that gets the most votes</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form method="POST" class="vote-form" action="{% url 'add_to_cart' feature.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-add" type="submit">Vote</button>
+                            </form>
+                            <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         {% endfor %}    
