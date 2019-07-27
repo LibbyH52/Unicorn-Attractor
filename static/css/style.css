@@ -100,6 +100,11 @@ h2{
     margin-bottom: 1rem;
 }
 
+.btn-cancel{
+    background-color: #003f5c;
+    color: #f1f1f1;
+}
+
 /*********************Card Styles*/
 .card{
     border: 1px solid #58508d;
@@ -153,6 +158,24 @@ h2{
 
  .dev-phase{
      color: #f1f1f1;
+ }
+
+ /*********************Modal Styles*/
+ .modal-header{
+     background-color: #ff6e54;
+     color: #f1f1f1;
+     text-align: center;
+ }
+
+ .modal-header .close{
+     color: #f1f1f1;
+     font-weight: 800;
+ }
+
+ .modal-footer{
+     border: none;
+     padding-bottom: 1rem;
+     padding-right: 1rem;
  }
 
 /*********************Badge Styles*/
