@@ -21,6 +21,7 @@ class Feature(models.Model):
         ]
     phase_of_development = models.CharField(max_length=6, choices=PHASE_OF_DEVELOPMENT_CHOICES, default='ToDo')
     upvote = models.IntegerField(default=0)
+    vote_price = models.DecimalField(max_digits=4, decimal_places=2, default=10.00)
 
     def __str__(self):
         return self.name
