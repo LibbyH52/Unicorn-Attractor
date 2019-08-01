@@ -20,24 +20,22 @@
                     <div class="card-header bg-color-done">{{ feature.phase_of_development }} 
                         <span class="dev-phase">{{ feature.phase_of_development }}</span>
                         <h5 class="feature-heading">{{ feature.name }} </h5>
-                        <form method="POST" class="vote-form" action="{% url 'add_to_cart' feature.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn-add" type="submit"> <span class="votes">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span></button>
-                        </form>
+                        <button type="button" class="btn btn-add votes" data-toggle="modal" data-target="#upVoteModal{{feature.id}}">
+                            {{feature.upvote }} <i class="far fa-thumbs-up"></i>
+                        </button>
                     </div>
                 {% elif feature.phase_of_development == 'Done' %}
                     <div class="card-header bg-color-doing">
                         <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <form method="POST" class="vote-form" action="{% url 'add_to_cart' feature.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn-add" type="submit"> <span class="votes">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span></button>
-                        </form>
+                        <button type="button" class="btn btn-add votes" data-toggle="modal" data-target="#upVoteModal{{feature.id}}">
+                            {{feature.upvote }} <i class="far fa-thumbs-up"></i>
+                        </button>
                         <h5 class="feature-heading">{{ feature.name }} </h5>
                     </div>
                 {% elif feature.phase_of_development == 'ToDo' %}
                     <div class="card-header bg-color-todo">
                         <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <button type="button" class="btn btn-add votes" data-toggle="modal" data-target="#upVoteModal">
+                        <button type="button" class="btn btn-add votes" data-toggle="modal" data-target="#upVoteModal{{feature.id}}">
                             {{feature.upvote }} <i class="far fa-thumbs-up"></i>
                         </button>
                         <h5 class="feature-heading">{{ feature.name }} </h5> 
@@ -55,7 +53,7 @@
                 </div>
             </div>
             <!--Popup modal for upvoting a feature-->
-            <div class="modal fade" id="upVoteModal" tabindex="-1" role="dialog" aria-labelledby="upVoteModalLabel" aria-hidden="true">
+           <div class="modal fade" id="upVoteModal{{feature.id}}" tabindex="-1" role="dialog" aria-labelledby="upVoteModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
