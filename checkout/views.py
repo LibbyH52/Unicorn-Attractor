@@ -24,7 +24,7 @@ def checkout(request):
 			order = order_form.save(commit=False)
 			order.date = timezone.now()
 			order.save()
-			for id, qunatity in cart.items():
+			for id, quantity in cart.items():
 				feature = get_object_or_404(Feature, pk=id)
 				total += quantity * feature.vote_price
 				order_line_item = OrderLineItem(
