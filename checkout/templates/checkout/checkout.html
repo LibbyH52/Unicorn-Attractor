@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block title %}Checkout{% endblock %}
+{% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript" src="">
+    //<![CDATA[
+        Stripe.publishableKey = '{{ publishable }}';
+    //]]
+</script>
+<script type="text/javascript"  src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12 offset-md-2 col-md-8 offset-lg-0 col-lg-5">
+        <form method="POST" role="form" class="form payment-form" action="{% url 'checkout'%}">
+            {% csrf_token %}
+            <div class="form-row">
+                <legend>Payment Details</legend>
+                <div class="form-group col-12">
+                    <label for="FullName">Name on Card: </label>
+                    {{order_form.full_name}} 
+                </div>
+                <div class="form-group col-12">
+                    <label for="CreditCardNumber">Credit Card Number: </label>
+                    {{payment_form.credit_card_number}} 
+                </div>
+                <div class="form-group col-9">
+                    <label for="Expiry Date">Expiry Date:</label><br>
+                    {{payment_form.expiry_month}} 
+                    {{payment_form.expiry_year}} 
+                </div>
+                <div class="form-group col-3">
+                    <label for="CVV">CVV: </label><br>
+                    {{payment_form.cvv}} 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-12">
+                    <button class="btn btn-add btn-checkout" type="submit">Pay Now</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-12 offset-md-2 col-md-8 offset-lg-1 col-lg-5">
+        <h2>Cart Items</h2>
+        <table class="table checkout-table">
+            <thead>
+                <tr>
+                    <th scope="col">Feature Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+            </thead>
+            {% for item in cart_items %}
+                <tr>
+                    <td> 
+                        <h5>{{item.feature.name}}</h5>
+                    </td> 
+                    <td>
+                        <i class="fas fa-euro-sign"></i> {{item.feature.vote_price}}
+                    </td> 
+                    <td>
+                        {{item.quantity}}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>
+                    Total :
+                    <i class="fas fa-euro-sign"></i>{{total}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

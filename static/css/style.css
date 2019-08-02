@@ -105,6 +105,11 @@ h2{
     color: #f1f1f1;
 }
 
+.btn-checkout{
+    margin: 0 5%;
+    width: 90%;
+}
+
 /*********************Card Styles*/
 .card{
     border: 1px solid #58508d;
@@ -232,8 +237,24 @@ select{
     height: 30px;
 }
 
-input{
-    height: 30px;
+#id_full_name{
+    width: 100%;
+}
+
+#id_credit_card_number{
+    width: 100%;
+}
+
+#id_expiry_month{
+    width: 45%;
+}
+
+#id_expiry_year{
+    width: 45%;
+}
+
+#id_cvv{
+    max-width: 100%;
 }
 
 /*******************Profile Styles*/
@@ -319,6 +340,10 @@ a:hover{
 }
 
 /**********************Table Styles*/
+.checkout-table{
+    margin: 5% auto;
+}
+
 .table td{
     padding: 1rem;
 } 
