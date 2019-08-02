@@ -205,9 +205,14 @@ h2{
     padding: 1rem;
 }
 
-.user-form{
+.form{
     border: 2px solid #003f5c;
     color: #003f5c;
+}
+
+.payment-form{
+    margin: 5% auto;
+    padding: 1rem;
 }
 
 .vote-form{
@@ -221,6 +226,14 @@ h2{
 legend{
     font-size: 2rem;
     text-align: center;
+}
+
+select{
+    height: 30px;
+}
+
+input{
+    height: 30px;
 }
 
 /*******************Profile Styles*/
