@@ -17,12 +17,12 @@
         <form method="POST" role="form" class="form payment-form" action="{% url 'checkout'%}">
             {% csrf_token %}
             <div class="form-row">
-                <legend>Payment Details</legend>
+               <legend>Payment Details</legend>
                 <div class="form-group col-12">
-                    <label for="FullName">Name on Card: </label>
-                    {{order_form.full_name}} 
+                   <label for="FullName">Name on Card: </label>
+                   {{order_form.full_name}} 
                 </div>
-                <div class="form-group col-12">
+               <div class="form-group col-12">
                     <label for="CreditCardNumber">Credit Card Number: </label>
                     {{payment_form.credit_card_number}} 
                 </div>
@@ -34,6 +34,7 @@
                 <div class="form-group col-3">
                     <label for="CVV">CVV: </label><br>
                     {{payment_form.cvv}} 
+                    {{payment_form.stripe_id}}
                 </div>
                 <div class="form-group col-12">
                     <label for="Country">Country or region: </label>

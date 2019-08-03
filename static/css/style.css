@@ -28,6 +28,7 @@
 .nav-link{
     font-size: 1.25rem;
     font-weight: 700;
+    line-height: 1.35rem;
 }
 
 .nav-link:active,
@@ -238,6 +239,10 @@ select{
 }
 
 #id_full_name{
+    width: 100%;
+}
+
+#id_country{
     width: 100%;
 }
 
