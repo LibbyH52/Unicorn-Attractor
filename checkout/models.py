@@ -5,6 +5,7 @@ from features.models import Feature
 
 class Order(models.Model):
     full_name = models.CharField(max_length=50, blank=False)
+    country = CountryField(blank_label='(select country)', default="")
     date = models.DateField()
 
     def __str__(self):
