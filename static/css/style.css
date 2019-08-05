@@ -9,20 +9,19 @@
 
 .navbar-brand,
 .nav-link{
+    font-size: 1.5rem;
     color: #f1f1f1;
 }
 
 .navbar-brand{
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .navbar-brand:active,
 .navbar-brand:focus,
 .navbar-brand:hover{
     color: #f1f1f1;
-    font-size: 1.6rem;
-    font-weight: 900;
+    font-weight: 1000;
 }
 
 .nav-link{
@@ -35,8 +34,7 @@
 .nav-link:focus,
 .nav-link:hover{
     color: #f1f1f1;
-    font-size: 1.35rem;
-    font-weight: 800;
+    font-weight: 900;
 }
 
 .navbar-toggler{
@@ -202,7 +200,7 @@ h2{
 
 /**********************Form Styles*/
 .login-form{
-    margin: 20% auto;
+    margin-top: 20%;
     padding: 2rem;
 }
 
