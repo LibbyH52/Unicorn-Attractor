@@ -219,6 +219,10 @@ h2{
     padding: 1rem;
 }
 
+.reset-form{
+    padding: 1rem;
+}
+
 .vote-form{
     float: right;
 }
@@ -234,6 +238,10 @@ legend{
 
 select{
     height: 30px;
+}
+
+.login{
+    font-weight: 800;
 }
 
 #id_full_name{
