@@ -1,5 +1,6 @@
 .content-container{
     padding-bottom: 6rem;
+    min-height: 100vh;
 }
 
 /********************Nav Styles*/
@@ -339,9 +340,7 @@ a:hover{
     background-color: #003f5c;
     bottom: 0;
     height: 5rem;
-    left: 0;
     padding: .2rem;
-    position: relative;
     width: 100vw;
 }
 
