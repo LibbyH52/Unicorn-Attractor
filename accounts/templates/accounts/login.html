@@ -11,8 +11,12 @@
             {{ form | as_bootstrap }} 
             <button type="submit" class="btn btn-login">Log In</button>
         </form>
-        <!--paragraph tag letting users know that if they don't have an account they can register 'here'-->
-       <!---<p>Don't have an account? Sign up <a href="#">here</a></p>-->
+        <p>
+            <a href="{% url 'password_reset' %}">Forget password?</a>
+        </p>
+        <p>
+            Don't have an account? Create one <a href="{% url 'password_reset' %}">here</a>
+        </p>
     </div>
 </div>
 {% endblock %}
