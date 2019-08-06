@@ -1,6 +1,17 @@
+body{
+    background-image: url("../img/singapore.jpg");
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat; 
+}
+
 .content-container{
     padding-bottom: 6rem;
     min-height: 100vh;
+}
+
+.home-col{
+    background-color: #f1f1f1;
 }
 
 /********************Nav Styles*/
@@ -56,8 +67,8 @@ h1{
 }
 
 h2{
-    color: #7a5195;
-    font-weight: 600;
+    color: #ffa600;
+    font-weight: 700;
 }
 
 .feature-heading{
@@ -119,7 +130,7 @@ h2{
 
 .description-card{
     border: none;
-    padding: 1rem 0;
+    padding: 1rem;
     margin-bottom: 2rem;
 }
 
@@ -211,6 +222,7 @@ h2{
 }
 
 .form{
+    background: #f1f1f1;
     border: 2px solid #003f5c;
     color: #003f5c;
 }
@@ -269,6 +281,16 @@ select{
     max-width: 100%;
 }
 
+
+.text-pale{
+    color: #f1f1f1;
+    font-weight: 600;
+}
+
+.text-pale a{
+    color: #ffa600;
+}
+
 /*******************Profile Styles*/
 .profile-image{
     display: block;
@@ -277,7 +299,7 @@ select{
 }
 
 .profile-paragraph{
-    color: #2f4b7c;
+    color: #f1f1f1;
     font-size: 1.25rem;
     margin: 0 auto;
     padding-top: 1.5rem;
@@ -320,13 +342,13 @@ a:hover{
 
 /******************Pagination Styles*/
 .pagination{
-    color: #665191;
+    color: #f1f1f1;
     margin: 0 40%;
     font-size: 1.5rem;
 }
 
 .pagination a{
-    color: #665191;
+    color: #f1f1f1;
     padding: 0 0.4rem;
     text-align: center;
 }
@@ -337,7 +359,6 @@ a:hover{
 
 /**********************Footer Styles*/
 .footer{
-    background-color: #003f5c;
     bottom: 0;
     height: 5rem;
     padding: .2rem;
@@ -350,6 +371,10 @@ a:hover{
 }
 
 /**********************Table Styles*/
+
+.table{
+    background: #f1f1f1
+}
 .checkout-table{
     margin: 5% auto;
 }
@@ -358,6 +383,8 @@ a:hover{
     padding: 1rem;
 } 
 
+
+/*********************Media Queries*/
 
 @media screen and (min-width: 768px){
     h1{
