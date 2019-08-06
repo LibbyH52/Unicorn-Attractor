@@ -75,7 +75,20 @@
                     </div>
                 </div>
             </div>
-        {% endfor %}    
+        {% endfor %}
+        <div class="pagination">
+            {% if features.has_previous %}
+                <a href="?page=1"> 1 </a>
+                <a href="?page={{ features.previous_page_number }}"> &lt;</a>
+            {% endif %}
+            <span class="current">
+                {{ features.number }}
+            </span>
+            {% if features.has_next %}
+                <a href="?page={{ features.next_page_number }}"> &gt;  </a>
+                <a href="?page={{ features.paginator.num_pages }}"> {{ features.paginator.num_pages }} </a>
+            {% endif %}    
+        </div>    
     </div>
 </div>
 {% endblock %}

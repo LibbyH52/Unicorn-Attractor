@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect,  get_object_or_404
+from django.core.paginator import Paginator
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -15,6 +16,9 @@ def get_features(request):
     them to the template 'allfeatures.html.
     """
     features = Feature.objects.order_by('-posted_on').all()
+    paginator = Paginator(features, 4)
+    page = request.GET.get('page')
+    features = paginator.get_page(page)
     return render(request, 'features/allfeatures.html', {'features': features})
 
 
