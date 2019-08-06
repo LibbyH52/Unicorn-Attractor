@@ -6,8 +6,9 @@ body{
 }
 
 .content-container{
-    padding-bottom: 6rem;
+    margin-top: 2rem;
     min-height: 100vh;
+    padding-bottom: 3rem;
 }
 
 .home-col{
@@ -336,9 +337,6 @@ a:hover{
     text-decoration: none;
 }
 
-.container{
-    margin-top: 2rem;
-}
 
 /******************Pagination Styles*/
 .pagination{
