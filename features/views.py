@@ -47,8 +47,8 @@ def edit_feature(request, pk):
         form = AddFeatureForm(request.POST, instance=feature)
         if form.is_valid():
             form.save()
-            return redirect('get_features', pk=feature.pk)
+            return redirect('get_features')
     else:
-        form = AddCommentForm(instance=feature)
+        form = AddFeatureForm(instance=feature)
     return render(request, "features/addfeature.html", {"form": form})
 
