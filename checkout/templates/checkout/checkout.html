@@ -13,7 +13,7 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-12 offset-md-2 col-md-8 offset-lg-0 col-lg-5">
-        <form method="POST" role="form" class="form payment-form" action="{% url 'checkout'%}">
+        <form method="POST" class="form payment-form" id="payment-form" action="{% url 'checkout'%}">
             {% csrf_token %}
             <div class="form-row">
                <legend>Payment Details</legend>
