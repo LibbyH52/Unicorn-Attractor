@@ -254,6 +254,10 @@ h2{
     padding: 1rem;
 }
 
+.payment-form label{
+    color: #003f5c;
+}
+
 .reset-form{
     padding: 1rem;
 }
