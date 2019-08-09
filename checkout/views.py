@@ -13,6 +13,7 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required()
 def checkout(request):
+	upvotes = {}
 	if request.method == "POST":
 		payment_form = MakePaymentForm(request.POST)
 		if payment_form.is_valid():
@@ -20,8 +21,9 @@ def checkout(request):
 			total = 0
 			for id, quantity in cart.items():
 				feature = get_object_or_404(Feature, pk=id)
-				feature.upvote += quantity
 				total += quantity * feature.vote_price
+				feature.upvote += quantity
+				feature.save()
 			try:
 				charge = stripe.Charge.create(
 				amount = int(total * 100),
@@ -43,3 +45,4 @@ def checkout(request):
 	else:
 		payment_form = MakePaymentForm()
 	return render(request, 'checkout/checkout.html', {'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+
