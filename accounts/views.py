@@ -31,7 +31,7 @@ def registration(request):
     return render(request, 'accounts/registration.html', {'form': form})
 
 
-def user_profile(request):
+def profile(request):
     """
     Profile page for the logged in user.
     """
@@ -46,7 +46,7 @@ def login(request):
     Creates a view to allow users to login
     """
     if request.user.is_authenticated:
-        return redirect('show_bugs')
+        return redirect('profile')
     if request.method == "POST":
         form = UserLoginForm(request.POST)
         if form.is_valid():
@@ -57,7 +57,7 @@ def login(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully logged in!")
-                return redirect(reverse('user_profile'))
+                return redirect('profile')
             else:
                 form.add_error(None, "Your username or password is incorrect")
     else:
