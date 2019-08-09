@@ -17,19 +17,17 @@
             <div class="card feature-card">
                 <!--Background color of header dependes on phase of development-->
                 {% if feature.phase_of_development == 'Doing' %}
-                    <div class="card-header bg-color-done">{{ feature.phase_of_development }} 
+                <!--dev-phase class added to span tag for setting font-colour-->
+                    <div class="card-header bg-color-done">
                         <span class="dev-phase">{{ feature.phase_of_development }}</span>
+                        <!--vote-number class added to Doing and Done for styling-->
+                        <span class="vote-number">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span>
                         <h5 class="feature-heading">{{ feature.name }} </h5>
-                        <button type="button" class="btn btn-add votes" data-toggle="modal" data-target="#upVoteModal{{feature.id}}">
-                            {{feature.upvote }} <i class="far fa-thumbs-up"></i>
-                        </button>
                     </div>
                 {% elif feature.phase_of_development == 'Done' %}
                     <div class="card-header bg-color-doing">
                         <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <button type="button" class="btn btn-add votes" data-toggle="modal" data-target="#upVoteModal{{feature.id}}">
-                            {{feature.upvote }} <i class="far fa-thumbs-up"></i>
-                        </button>
+                        <span class="vote-number">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span>
                         <h5 class="feature-heading">{{ feature.name }} </h5>
                     </div>
                 {% elif feature.phase_of_development == 'ToDo' %}
