@@ -254,6 +254,11 @@ h2{
     padding: 1rem;
 }
 
+.login-form label,
+.registration-form label{
+    color: #003f5c;
+}
+
 .payment-form{
     margin: 5% auto;
     padding: 1rem;
