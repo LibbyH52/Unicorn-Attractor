@@ -40,7 +40,7 @@ A logged in user will see the following links:
 To create an account a user must enter an email address, username and password. This functionality was implemented using Django's authentication system. Once they have created an account the user is redirected to the login page. 
 
 * Login
-A registered user can login using their username and password. Once a user has successsfully logged in they will be redirected to a list of feature requests.
+A registered user can login using their username and password. Once a user has successsfully logged in they will be redirected to their profile page.
 
 * Logout
 A user can log out at any time by clicking on the Logout link in the navbar. Once logged out hte user will be redirected to the HomePage.
