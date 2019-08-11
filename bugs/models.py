@@ -27,6 +27,10 @@ class Bug(models.Model):
         return self.title
 
 class Comment(models.Model):
+    """
+    Creates a model to allow a user to comment on a
+    bug report
+    """
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE, related_name='comments')
     created_on = models.DateTimeField(null=True, blank=True, default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
