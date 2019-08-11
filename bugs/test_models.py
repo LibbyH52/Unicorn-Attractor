@@ -4,12 +4,12 @@ from .models import Bug, Comment
 
 
 class BugTest(TestCase):
-    def test_string_representation(self):
+    def test_str(self):
         bug = Bug(title="Yet another one")
         self.assertEqual(str(bug), bug.title)
 
 
 class CommentModelTest(TestCase):
-    def test_string_representation(self):
+    def test_str(self):
         comment = Comment(comment="I am having the same problem")
         self.assertEqual(str(comment), comment.comment)
