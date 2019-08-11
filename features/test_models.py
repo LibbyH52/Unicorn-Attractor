@@ -8,8 +8,8 @@ class FeatureTest(TestCase):
     the Features model
     """
     def test_str(self):
-        test_name = Feature(name='New Feature')
-        self.assertEqual(str(test_name), 'New Feature')
+        feature = Feature(name='New Feature')
+        self.assertEqual(str(feature), feature.name)
     
 
    
