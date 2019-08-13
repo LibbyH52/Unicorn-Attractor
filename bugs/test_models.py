@@ -3,7 +3,7 @@ from django.utils import timezone
 from .models import Bug, Comment
 
 
-class BugTest(TestCase):
+class BugModelTest(TestCase):
     def test_str(self):
         bug = Bug(title="Yet another one")
         self.assertEqual(str(bug), bug.title)
