@@ -8,8 +8,9 @@ body{
 }
 
 .content-container{
+    background-color: rgba(0,63,92, 0.5);
     margin-top: 2rem;
-    min-height: 90vh;
+    min-height: 80vh;
     padding-bottom: 3rem;
 }
 
@@ -348,7 +349,6 @@ select{
 /*******************Profile Styles*/
 
 .profile-col{
-    background-color: rgba(0,63,92, 0.7);
     height: 100%;
     padding: 2rem;
 }
@@ -360,7 +360,6 @@ select{
 }
 
 .info-row{
-    background-color: rgba(0,63,92, 0.5);
     color: #f1f1f1;
     font-size: 1.25rem;
     margin-bottom: 3rem;
