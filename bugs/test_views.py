@@ -12,12 +12,12 @@ class TestViews(TestCase):
 
     def setUp(self):
         user = User.objects.create_user(
-            "test_user",
-            "test_user@mail.com",
-            "example"
+            'test_user',
+            'test_user@mail.com',
+            'example'
         )
         user.save()
-        logged_in = self.c.login(username="test_user", password="example")
+        logged_in = self.c.login(username='test_user', password='example')
 
     def test_show_bugs_page(self):
         response = self.c.get('/bugs/show_bugs/')
@@ -25,11 +25,11 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'bugs/allbugs.html')
 
     def test_bug_description_page(self):
-        user = User(username="Bob")
+        user = User(username='Bob')
         user.save()
         bug = Bug.objects.create(
-            title="New bug",
-            details="Yet another one",
+            title='New bug',
+            details='Yet another one',
             author=user)
         bug.save()
         response = self.c.get('/bugs/{0}/'.format(bug.id))
@@ -37,24 +37,31 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'bugs/bugdescription.html')
 
     def test_add_bug_page(self):
-        user = User(username="Bob")
+        user = User(username='Bob')
         user.save()
         bug = Bug.objects.create(
-            title="New bug",
-            details="Yet another one",
+            title='New bug',
+            details='Yet another one',
             author=user)
         bug.save()
         response = self.c.get('/bugs/add_bug/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(bug, Bug))
         self.assertTemplateUsed(response, 'bugs/addbug.html')
+        self.assertRedirects(response, '/bugs/{0}/'.format(bug.id), 
+                            status_code=302, target_status_code=200, fetch_redirect_response=True)
+
+    def test_add_bug_page_redirects_to_bug_description_page(self):
+        response = self.c.get('/bugs/add_bug/')
+        self.assertRedirects(response, '/bugs/{0}/'.format(bug.id), 
+                            status_code=302, target_status_code=200,  fetch_redirect_response=True)
 
     def test_edit_bug_page(self):
-        user = User(username="Bob")
+        user = User(username='Bob')
         user.save()
         bug = Bug.objects.create(
-            title="New bug",
-            details="Yet another one",
+            title='New bug',
+            details='Yet another one',
             author=user
             )
         bug.save()
@@ -67,15 +74,15 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 404)
 
     def test_add_comment_page(self):
-        user = User(username="Bob")
+        user = User(username='Bob')
         user.save()
         bug = Bug.objects.create(
-            title="New bug",
-            details="Yet another one",
+            title='New bug',
+            details='Yet another one',
             author=user)
         bug.save()
         comment = Comment.objects.create(
-            comment="I have this bug too",
+            comment='I have this bug too',
             author=user,
             bug=bug)
         comment.save()
@@ -85,15 +92,15 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'bugs/addcomment.html')
 
     def test_edit_comment_page(self):
-        user = User(username="Bob")
+        user = User(username='Bob')
         user.save()
         bug = Bug.objects.create(
-            title="New bug",
-            details="Yet another one",
+            title='New bug',
+            details='Yet another one',
             author=user)
         bug.save()
         comment = Comment.objects.create(
-            comment="I have this bug too",
+            comment='I have this bug too',
             author=user,
             bug=bug)
         comment.save()
@@ -110,16 +117,16 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 404)
 
     def test_delete_comment_page(self):
-        user = User(username="Bob")
+        user = User(username='Bob')
         user.save()
         bug = Bug.objects.create(
-            title="New bug",
-            details="Yet another one",
+            title='New bug',
+            details='Yet another one',
             author=user
             )
         bug.save()
         comment = Comment.objects.create(
-            comment="I have this bug too",
+            comment='I have this bug too',
             author=user,
             bug=bug
             )

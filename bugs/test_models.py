@@ -5,11 +5,11 @@ from .models import Bug, Comment
 
 class BugModelTest(TestCase):
     def test_str(self):
-        bug = Bug(title="Yet another one")
+        bug = Bug(title='Yet another one')
         self.assertEqual(str(bug), bug.title)
 
 
 class CommentModelTest(TestCase):
     def test_str(self):
-        comment = Comment(comment="I am having the same problem")
+        comment = Comment(comment='I am having the same problem')
         self.assertEqual(str(comment), comment.comment)
