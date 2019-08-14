@@ -3,10 +3,11 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib import auth
+from django.shortcuts import get_object_or_404
 from bugs.models import Bug, Comment
 
 
-class TestViews(TestCase):
+class TestBugsViews(TestCase):
 
     c = Client()
 
@@ -48,13 +49,6 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(bug, Bug))
         self.assertTemplateUsed(response, 'bugs/addbug.html')
-        self.assertRedirects(response, '/bugs/{0}/'.format(bug.id), 
-                            status_code=302, target_status_code=200, fetch_redirect_response=True)
-
-    def test_add_bug_page_redirects_to_bug_description_page(self):
-        response = self.c.get('/bugs/add_bug/')
-        self.assertRedirects(response, '/bugs/{0}/'.format(bug.id), 
-                            status_code=302, target_status_code=200,  fetch_redirect_response=True)
 
     def test_edit_bug_page(self):
         user = User(username='Bob')
@@ -64,14 +58,13 @@ class TestViews(TestCase):
             details='Yet another one',
             author=user
             )
-        bug.save()
         response = self.c.get('/bugs/{0}/edit_bug/'.format(bug.id))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bugs/addbug.html')
 
     def test_edit_bug_page_for_item_that_does_not_exist(self):
-        page = self.c.get('bugs/{1}/edit_bug')
-        self.assertEqual(page.status_code, 404)
+        response = self.c.get('bugs/{1}/edit_bug')
+        self.assertEqual(response.status_code, 404)
 
     def test_add_comment_page(self):
         user = User(username='Bob')
@@ -84,7 +77,8 @@ class TestViews(TestCase):
         comment = Comment.objects.create(
             comment='I have this bug too',
             author=user,
-            bug=bug)
+            bug=bug
+        )
         comment.save()
         response = self.c.get('/bugs/{0}/add_comment/'.format(bug.id))
         self.assertEqual(response.status_code, 200)
@@ -109,12 +103,12 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'bugs/addcomment.html')
 
     def test_edit_comment_page_for_item_that_does_not_exist(self):
-        page = self.c.get('bugs/{1}/edit_comment')
-        self.assertEqual(page.status_code, 404)
+        response = self.c.get('bugs/{1}/edit_comment')
+        self.assertEqual(response.status_code, 404)
 
     def test_delete_comment_page_for_item_that_does_not_exist(self):
-        page = self.c.get('bugs/{1}/delete_comment')
-        self.assertEqual(page.status_code, 404)
+        response = self.c.get('bugs/{1}/delete_comment')
+        self.assertEqual(response.status_code, 404)
 
     def test_delete_comment_page(self):
         user = User(username='Bob')
