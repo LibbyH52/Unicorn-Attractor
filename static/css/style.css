@@ -55,7 +55,7 @@ body{
 /********************Heading Styles*/
 h1{
     color: #ffa600;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 700;
     line-height: 4rem;
     text-align: left;
@@ -461,6 +461,12 @@ a:hover{
 /*********************Media Queries*/
 
 @media screen and (min-width: 768px){
+    .content-container{
+        margin-top: 2rem;
+        min-height: 70vh;
+        padding-bottom: 3rem;
+    }
+
     h1{
         color: #ffa600;
         font-size: 2rem;
