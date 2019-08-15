@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap_tags %}
-
+{% load humanize %}
 {% block title %}Bug Detail{% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
                 {% elif bug.fix_status == 'To Do' %}
                     <span class="badge badge-todo">{{bug.fix_status}}</span>
                 {% endif %}
-                    - <strong>{{bug.author}}</strong> posted this on {{bug.posted_on}}</p>
+                    - <strong>{{bug.author}}</strong> posted this on {{bug.posted_on|naturaltime}}</p>
                 {% if request.user == bug.author %}
                     <p class="card-text">{{bug.details}} <a href="{% url 'edit_bug' bug.id %}"><i class="fas fa-edit"></i></a></p>
                 {% else %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %} All Bugs{% endblock %}
 {% block content %}
 <div class="row">
@@ -29,7 +30,7 @@
                             {{ bug.title }}
                         </a>
                         <span class="views">{{ bug.views }} <i class="fas fa-eye"></i></span>
-                        <p class="text-muted">posted on: {{ bug.posted_on }} by {{ bug.author }} 
+                        <p class="text-muted">posted: {{ bug.posted_on|naturaltime }} by {{ bug.author }} 
                             <!--Number of comments and views for a particular bug-->
                             <span class="comments">{{ bug.comments.count }} <i class="far fa-comment"></i> </span>
                         </p>
