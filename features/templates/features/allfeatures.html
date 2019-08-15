@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}Features{% endblock %}
 {% block content %}
 <div class="row">
@@ -47,7 +48,7 @@
                     {% endif %}
                 </div>
                 <div class="card-footer text-muted">
-                    requested by {{feature.requested_by}} on {{feature.posted_on}}
+                    requested by {{feature.requested_by}} on {{feature.posted_on|naturaltime}}
                 </div>
             </div>
             <!--Popup modal for upvoting a feature-->
