@@ -17,7 +17,7 @@ def add_to_cart(request, id):
     cart = request.session.get('cart', {})
     cart[id] = cart.get(id, quantity)
     request.session['cart'] = cart
-    return redirect(reverse('get_features'))
+    return render(request, 'cart/cart.html', {'cart': cart})
 
 def adjust_cart(request, id):
     """
