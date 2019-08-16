@@ -55,14 +55,18 @@ def add_bug(request):
 @login_required()
 def edit_bug(request, pk=None):
     bug = get_object_or_404(Bug, pk=pk)
-    if request.method == "POST":
-        form = AddBugForm(request.POST, instance=bug)
-        if form.is_valid():
-            form.save()
-            return redirect('bug_description', pk=bug.pk)
+    if request.user == bug.author:
+        if request.method == "POST":
+            form = AddBugForm(request.POST, instance=bug)
+            if form.is_valid():
+                form.save()
+                return redirect('bug_description', pk=bug.pk)
+        else:
+            form = AddBugForm(instance=bug)
+        return render(request, "bugs/addbug.html", {"form": form})
     else:
-        form = AddBugForm(instance=bug)
-    return render(request, "bugs/addbug.html", {"form": form})
+        messages.info(request, 'Only the author can edit this bug.')
+    return redirect('bug_description', pk=bug.id)
 
 
 @login_required()
@@ -90,19 +94,27 @@ def add_comment(request, pk):
 def edit_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     bug = comment.bug
-    if request.method == "POST":
-        form = AddCommentForm(request.POST, instance=comment)
-        if form.is_valid():
-            form.save()
-            return redirect('bug_description', pk=bug.pk)
+    if request.user == comment.author:
+        if request.method == "POST":
+            form = AddCommentForm(request.POST, instance=comment)
+            if form.is_valid():
+                form.save()
+                return redirect('bug_description', pk=bug.pk)
+        else:
+            form = AddCommentForm(instance=comment)
+        return render(request, "bugs/addcomment.html", {"form": form})
     else:
-        form = AddCommentForm(instance=comment)
-    return render(request, "bugs/addcomment.html", {"form": form})
+        messages.info(request, 'Only the author of a comment has permission to edit it.')
+        form = AddCommentForm()
+    return render(request, "bugs/addcomment.html", {"form":form})
 
 
 @login_required()
 def delete_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     bug = comment.bug
-    comment.delete()
+    if request.user == comment.author:
+        comment.delete()
+    else:
+        messages.info(request, 'Only the author of a comment had permission to delete it.')
     return redirect('bug_description', pk=bug.pk)
