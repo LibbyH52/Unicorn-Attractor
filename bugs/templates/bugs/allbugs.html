@@ -39,16 +39,20 @@
         {% endfor %}
         <div class="pagination">
             {% if bugs.has_previous %}
-                <a href="?page=1"> 1 </a>
-                <a href="?page={{ bugs.previous_page_number }}"> &lt;</a>
+                <a class="btn btn-outline-info" href="?page=1">First</a>
+                <a class="btn btn-outline-info" href="?page={{ bugs.previous_page_number }}">Previous</a>
             {% endif %}
-            <span class="current">
-                {{ bugs.number }}
-            </span>
+            {% for num in bugs.paginator.page_range %}
+                {% if bugs.number == num %}
+                    <a class="btn btn-info" href="?page={{ bugs.number }}"> {{ bugs.number }}</a>
+                {% elif num > bugs.number|add:'-2' and num < bugs.number|add:'2' %}
+                    <a class="btn btn-outline-info" href="?page={{ num }}"> {{ num }}</a>
+                {% endif %}
+            {% endfor %}
             {% if bugs.has_next %}
-                <a href="?page={{ bugs.next_page_number }}"> &gt;  </a>
-                <a href="?page={{ bugs.paginator.num_pages }}"> {{ bugs.paginator.num_pages }} </a>
-            {% endif %}    
+                <a class="btn btn-outline-info" href="?page={{ bugs.next_page_number }}">Next</a>
+                <a class="btn btn-outline-info" href="?page={{ bugs.paginator.num_pages }}">last</a>
+            {% endif %}
         </div>
     </div>
 </div>
