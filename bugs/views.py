@@ -66,7 +66,8 @@ def edit_bug(request, pk=None):
         return render(request, "bugs/addbug.html", {"form": form})
     else:
         messages.info(request, 'Only the author can edit this bug.')
-    return redirect('bug_description', pk=bug.id)
+        form = AddBugForm()
+    return render(request, "bugs/addbug.html", {"form": form})
 
 
 @login_required()
