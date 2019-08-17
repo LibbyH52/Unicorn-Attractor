@@ -1,21 +1,23 @@
 {% extends 'base.html' %}
 {% load bootstrap_tags %}
 {% load humanize %}
-{% block title %}Bug Detail{% endblock %}
+{% block title %}{{ bug.title }}{% endblock %}
 
 {% block content %}
 <div class="row">
-    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-0 col-lg-8">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-0 col-lg-10">
         <div class="card description-card">
-            <h1 class="card-title">{{bug.title}}</h1>
-            <p>{% if bug.fix_status == 'Fixing' %}
-                    <span class="badge badge-fixed">{{bug.fix_status}}</span>
-                {% elif bug.fix_status == 'Fixed' %}
-                    <span class="badge badge-fixing">{{bug.fix_status}}</span>
-                {% elif bug.fix_status == 'To Do' %}
-                    <span class="badge badge-todo">{{bug.fix_status}}</span>
+            <h3 class="card-title">
+                {% if bug.fix_status == 'Doing' %}
+                    <span class="badge badge-done">{{ bug.fix_status }}</span>
+                {% elif bug.fix_status == 'Done' %}
+                    <span class="badge badge-doing">{{ bug.fix_status }}</span>
+                {% elif bug.fix_status == 'ToDo' %}
+                    <span class="badge badge-todo">{{ bug.fix_status }}</span>
                 {% endif %}
-                    - <strong>{{bug.author}}</strong> posted this on {{bug.posted_on|naturaltime}}</p>
+                {{bug.title}}
+            </h3>
+                  <p> - <strong>{{bug.author}}</strong> posted this {{bug.posted_on|naturaltime}}</p>
                 {% if request.user == bug.author %}
                     <p class="card-text">{{bug.details}} <a href="{% url 'edit_bug' bug.id %}"><i class="fas fa-edit"></i></a></p>
                 {% else %}
@@ -25,12 +27,12 @@
     </div>      
 </div>
 <div class="row">
-    <div class="col-12 offset-md-2 col-md-8 col-lg-7 offset-lg-1">
+    <div class="col-12 offset-md-1 col-md-10 col-lg-9">
         <h2> Comments: </h2>
     </div>
 </div>
 <div class="row comment-row">
-    <div class="col-12 offset-md-2 col-md-8 col-lg-7 offset-lg-1">
+    <div class="col-12 offset-md-1 col-md-10 col-lg-9">
         <!--Displays each comment in a Bootstrap card-->
         {% for comment in bug.comments.all %}
             <div class="card comment-card">

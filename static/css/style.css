@@ -79,6 +79,10 @@ h2{
     font-weight: 700;
 }
 
+h3{
+    color: #ffa600;
+    font-weight: 700;
+}
 .feature-heading{
     color: #f1f1f1;
     font-size: 1.75rem;
@@ -150,9 +154,14 @@ h2{
     margin-top: .5rem;
 }
 
+.comment-card{
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
 .description-card{
     border: none;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     margin-bottom: 2rem;
     padding: 1.5rem;
 }
