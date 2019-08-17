@@ -16,10 +16,21 @@ def get_features(request):
     them to the template 'allfeatures.html.
     """
     features = Feature.objects.order_by('-posted_on').all()
-    paginator = Paginator(features, 4)
+    paginator = Paginator(features, 5)
     page = request.GET.get('page')
     features = paginator.get_page(page)
     return render(request, 'features/allfeatures.html', {'features': features})
+
+@login_required()
+def feature_description(request, pk):
+    """
+    This view allows a user to click on a particular
+    feature to find out more details about it and add a
+    comment
+    """
+    feature = get_object_or_404(Feature, pk=pk)
+    feature.save()
+    return render(request, "features/featuredescription.html", {"feature": feature})
 
 
 @login_required()
