@@ -15,7 +15,7 @@
     <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
         <!--Displays each feature in a Bootstrap card.-->
         {% for feature in features %}
-            <div class="card">
+            <div class="card feature-card">
                 <div class="card-body">
                     <a class="card-title" href="{% url 'feature_description' feature.id %}">
                         {% if feature.phase_of_development == 'Doing' %}
