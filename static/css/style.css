@@ -101,13 +101,13 @@ h2{
 .btn:focus,
 .btn:hover{
     color: #f1f1f1;
-    margin: 1rem auto; 
 }
 
 .btn-add{
     background-color: #dd5182;
     border-color: #dd5182;
     float: right; 
+    margin-top: 1rem;
 }
 
 
@@ -204,7 +204,7 @@ h2{
  }
 
  .vote-number{
-     color: #f1f1f1;
+     color: #003f5c;
      float: right;
  }
 
@@ -325,7 +325,6 @@ select{
 #id_cvv{
     max-width: 100%;
 }
-
 
 .text-pale{
     color: #f1f1f1;

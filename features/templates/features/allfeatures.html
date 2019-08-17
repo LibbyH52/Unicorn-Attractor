@@ -13,86 +13,45 @@
 </div>
 <div class="row">
     <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
-        <!--Iterates through the list of feature request displaying each one in a bootstrap card-->
+        <!--Displays each feature in a Bootstrap card.-->
         {% for feature in features %}
-            <div class="card feature-card">
-                <!--Background color of header dependes on phase of development-->
-                {% if feature.phase_of_development == 'Doing' %}
-                <!--dev-phase class added to span tag for setting font-colour-->
-                    <div class="card-header bg-color-done">
-                        <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <!--vote-number class added to Doing and Done for styling-->
-                        <span class="vote-number">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span>
-                        <h5 class="feature-heading">{{ feature.name }} </h5>
-                    </div>
-                {% elif feature.phase_of_development == 'Done' %}
-                    <div class="card-header bg-color-doing">
-                        <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <span class="vote-number">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span>
-                        <h5 class="feature-heading">{{ feature.name }} </h5>
-                    </div>
-                {% elif feature.phase_of_development == 'ToDo' %}
-                    <div class="card-header bg-color-todo">
-                        <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <button type="button" class="btn btn-add votes" data-toggle="modal" data-target="#upVoteModal{{feature.id}}">
-                            {{feature.upvote }} <i class="far fa-thumbs-up"></i>
-                        </button>
-                        <h5 class="feature-heading">{{ feature.name }} </h5> 
-                    </div>
-                {% endif %}
+            <div class="card">
                 <div class="card-body">
-                    {% if request.user == feature.requested_by %}
-                        <p class="card-text">{{feature.details}} <a href="{% url 'edit_feature' feature.id %}"><i class="fas fa-edit"></i></a></p>
-                    {% else %}
-                        <p>{{ feature.details}}</p>
-                    {% endif %}
-                </div>
-                <div class="card-footer text-muted">
-                    requested by {{feature.requested_by}} on {{feature.posted_on|naturaltime}}
-                </div>
+                    <a class="card-title" href="{% url 'feature_description' feature.id %}">
+                        {% if feature.phase_of_development == 'Doing' %}
+                            <span class="badge badge-done">{{ feature.phase_of_development }}</span>
+                        {% elif feature.phase_of_development == 'Done' %}
+                            <span class="badge badge-doing">{{ feature.phase_of_development }}</span>
+                        {% elif feature.phase_of_development == 'ToDo' %}
+                            <span class="badge badge-todo">{{ feature.phase_of_development }}</span>
+                        {% endif %}
+                        {{ feature.name }}
+                    </a>
+                    <span class="vote-number">{{feature.upvote }} <i class="far fa-thumbs-up"></i></span>
+                    <p class="text-muted">posted: {{ feature.posted_on|naturaltime }} by {{ feature.requested_by }} 
+                    <!--Number of comments and views for a particular feature-->
+                    <span class="comments">{{ feature.comments.count }} <i class="far fa-comment"></i> </span>
+                </p>
             </div>
-            <!--Popup modal for upvoting a feature-->
-           <div class="modal fade" id="upVoteModal{{feature.id}}" tabindex="-1" role="dialog" aria-labelledby="upVoteModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Upvote Feature</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Upvoting a feature costs €10 per vote. You can purchase a maximum of 10 votes. In return for your payment, we promise to spend at least 50% of our time working on the feature that gets the most votes</p>
-                        </div>
-                        <div class="modal-footer">
-                            <form method="POST" class="vote-form" action="{% url 'add_to_cart' feature.id %}">
-                                {% csrf_token %}
-                                <button class="btn btn-add" type="submit">Vote</button>
-                            </form>
-                            <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}        
+        </div>
+        {% endfor %}
         <div class="pagination">
             {% if features.has_previous %}
-                <a  class="bnt btn-outline-info" href="?page=1"> First </a>
-                <a class="bnt btn-outline-info" href="?page={{ features.previous_page_number }}">Previous</a>
+                <a class="btn btn-outline-info" href="?page=1">First</a>
+                <a class="btn btn-outline-info" href="?page={{ features.previous_page_number }}">Previous</a>
             {% endif %}
             {% for num in features.paginator.page_range %}
                 {% if features.number == num %}
-                    <a  class="btn btn-info" href="?page={{ features.number }}">{{ features.number }}</a>
-                {% elif num > features.number|add:'-2' and num < features.number|add:'2' %} 
-                    <a  class="btn btn-outline-info" href="?page={{ num }}">{{ num }}</a>
+                    <a class="btn btn-info" href="?page={{ features.number }}"> {{ features.number }}</a>
+                {% elif num > features.number|add:'-2' and num < features.number|add:'2' %}
+                    <a class="btn btn-outline-info" href="?page={{ num }}"> {{ num }}</a>
                 {% endif %}
             {% endfor %}
-             
             {% if features.has_next %}
                 <a class="btn btn-outline-info" href="?page={{ features.next_page_number }}">Next</a>
-                <a class="btn btn-outline-info" href="?page={{ features.paginator.num_pages }}"> Last </a>
-            {% endif %}    
-        </div>    
+                <a class="btn btn-outline-info" href="?page={{ features.paginator.num_pages }}">last</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}
