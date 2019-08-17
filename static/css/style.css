@@ -171,19 +171,11 @@ h3{
 }
 
 .feature-card{
-    margin: 2rem auto;
+    background-color: #FFECCA;
 }
 
 .profile-card{
     min-height: 250px;
-}
-
-.feature-card .card-header{
-    font-size: 1.25em;
-}
-
-.feature-card .card-body{
-    padding: 2rem 3rem;
 }
 
 .card-body{
