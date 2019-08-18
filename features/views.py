@@ -4,8 +4,8 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Feature
-from .forms import AddFeatureForm
+from .models import Feature, Comment
+from .forms import AddFeatureForm, AddCommentForm
 
 
 @login_required()
@@ -63,3 +63,18 @@ def edit_feature(request, pk):
         form = AddFeatureForm(instance=feature)
     return render(request, "features/addfeature.html", {"form": form})
 
+
+@login_required()
+def add_comment(request, pk):
+    feature = get_object_or_404(Feature, pk=pk)
+    if request.method == "POST":
+        form = AddCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.feature = feature
+            comment.save()
+            return redirect('feature_description', pk=feature.pk)
+    else:
+        form = AddCommentForm()
+    return render(request, "features/addcomment.html", {"form":form})   
