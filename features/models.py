@@ -25,3 +25,20 @@ class Feature(models.Model):
 
     def __str__(self):
         return self.name
+
+"""
+Code for comment model obtained from Django Girls                              https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/
+"""
+
+class Comment(models.Model):
+    """
+    Creates a model to allow a user to comment
+    on an individual feature request.
+    """
+    feature = models.ForeignKey(Feature, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    posted_on = models.DateTimeField(null=True, blank=True, default=timezone.now)
+    comment = models.TextField()
+
+    def __str__(self):
+        return self.comment
