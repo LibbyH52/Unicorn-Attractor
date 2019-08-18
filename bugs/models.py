@@ -26,6 +26,9 @@ class Bug(models.Model):
     def __str__(self):
         return self.title
     
+"""
+Code for comment model obtained from Django Girls                              https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/
+"""
 
 class Comment(models.Model):
     """
