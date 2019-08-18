@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% block title %} Add Comment{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-11  offset-sm-1 offset-md-1 col-md-8 col-lg-7 offset-lg-1">
+        <h1> Add Comment </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 offset-md-1 col-md-8 col-lg-7 offset-lg-1">
+        <!--Form to allow users comment on a feature request-->
+        <form method="POST" class="comment-form">
+            {% csrf_token %}
+            {{ form | as_bootstrap }}
+            <button type="submit" class="btn btn-comment">Comment</button>
+        </form>  
+    </div> 
+</div>
+{% endblock %}
