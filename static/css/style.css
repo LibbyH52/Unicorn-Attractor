@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Farro&display=swap');
+html{
+    height: 100%;
+}
 
 body{
     background-image: url("../img/singapore.jpg");
@@ -8,13 +11,12 @@ body{
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100%;
 }
 
 .content-container{
     background-color: rgba(0,63,92, 0.75);
     margin-top: 2rem;
-    min-height: 80vh;
     padding-bottom: 3rem;
 }
 
@@ -110,7 +112,6 @@ h3{
 .btn-add{
     background-color: #dd5182;
     border-color: #dd5182;
-    float: right; 
     margin-top: 1rem;
 }
 
@@ -161,13 +162,13 @@ h3{
 
 .description-card{
     border: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 2rem;
     padding: 1.5rem;
 }
 
-.description-card h1{
-    font-size: 2rem;
+.description-card h3{
+    font-size: 1.5rem;
 }
 
 .feature-card{
@@ -414,7 +415,7 @@ a:hover{
 .footer{
     bottom: 0;
     background-color: #003f5c;
-    margin-top: 1rem;
+    margin-top: auto;
     padding: 1rem 0;
     width: 100%;
 }
@@ -428,8 +429,9 @@ a:hover{
 .empty-cart{
     background-image: url("../img/shopping-cart.png");
     background-position: center center;
-    background-repeat: repeat-y;
-    height: 70vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
 }
 
 .cart-paragraph{
@@ -460,9 +462,9 @@ a:hover{
 /*********************Media Queries*/
 
 @media screen and (min-width: 768px){
+   
     .content-container{
         margin-top: 2rem;
-        padding-bottom: 3rem;
     }
 
     h1{
@@ -472,10 +474,28 @@ a:hover{
         line-height: 4rem;
         text-align: left;
     }
+
+    .btn-add{
+        float: right; 
+    }
+
+    .empty-cart{
+        height: 70vh;
+    }
  
     .vote-form .btn-add{
         display: inline-block;
         margin: 0;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .description-card{
+        font-size: 1.2rem;
+    }
+
+    .description-card h3{
+        font-size: 2rem;
     }
 }
 
