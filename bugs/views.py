@@ -17,7 +17,7 @@ def show_bugs(request):
     'allbugs' template.
     """
     bugs = Bug.objects.order_by('-posted_on').all()
-    paginator = Paginator(bugs, 5)
+    paginator = Paginator(bugs, 6)
     page = request.GET.get('page')
     bugs = paginator.get_page(page)
     return render(request, 'bugs/allbugs.html', {'bugs' : bugs})
