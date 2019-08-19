@@ -2,7 +2,6 @@
 {% load bootstrap_tags %}
 {% load humanize %}
 {% block title %}{{ bug.title }}{% endblock %}
-
 {% block content %}
 <div class="row">
     <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-0 col-lg-10">
@@ -37,11 +36,11 @@
         {% for comment in bug.comments.all %}
             <div class="card comment-card">
                 <div class="card-header">
-                    <p class="card-title"><strong>{{comment.author}}</strong> posted this on {{comment.created_on}}</p>
+                    <p class="card-title"><strong>{{comment.author}}</strong> posted {{comment.created_on|naturaltime}}</p>
                 </div>
                 <div class="card-body">
                     {% if request.user == comment.author %}
-                        <p class="card-text">{{comment.comment}} <a href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit"></i></a><a href="{% url 'delete_comment' comment.id %}"><i class="far fa-trash-alt"></i>
+                        <p class="card-text">{{comment.comment}} <a href="{% url 'edit_bug_comment' comment.id %}"><i class="fas fa-edit"></i></a><a href="{% url 'delete_bug_comment' comment.id %}"><i class="far fa-trash-alt"></i>
                         </a></p>
                     {% else %}
                         <p class="card-text">{{comment.comment}}</p>
@@ -55,7 +54,7 @@
 </div>
 <div class="row">
     <div class="col-11 offset-md-2 col-md-4 offset-lg-1 col-lg-2">
-        <a href="{% url 'add_comment' bug.id %}" class="btn btn-comment">Add Comment</a>
+        <a href="{% url 'add_bug_comment' bug.id %}" class="btn btn-comment">Add Comment</a>
     </div>
 </div>
 {% endblock %}
