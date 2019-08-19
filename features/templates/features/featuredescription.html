@@ -65,7 +65,7 @@
         {% for comment in feature.comments.all %}
             <div class="card comment-card">
                 <div class="card-header">
-                    <p class="card-title"><strong>{{comment.author}}</strong> posted this on {{comment.created_on}}</p>
+                    <p class="card-title"><strong>{{comment.author}}</strong> posted this on {{comment.date_posted}}</p>
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{comment.comment}}</p>
