@@ -71,7 +71,7 @@ def edit_bug(request, pk=None):
 
 
 @login_required()
-def add_comment(request, pk):
+def add_bug_comment(request, pk):
     """
     Create a view that allows a user to comment 
     on a particular bug.
@@ -92,7 +92,7 @@ def add_comment(request, pk):
 
 
 @login_required()
-def edit_comment(request, pk):
+def edit_bug_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     bug = comment.bug
     if request.user == comment.author:
@@ -111,7 +111,7 @@ def edit_comment(request, pk):
 
 
 @login_required()
-def delete_comment(request, pk):
+def delete_bug_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     bug = comment.bug
     if request.user == comment.author:
