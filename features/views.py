@@ -78,3 +78,32 @@ def add_comment(request, pk):
     else:
         form = AddCommentForm()
     return render(request, "features/addcomment.html", {"form":form})   
+
+@login_required()
+def edit_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    feature = comment.feature
+    if request.user == comment.author:
+        if request.method == "POST":
+            form = AddCommentForm(request.POST, instance=comment)
+            if form.is_valid():
+                form.save()
+                return redirect('feature_description', pk=feature.pk)
+        else:
+            form = AddCommentForm(instance=comment)
+        return render(request, "features/addcomment.html", {"form": form})
+    else:
+        messages.info(request, 'Only the author of a comment has permission to edit it.')
+        form = AddCommentForm()
+    return render(request, "features/addcomment.html", {"form":form})
+
+@login_required()
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    feature = comment.feature
+    if request.user == comment.author:
+        comment.delete()
+        messages.success(request, 'This comment has been deleted.')
+    else:
+        messages.info(request, 'Only the author of a comment had permission to delete it.')
+    return redirect('feature_description', pk=feature.pk)
