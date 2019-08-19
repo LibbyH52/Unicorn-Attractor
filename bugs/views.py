@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from .models import Bug, Comment
-from .forms import AddBugForm, AddCommentForm
+from .forms import AddBugForm, AddBugCommentForm
 
 
 @login_required()
@@ -78,7 +78,7 @@ def add_bug_comment(request, pk):
     """
     bug = get_object_or_404(Bug, pk=pk)
     if request.method == "POST":
-        form = AddCommentForm(request.POST)
+        form = AddBugCommentForm(request.POST)
     
         if form.is_valid():
             comment = form.save(commit=False)
@@ -87,7 +87,7 @@ def add_bug_comment(request, pk):
             comment.save()
             return redirect('bug_description', pk=bug.pk)
     else:
-        form = AddCommentForm()
+        form = AddBugCommentForm()
     return render(request, "bugs/addcomment.html", {"form":form})
 
 
@@ -97,16 +97,16 @@ def edit_bug_comment(request, pk):
     bug = comment.bug
     if request.user == comment.author:
         if request.method == "POST":
-            form = AddCommentForm(request.POST, instance=comment)
+            form = AddBugCommentForm(request.POST, instance=comment)
             if form.is_valid():
                 form.save()
                 return redirect('bug_description', pk=bug.pk)
         else:
-            form = AddCommentForm(instance=comment)
+            form = AddBugCommentForm(instance=comment)
         return render(request, "bugs/addcomment.html", {"form": form})
     else:
         messages.info(request, 'Only the author of a comment has permission to edit it.')
-        form = AddCommentForm()
+        form = AddBugCommentForm()
     return render(request, "bugs/addcomment.html", {"form":form})
 
 
