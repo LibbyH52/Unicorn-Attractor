@@ -9,5 +9,5 @@ urlpatterns = [
     path('<int:pk>/edit_bug/', edit_bug, name="edit_bug"),
     path('<int:pk>/add_bug_comment/', add_bug_comment, name="add_bug_comment"),
     path('<int:pk>/edit_bug_comment/', edit_bug_comment, name="edit_bug_comment"),
-    path('<int:pk>/delete_bug_comment/', delete_comment, name="delete_bug_comment"),
+    path('<int:pk>/delete_bug_comment/', delete_bug_comment,    name="delete_bug_comment"),
 ]
