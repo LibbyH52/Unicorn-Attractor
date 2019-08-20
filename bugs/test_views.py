@@ -58,6 +58,7 @@ class TestBugsViews(TestCase):
             details='Yet another one',
             author=user
             )
+        bug.save()
         response = self.c.get('/bugs/{0}/edit_bug/'.format(bug.id))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bugs/addbug.html')
@@ -66,7 +67,7 @@ class TestBugsViews(TestCase):
         response = self.c.get('bugs/{1}/edit_bug')
         self.assertEqual(response.status_code, 404)
 
-    def test_add_comment_page(self):
+    def test_add_bug_comment_page(self):
         user = User(username='Bob')
         user.save()
         bug = Bug.objects.create(
@@ -80,12 +81,12 @@ class TestBugsViews(TestCase):
             bug=bug
         )
         comment.save()
-        response = self.c.get('/bugs/{0}/add_comment/'.format(bug.id))
+        response = self.c.get('/bugs/{0}/add_bug_comment/'.format(bug.id))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(comment, Comment))
         self.assertTemplateUsed(response, 'bugs/addcomment.html')
 
-    def test_edit_comment_page(self):
+    def test_edit_bug_comment_page(self):
         user = User(username='Bob')
         user.save()
         bug = Bug.objects.create(
@@ -98,19 +99,19 @@ class TestBugsViews(TestCase):
             author=user,
             bug=bug)
         comment.save()
-        response = self.c.get('/bugs/{0}/edit_comment/'.format(comment.id))
+        response = self.c.get('/bugs/{0}/edit_bug_comment/'.format(comment.id))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bugs/addcomment.html')
 
     def test_edit_comment_page_for_item_that_does_not_exist(self):
-        response = self.c.get('bugs/{1}/edit_comment')
+        response = self.c.get('bugs/{1}/edit_bug_comment')
         self.assertEqual(response.status_code, 404)
 
     def test_delete_comment_page_for_item_that_does_not_exist(self):
-        response = self.c.get('bugs/{1}/delete_comment')
+        response = self.c.get('bugs/{1}/delete_bug_comment')
         self.assertEqual(response.status_code, 404)
 
-    def test_delete_comment_page(self):
+    def test_delete_bug_comment_page(self):
         user = User(username='Bob')
         user.save()
         bug = Bug.objects.create(
@@ -125,5 +126,5 @@ class TestBugsViews(TestCase):
             bug=bug
             )
         comment.save()
-        response = self.c.get('/bugs/{0}/delete_comment/'.format(comment.id))
+        response = self.c.get('/bugs/{0}/delete_bug_comment/'.format(comment.id))
         self.assertEqual(response.status_code, 302)
