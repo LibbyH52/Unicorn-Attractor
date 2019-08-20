@@ -22,7 +22,7 @@
                 {% endif %}
             </h3>
             <p> - <strong>{{feature.author}}</strong> posted this {{feature.posted_on|naturaltime}}</p>
-            {% if request.user == feature.author %}
+            {% if request.user == feature.requested_by %}
                 <p class="card-text">{{feature.details}} <a href="{% url 'edit_feature' feature.id %}"><i class="fas fa-edit"></i></a></p>
             {% else %}
                 <p class="card-text">{{feature.details}} </p>
@@ -47,9 +47,10 @@
                 <div class="card-body">
                     {% if request.user == comment.author %}
                         <p class="card-text">{{comment.comment}} <a href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit"></i></a>
-                            <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#featureCommentDeleteModal">
+                        
+                        <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#featureCommentDeleteModal">
                                 <i class="far fa-trash-alt"></i>
-                            </button>  
+                        </button>  
                         </p>
                     {% else %}
                         <p class="card-text">{{comment.comment}}</p>
