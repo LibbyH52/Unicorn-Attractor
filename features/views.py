@@ -54,13 +54,17 @@ def new_feature(request):
 @login_required()
 def edit_feature(request, pk):
     feature = get_object_or_404(Feature, pk=pk)
-    if request.method == "POST":
-        form = AddFeatureForm(request.POST, instance=feature)
-        if form.is_valid():
-            form.save()
-            return redirect('get_features')
-    else:
-        form = AddFeatureForm(instance=feature)
+    if request.user == feature.requested_by:
+        if request.method == "POST":
+            form = AddFeatureForm(request.POST, instance=feature)
+            if form.is_valid():
+                form.save()
+                return redirect('get_features')
+        else:
+            form = AddFeatureForm(instance=feature)
+    else: 
+        form = AddFeatureForm()
+        messages.info(request, 'You do not have permission to edit this feature.')
     return render(request, "features/addfeature.html", {"form": form})
 
 
@@ -77,7 +81,7 @@ def add_feature_comment(request, pk):
             return redirect('feature_description', pk=feature.pk)
     else:
         form = AddFeatureCommentForm()
-    return render(request, "features/addcomment.html", {"form":form})   
+    return render(request, "features/addfeaturecomment.html", {"form":form})   
 
 @login_required()
 def edit_feature_comment(request, pk):
@@ -91,11 +95,11 @@ def edit_feature_comment(request, pk):
                 return redirect('feature_description', pk=feature.pk)
         else:
             form = AddFeatureCommentForm(instance=comment)
-        return render(request, "features/addcomment.html", {"form": form})
+        return render(request, "features/addfeaturecomment.html", {"form": form})
     else:
         messages.info(request, 'Only the author of a comment has permission to edit it.')
         form = AddFeatureCommentForm()
-    return render(request, "features/addcomment.html", {"form":form})
+    return render(request, "features/addfeaturecomment.html", {"form":form})
 
 @login_required()
 def delete_feature_comment(request, pk):
@@ -107,3 +111,4 @@ def delete_feature_comment(request, pk):
     else:
         messages.info(request, 'Only the author of a comment had permission to delete it.')
     return redirect('feature_description', pk=feature.pk)
+   
