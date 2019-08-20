@@ -40,13 +40,38 @@
                 </div>
                 <div class="card-body">
                     {% if request.user == comment.author %}
-                        <p class="card-text">{{comment.comment}} <a href="{% url 'edit_bug_comment' comment.id %}"><i class="fas fa-edit"></i></a><a href="{% url 'delete_bug_comment' comment.id %}"><i class="far fa-trash-alt"></i>
-                        </a></p>
+                        <p class="card-text">{{comment.comment}} <a href="{% url 'edit_bug_comment' comment.id %}"><i class="fas fa-edit"></i></a>
+                            <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#bugCommentDeleteModal">
+                                <i class="far fa-trash-alt"></i>
+                            </button>  
+                </p>
                     {% else %}
                         <p class="card-text">{{comment.comment}}</p>
                     {% endif %}
                 </div>
             </div>
+            <!--Popup modal for confirming delete-->
+                <div class="modal fade" id="bugCommentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="bugCommentDeleteModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteBugComment">Delete this comment? </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{comment.comment}}
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-delete" href="{% url 'delete_bug_comment' comment.id %}">
+                            Delete Comment
+                            </a>
+                            <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
             {% empty %}
             <p class="text-pale"> No comments to show </p>
         {% endfor %}
