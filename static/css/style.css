@@ -124,6 +124,10 @@ h3{
     border: 2px solid #f1f1f1; 
 }
 
+.btn-delete{
+    background-color: #dd5182;
+}
+
 .btn-checkout{
     margin: 0 5%;
     width: 90%;
