@@ -7,7 +7,7 @@ class AddFeatureForm(forms.ModelForm):
         model = Feature
         fields = ('name', 'details')
 
-class AddCommentForm(forms.ModelForm):
+class AddFeatureCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('comment',)
