@@ -31,7 +31,65 @@
     </div>      
 </div>
 
-    <!--Popup modal for upvoting a feature-->
+<div class="row">
+    <div class="col-12 offset-md-1 col-md-10 col-lg-9">
+        <h2> Comments: </h2>
+    </div>
+</div>
+<div class="row comment-row">
+    <div class="col-12 offset-md-1 col-md-10 col-lg-9">
+        <!--Displays each comment in a Bootstrap card-->
+        {% for comment in feature.comments.all %}
+            <div class="card comment-card">
+                <div class="card-header">
+                    <p class="card-title"><strong>{{comment.author}}</strong> posted this on {{comment.date_posted}}</p>
+                </div>
+                <div class="card-body">
+                    {% if request.user == comment.author %}
+                        <p class="card-text">{{comment.comment}} <a href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit"></i></a>
+                            <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#featureCommentDeleteModal">
+                                <i class="far fa-trash-alt"></i>
+                            </button>  
+                        </p>
+                    {% else %}
+                        <p class="card-text">{{comment.comment}}</p>
+                    {% endif %}
+                </div>
+            </div>
+              <!--Popup modal for confirming delete-->
+         <div class="modal fade" id="featureCommentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="featureCommentDeleteModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="featureComment">Delete this comment? </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{comment.comment}}
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-delete" href="{% url 'delete_feature_comment' comment.id %}">
+                        Delete Comment
+                        </a>
+                        <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-pale"> No comments to show </p>
+        {% endfor %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-11 offset-md-2 col-md-4 offset-lg-1 col-lg-2">
+        <a href="{% url 'add_comment' feature.id %}" class="btn btn-comment">Add Comment</a>
+    </div>
+</div>
+
+<!--Popup modal for upvoting a feature-->
 <div class="modal fade" id="upVoteModal{{feature.id}}" tabindex="-1" role="dialog" aria-labelledby="upVoteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -52,38 +110,6 @@
                 <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
             </div>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12 offset-md-1 col-md-10 col-lg-9">
-        <h2> Comments: </h2>
-    </div>
-</div>
-<div class="row comment-row">
-    <div class="col-12 offset-md-1 col-md-10 col-lg-9">
-        <!--Displays each comment in a Bootstrap card-->
-        {% for comment in feature.comments.all %}
-            <div class="card comment-card">
-                <div class="card-header">
-                    <p class="card-title"><strong>{{comment.author}}</strong> posted this on {{comment.date_posted}}</p>
-                </div>
-                <div class="card-body">
-                    {% if request.user == comment.author %}
-                        <p class="card-text">{{comment.comment}} <a href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit"></i></a><a href="{% url 'delete_comment' comment.id %}"><i class="far fa-trash-alt"></i>
-                        </a></p>
-                    {% else %}
-                        <p class="card-text">{{comment.comment}}</p>
-                    {% endif %}
-                </div>
-            </div>
-            {% empty %}
-            <p class="text-pale"> No comments to show </p>
-        {% endfor %}
-    </div>
-</div>
-<div class="row">
-    <div class="col-11 offset-md-2 col-md-4 offset-lg-1 col-lg-2">
-        <a href="{% url 'add_comment' feature.id %}" class="btn btn-comment">Add Comment</a>
     </div>
 </div>
 {% endblock %}
