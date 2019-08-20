@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Feature, Comment
-from .forms import AddFeatureForm, AddCommentForm
+from .forms import AddFeatureForm, AddFeatureCommentForm
 
 
 @login_required()
@@ -65,10 +65,10 @@ def edit_feature(request, pk):
 
 
 @login_required()
-def add_comment(request, pk):
+def add_feature_comment(request, pk):
     feature = get_object_or_404(Feature, pk=pk)
     if request.method == "POST":
-        form = AddCommentForm(request.POST)
+        form = AddFeatureCommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.author = request.user
@@ -76,29 +76,29 @@ def add_comment(request, pk):
             comment.save()
             return redirect('feature_description', pk=feature.pk)
     else:
-        form = AddCommentForm()
+        form = AddFeatureCommentForm()
     return render(request, "features/addcomment.html", {"form":form})   
 
 @login_required()
-def edit_comment(request, pk):
+def edit_feature_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     feature = comment.feature
     if request.user == comment.author:
         if request.method == "POST":
-            form = AddCommentForm(request.POST, instance=comment)
+            form = AddFeatureCommentForm(request.POST, instance=comment)
             if form.is_valid():
                 form.save()
                 return redirect('feature_description', pk=feature.pk)
         else:
-            form = AddCommentForm(instance=comment)
+            form = AddFeatureCommentForm(instance=comment)
         return render(request, "features/addcomment.html", {"form": form})
     else:
         messages.info(request, 'Only the author of a comment has permission to edit it.')
-        form = AddCommentForm()
+        form = AddFeatureCommentForm()
     return render(request, "features/addcomment.html", {"form":form})
 
 @login_required()
-def delete_comment(request, pk):
+def delete_feature_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     feature = comment.feature
     if request.user == comment.author:
