@@ -3,4 +3,5 @@ myvenv
 *.pyc
 __pycache__
 env.py
-
+htmlcov/
+.coverage
