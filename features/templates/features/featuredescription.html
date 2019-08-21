@@ -46,11 +46,8 @@
                 </div>
                 <div class="card-body">
                     {% if request.user == comment.author %}
-                        <p class="card-text">{{comment.comment}} <a href="{% url 'edit_comment' comment.id %}"><i class="fas fa-edit"></i></a>
-                        
-                        <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#featureCommentDeleteModal">
-                                <i class="far fa-trash-alt"></i>
-                        </button>  
+                        <p class="card-text">{{comment.comment}} <a href="{% url 'edit_feature_comment' comment.id %}"><i class="fas fa-edit"></i></a>
+                        <i class="far fa-trash-alt" data-toggle="modal" data-target="#featureCommentDeleteModal"></i> 
                         </p>
                     {% else %}
                         <p class="card-text">{{comment.comment}}</p>

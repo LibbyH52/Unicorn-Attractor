@@ -124,10 +124,6 @@ h3{
     border: 2px solid #f1f1f1; 
 }
 
-.btn-delete{
-    background-color: #dd5182;
-}
-
 .btn-checkout{
     margin: 0 5%;
     width: 90%;
@@ -135,6 +131,10 @@ h3{
 
 .btn-comment{
     background-color: #dd5182;
+}
+
+.btn-delete{
+    background-color: #ff6e54; 
 }
 
 .btn-login{
@@ -375,7 +375,12 @@ select{
 /************************Icon Styles*/
 .fa-edit{
     color: #003f5c;
-    padding: 1rem;
+    padding: 1rem 0.5rem;
+}
+
+.fa-trash-alt{
+    color: #003f5c;
+    padding: 1rem 0.5rem;
 }
 
 .views,
