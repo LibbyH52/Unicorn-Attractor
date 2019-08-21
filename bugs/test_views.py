@@ -84,7 +84,7 @@ class TestBugsViews(TestCase):
         response = self.c.get('/bugs/{0}/add_bug_comment/'.format(bug.id))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(isinstance(comment, Comment))
-        self.assertTemplateUsed(response, 'bugs/addcomment.html')
+        self.assertTemplateUsed(response, 'bugs/addbugcomment.html')
 
     def test_edit_bug_comment_page(self):
         user = User(username='Bob')
@@ -101,7 +101,7 @@ class TestBugsViews(TestCase):
         comment.save()
         response = self.c.get('/bugs/{0}/edit_bug_comment/'.format(comment.id))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'bugs/addcomment.html')
+        self.assertTemplateUsed(response, 'bugs/addbugcomment.html')
 
     def test_edit_comment_page_for_item_that_does_not_exist(self):
         response = self.c.get('bugs/{1}/edit_bug_comment')
