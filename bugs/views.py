@@ -88,7 +88,7 @@ def add_bug_comment(request, pk):
             return redirect('bug_description', pk=bug.pk)
     else:
         form = AddBugCommentForm()
-    return render(request, "bugs/addcomment.html", {"form":form})
+    return render(request, "bugs/addbugcomment.html", {"form":form})
 
 
 @login_required()
@@ -103,11 +103,11 @@ def edit_bug_comment(request, pk):
                 return redirect('bug_description', pk=bug.pk)
         else:
             form = AddBugCommentForm(instance=comment)
-        return render(request, "bugs/addcomment.html", {"form": form})
+        return render(request, "bugs/addbugcomment.html", {"form": form})
     else:
         messages.info(request, 'Only the author of a comment has permission to edit it.')
         form = AddBugCommentForm()
-    return render(request, "bugs/addcomment.html", {"form":form})
+    return render(request, "bugs/addbugcomment.html", {"form":form})
 
 
 @login_required()
@@ -116,6 +116,7 @@ def delete_bug_comment(request, pk):
     bug = comment.bug
     if request.user == comment.author:
         comment.delete()
+        messages.success(request, 'This comment has been deleted.')
     else:
-        messages.info(request, 'Only the author of a comment had permission to delete it.')
+        messages.info(request, 'Only the author of a comment has permission to delete it.')
     return redirect('bug_description', pk=bug.pk)
