@@ -15,16 +15,20 @@ def add_to_cart(request, id):
     """
     quantity = 1
     cart = request.session.get('cart', {})
-    cart[id] = cart.get(id, quantity)
+    if id in cart:
+        print(cart)
+        cart[id] = int(cart[id]) + quantity
+    else:
+        cart[id] = cart.get(id, quantity)
     request.session['cart'] = cart
-    return render(request, 'cart/cart.html', {'cart': cart})
+    return redirect(reverse('view_cart'))
 
 def adjust_cart(request, id):
     """
     A view to allow the user to increase / decrease the 
     number of upvotes for a particular feature.
     """
-    quantity = int(request.POST.get('quantity'))
+    quantity = 1
     cart = request.session.get('cart', {})
     if quantity > 0:
         cart[id] = quantity
