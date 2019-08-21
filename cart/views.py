@@ -28,7 +28,7 @@ def adjust_cart(request, id):
     A view to allow the user to increase / decrease the 
     number of upvotes for a particular feature.
     """
-    quantity = 1
+    quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
     if quantity > 0:
         cart[id] = quantity
