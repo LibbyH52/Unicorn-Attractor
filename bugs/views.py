@@ -33,7 +33,8 @@ def bug_description(request, pk):
     bug = get_object_or_404(Bug, pk=pk)
     bug.views += 1
     bug.save()
-    return render(request, "bugs/bugdescription.html", {"bug":bug})
+    comments = Comment.objects.filter(bug=bug)
+    return render(request, "bugs/bugdescription.html", {"bug":bug, 'comments': comments})
 
 @login_required()
 def add_bug(request):
