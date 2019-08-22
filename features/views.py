@@ -30,7 +30,8 @@ def feature_description(request, pk):
     """
     feature = get_object_or_404(Feature, pk=pk)
     feature.save()
-    return render(request, "features/featuredescription.html", {"feature": feature})
+    comments = Comment.objects.filter(feature=feature)
+    return render(request, "features/featuredescription.html", {"feature": feature, 'comments': comments})
 
 
 @login_required()
