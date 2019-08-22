@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Farro&display=swap');
+
 html{
     height: 100%;
 }
@@ -413,6 +414,15 @@ a:hover{
     color: #f1f1f1;
     font-size: 1.5rem;
     text-align: center;
+}
+
+#checkoutModal{
+    font-family: 'Farro', sans-serif;
+    font-size: 1.2rem;
+}
+
+.modal-body ul{
+    list-style: none;
 }
 
 /**********************Footer Styles*/
