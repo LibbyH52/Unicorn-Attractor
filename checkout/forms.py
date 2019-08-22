@@ -8,7 +8,7 @@ class MakePaymentForm(forms.Form):
     
     full_name = forms.CharField(label="Name")
     credit_card_number = forms.CharField(label='Credit Card Number', required=False, widget=forms.TextInput(attrs={'pattern': '[0-9]{4} *[0-9]{4} *[0-9]{4} *[0-9]{4}', 'placeholder': '4242 4242 4242 4242'}))
-    cvv = forms.CharField(label='Security Code(CVV)', required=False, widget=forms.TextInput(attrs={'pattern': '[0-9]{3}'}))
+    cvv = forms.CharField(label='Security Code(CVV)', min_length=3, required=False)
     expiry_year = forms.ChoiceField(label='year', choices=YEAR_CHOICES, required=False)
     expiry_month = forms.ChoiceField(label='month', choices=MONTH_CHOICES, required=False)
     country = CountryField(default='IE').formfield()
