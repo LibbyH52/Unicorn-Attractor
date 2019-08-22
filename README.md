@@ -5,15 +5,14 @@ The primary goal of this milestone was to create a Django project containing sev
 
 ## UX
 #### User Stories
-* As a user, I would like to be able to create an account, so that I can:
-* create a user profile.
-* file a bug report.
-* comment on bug reports.
-* view available features.
-* see what features have been requested by others.
-* request features.
-* vote for features that I would like to see being developed.
-* keep track of my feature requests and bug reports.
+* As a user, I would like to be able to create an account, so that I can create a user profile.
+* As a user, I would like to be able to create an account, so that I canfile a bug report.
+* As a user, I would like to be able to create an account, so that I can comment on bug reports.
+* As a user, I would like to be able to create an account, so that I can view available features.
+* As a user, I would like to be able to create an account, so that I can see what features have been requested by others.
+* As a user, I would like to be able to create an account, so that I can request features.
+* As a user, I would like to be able to create an account, so that I canvote for features that I would like to see being developed.
+* As a user, I would like to be able to create an account, so that I cankeep track of my feature requests and bug reports.
 
 #### Wireframes
 My wireframes were developed using Balsamiq and can be found [here](wireframes/)
@@ -98,17 +97,66 @@ When a user is satisfied with the number of items in their cart they can click o
 * Postgres/ Sqlite3
 
 ## Deployment
-This project was created using the Visual Studio Code text editor. Version control was carried out entirely using git.  
-Before deploying to Heroku I created a requirements.txt file to list all the dependencies used in this project. 
-The following were set as config variables in Heroku, and as environment variables for local coding:
-DATABASE_URL
-SECRET_KEY
+This project was created using Visual Studio Code text editor. Version control was carried out entirely using git. The GitHub repositroy can be found here: 
+https://github.com/LibbyH52/Unicorn-Attractor
 
-Procfile
-Add Heroku to ALLOWED_HOSTS
+The project was hosted on Heroku. The running application is available here:
+https://unicorn-attractor-milestone-4.herokuapp.com/ 
+
+#### To deploy to Heroku I took the following steps:
+* Created a requirements.txt file to hold a list of the dependencies needed to run the project
+* Created an env.py file, and added it to .gitignore, to store any environment variables that I didn't want pushed to GitHub
+* Created a new GitHub repository
+* Created a Heroku app with a unique name
+* Connected my GitHub repository to my Heroku app and enabled automatic deploys
+* Under the Deploy tab I scrolled down to add-ons and connected to the Postgres database
+* Under the settings tab, I cliced on Reveal Confi Vars and stored the relevant environment variables as cofig variables
+* Ensured all existing migrations were pushed to the new Postgres database by running:
+    python manage.py makemigrations
+    python manage.py migrate
+* I created a Procile at the top level of my project to tell Heroku what kind of app was being deployed
+* Added the Heroku app to ALLOWED_HOSTS in settings.py file
+
+
+#### Local Deployment
+To deploy this could locally you should:
+* Clone the GitHub repository
+    https://github.com/LibbyH52/Unicorn-Attractor.git
+* Install Python on your machine (if it isn't already there)
+* Create a folder to store the project
+* Install a virtual environment
+* Create a new virtual environment and activate it
+* Install Django inside your new vitual environment
+* Create a new Django project
+    django-admin startproject projectname
+* Install the dependencies listed in requirements.txt
+    pip install -r requirements.txt
+* Run make migrations to create the database
+    python manage.py makemigrations
+    python manage.py migrate
+* To run your new django project use the following command:
+    python manage.py runserver
+
 
 ## Testing
 Checked views.py file using PEP8 online code checker
+
+Css was validated using the Jigsaw Validator:
+no errors or warnings found
+<p>
+    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="Valid CSS!">
+    </a>
+</p>
+<p>
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
+    <img style="border:0;width:88px;height:31px"
+        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+        alt="Valid CSS!">
+    </a>
+</p>
 
 ## Credits
 
@@ -118,6 +166,21 @@ First answer by Razvan Zamfir
 
 paginator code from documentation
 
+Xavier from tutor support 
+feature = get_object_or_404(Feature, pk=pk)
+
+1st answer for toggling modal 
+https://stackoverflow.com/questions/52777550/how-to-make-font-awesome-icon-clickable-to-open-a-modal-in-bootstrap-3
+
+
+trigging modal on load 1st answer
+https://stackoverflow.com/questions/47486339/display-this-bootstrap-modal-on-page-load
+
+removing bullets from inside modal. Changed role=dialog to role=document
+https://github.com/twbs/bootstrap/issues/15875
+
+credit card pattern
+http://html5pattern.com/Cards
 
 #### Media
 https://pixabay.com/illustrations/singapore-web-network-ball-2064905/
