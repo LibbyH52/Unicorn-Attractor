@@ -86,6 +86,11 @@ h3{
     color: #ffa600;
     font-weight: 700;
 }
+
+.charts-heading{
+    text-align: center;
+}
+
 .feature-heading{
     color: #f1f1f1;
     font-size: 1.75rem;
@@ -350,6 +355,20 @@ select{
 .home-col i{
     color: #dd5182;
     font-size: 2rem;
+}
+
+/**********************Chart Styles*/
+
+.charts-row{
+    padding: 4rem auto;
+}
+
+#myPieChart,
+#myPieChart2{
+    color: #f1f1f1;
+    padding: 2rem;
+    height: 300 !important;
+    width: 600 !important;
 }
 
 /*******************Profile Styles*/
