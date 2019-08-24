@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block title %}Graphs {% endblock %}
+{% block content %}
+<div class="row charts-row">
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-0 col-lg-6">
+        <h2 class="charts-heading">Bugs Reported</h2>
+        <canvas id="myPieChart"  width="400" height="300"></canvas>
+    </div>
+    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-0 col-lg-6">
+        <h2 class="charts-heading">Features Requested</h2>
+        <canvas id="myPieChart2" width="400" height="300"></canvas>
+    </div>
+</div>
+{% endblock %}
+{% block myjs %}
+<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script type="text/javascript"  src="{% static 'js/charts.js' %}"></script>
+{% endblock %}
