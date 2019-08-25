@@ -26,7 +26,7 @@ $( document ).ready(function() {
                     datasets: [
                         {
                             data: bug_count,
-                            backgroundColor: ["#bad0af", "#f0b8b8", "#83af70"]
+                            backgroundColor: ["#488f31", "#de425b", "#e8979a"]
                         }
                     ]
                 },
@@ -50,7 +50,7 @@ $( document ).ready(function() {
                     datasets: [
                         {
                             data: feature_count,
-                            backgroundColor: ["#bad0af", "#f0b8b8", "#83af70"]
+                            backgroundColor: ["#488f31", "#de425b", "#e8979a"]
                         }
                     ]
                 },
