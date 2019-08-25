@@ -16,7 +16,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12 col-md-5 col-lg-4 profile-col">
+    <div class="col-sm-12 col-md-5 offset-lg-1 col-lg-4 profile-col">
         <h3 class="profile-subheading">{{user}}'s Bugs</h3>
         {% for bug in bugs %}
             <div class="card profile-card">
@@ -41,39 +41,30 @@
             </div> 
         {% endfor %}
     </div>
-    <div class="col-sm-12 offset-md-1 col-md-6 offset-lg-2 col-lg-5 profile-col">
-        <h3 class="profile-subheading">{{user}}'s Features</h3>
-        {% for feature in features %}
-            <div class="card profile-card">
-                <!--Background color of header dependes on phase of development-->
-                {% if feature.phase_of_development == 'Doing' %}
-                    <div class="card-header bg-color-done">{{ feature.phase_of_development }} 
-                        <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <h5 class="feature-heading">{{ feature.name }} </h5>
+    <div class="col-sm-12 col-md-5 offset-lg-1 col-lg-4 profile-col">
+            <h3 class="profile-subheading">{{user}}'s Features</h3>
+            {% for feature in features %}
+                <div class="card profile-card">
+                    <div class="card-header">
+                        <h5>
+                            {% if feature.phase_of_development == 'Doing' %}
+                                <span class="badge badge-done">{{ feature.phase_of_development }}</span>
+                            {% elif feature.phase_of_development == 'Done' %}
+                                <span class="badge badge-doing">{{ feature.phase_of_development }}</span>
+                            {% elif feature.phase_of_development == 'ToDo' %}
+                                <span class="badge badge-todo">{{ feature.phase_of_development }}</span>
+                            {% endif %}
+                            {{feature.name}}
+                        </h5>
                     </div>
-                {% elif feature.phase_of_development == 'Done' %}
-                    <div class="card-header bg-color-doing">
-                        <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <h5 class="feature-heading">{{ feature.name }} </h5>
+                    <div class="card-body">
+                        {{feature.details}} <a href="{% url 'edit_feature' feature.id %}"><i class="fas fa-edit"></i></a>
                     </div>
-                {% elif feature.phase_of_development == 'ToDo' %}
-                    <div class="card-header bg-color-todo">
-                        <span class="dev-phase">{{ feature.phase_of_development }}</span>
-                        <h5 class="feature-heading">{{ feature.name }} </h5> 
+                    <div class="card-footer">
+                        {{feature.posted_on}}
                     </div>
-                {% endif %}
-                <div class="card-body">
-                    {% if request.user == feature.requested_by %}
-                        <p class="card-text">{{feature.details}} <a href="{% url 'edit_feature' feature.id %}"><i class="fas fa-edit"></i></a></p>
-                    {% else %}
-                        <p>{{ feature.details}}</p>
-                    {% endif %}
-                </div>
-                <div class="card-footer text-muted">
-                    requested by {{feature.requested_by}} on {{feature.posted_on}}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+                </div> 
+            {% endfor %}
+        </div>
 </div>
 {% endblock %}
