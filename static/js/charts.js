@@ -12,6 +12,12 @@ $( document ).ready(function() {
             feature_labels = data.feature_labels
             feature_count = data.feature_count
 
+            upvote_labels = data.upvote_labels
+            upvote_count = data.upvote_count
+            
+            view_labels = data.view_labels
+            view_count = data.view_count
+
             var ctx = $("#myPieChart")[0].getContext('2d');
             var myPieChart = new Chart(ctx, {
                 type: "pie",
@@ -20,7 +26,7 @@ $( document ).ready(function() {
                     datasets: [
                         {
                             data: bug_count,
-                            backgroundColor: ["#ff6e54", "#dd5182", "#955196"]
+                            backgroundColor: ["#bad0af", "#f0b8b8", "#83af70"]
                         }
                     ]
                 },
@@ -44,7 +50,7 @@ $( document ).ready(function() {
                     datasets: [
                         {
                             data: feature_count,
-                            backgroundColor: ["#ff6e54", "#dd5182", "#955196"]
+                            backgroundColor: ["#bad0af", "#f0b8b8", "#83af70"]
                         }
                     ]
                 },
@@ -58,7 +64,86 @@ $( document ).ready(function() {
                         }
                     }
                 }
-            });   
+            }); 
+            
+            var ctx = $('#myBarChart')[0].getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: upvote_labels,
+                    datasets: [{
+                        label: '# of Votes',
+                        data: upvote_count,
+                        backgroundColor: [
+                            '#488f31',
+                            '#f0b8b8',
+                            '#83af70',
+                            '#e67f83',
+                            '#bad0af',
+                        ],
+                    }]
+                },
+                options: {
+                    legend: {
+                        labels: {
+                            fontColor: '#f1f1f1'
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#f1f1f1',
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontColor: '#f1f1f1',
+                            }
+                        }]
+                    },
+                }
+            }); 
+
+            var ctx = $('#myBarChart2')[0].getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: view_labels,
+                    datasets: [{
+                        label: '# of Views',
+                        data: view_count,
+                        backgroundColor: [
+                            '#488f31',
+                            '#f0b8b8',
+                            '#83af70',
+                            '#e67f83',
+                            '#bad0af',
+                        ],
+                    }]
+                },
+                options: {
+                    legend: {
+                        labels: {
+                            fontColor: '#f1f1f1'
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#f1f1f1',
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontColor: '#f1f1f1',
+                            }
+                        }]
+                    },
+
+                }
+            }); 
         },
 
         
