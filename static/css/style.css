@@ -62,9 +62,9 @@ body{
 
 /********************Heading Styles*/
 h1{
-    color: #ffa600;
+    color: #bad0af;
     font-size: 1.75rem;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 4rem;
     text-align: left;
 }
@@ -74,16 +74,17 @@ h1{
 }
 
 .home-heading{
+    color: #488f31;
     text-align: center;
 }
 
 h2{
-    color: #ffa600;
+    color: #dfdfdf;
     font-weight: 700;
 }
 
 h3{
-    color: #ffa600;
+    color: #e67d85;
     font-weight: 700;
 }
 
@@ -240,14 +241,14 @@ h3{
 }
 
 .badge-done{
-    background-color: #955196;
+    background-color:  #e8979a;
 }
 
 .badge-doing{
-    background-color: #dd5182;
+    background-color: #de425b;
 }
 .badge-todo{
-    background-color: #ff6e54;
+    background-color: #488f31;
 }
 
 /**********************Form Styles*/
@@ -427,7 +428,8 @@ a:hover{
 
 /******************Pagination Styles*/
 .pagination{
-    display: inline;
+    display: inline-block;
+    margin: 2% 25%;
 }
 
 .pagination a{
@@ -502,7 +504,6 @@ a:hover{
     }
 
     h1{
-        color: #ffa600;
         font-size: 2rem;
         font-weight: 700;
         line-height: 4rem;
