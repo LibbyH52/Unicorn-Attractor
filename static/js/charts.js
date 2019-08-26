@@ -1,11 +1,20 @@
-$( document ).ready(function() {
+/*global $*/
+/*global Chart*/
+/*global console*/
+$(document).ready(function () {
     var endpoint = "/api/graphs/";
-    var labels = [];
-    var count = [];
+    var bug_labels = [];
+    var bug_count = [];
+    var feature_labels = [];
+    var feature_count = [];
+    var upvote_labels = [];
+    var upvote_count = [];
+    var view_labels = [];
+    var view_count = [];
     $.ajax({
         method: "GET",
         url: endpoint,
-        success: function(data){
+        success: function (data) {
             bug_labels = data.bug_labels;
             bug_count = data.bug_count;
 
@@ -18,8 +27,8 @@ $( document ).ready(function() {
             view_labels = data.view_labels;
             view_count = data.view_count;
 
-            var bugFixChart = $("#bugPieChart")[0].getContext("2d");
-            var bugPieChart = new Chart(bugFixChart, {
+            var bugPieChart = $("#bugPieChart")[0].getContext("2d");
+            bugPieChart = new Chart(bugPieChart, {
                 type: "pie",
                 data: {
                     labels: bug_labels,
@@ -42,8 +51,8 @@ $( document ).ready(function() {
                 }
             });
 
-            var featurePie = $("#featurePieChart")[0].getContext("2d");
-            var featurePieChart = new Chart(featurePie, {
+            var featurePieChart = $("#featurePieChart")[0].getContext("2d");
+            featurePieChart = new Chart(featurePieChart, {
                 type: "pie",
                 data: {
                     labels: feature_labels,
@@ -66,8 +75,8 @@ $( document ).ready(function() {
                 }
             });
 
-            var featureCount = $("#featureBarChart")[0].getContext("2d");
-            var featureChart = new Chart(featureCount, {
+            var featureBarChart = $("#featureBarChart")[0].getContext("2d");
+            featureBarChart = new Chart(featureBarChart, {
                 type: "bar",
                 data: {
                     labels: upvote_labels,
@@ -105,8 +114,8 @@ $( document ).ready(function() {
                 }
             });
 
-            var bugViews = $("#bugBarChart")[0].getContext("2d");
-            var bugBarChart = new Chart(bugViews, {
+            var bugBarChart = $("#bugBarChart")[0].getContext("2d");
+            bugBarChart = new Chart(bugBarChart, {
                 type: "bar",
                 data: {
                     labels: view_labels,
@@ -145,9 +154,9 @@ $( document ).ready(function() {
             });
         },
 
-        error: function(error_data){
-            console.log("error")
-            console.log(error_data)
+        error: function (error_data) {
+            console.log("error");
+            console.log(error_data);
         }
-    })
+    });
 });
