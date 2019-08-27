@@ -38,7 +38,10 @@ def profile(request):
     user = User.objects.get(username=request.user.username)
     bugs = Bug.objects.filter(author=user)
     features = Feature.objects.filter(requested_by=user)
-    return render(request, "accounts/profile.html", {"profile": user, 'bugs': bugs, 'features': features})
+    return render(request, 'accounts/profile.html',
+                  {'profile': user,
+                   'bugs': bugs,
+                   'features': features})
 
 
 def login(request):
@@ -72,4 +75,4 @@ def logout(request):
     """
     auth.logout(request)
     messages.success(request, "You have successfully logged out!")
-    return redirect(reverse('index'))
+    return redirect("login")
