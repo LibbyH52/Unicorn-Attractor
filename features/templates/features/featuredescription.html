@@ -21,7 +21,7 @@
                         </button>
                     {% endif %}
                 </h3>
-                <p> - <strong>{{feature.author}}</strong> posted this {{feature.posted_on|naturaltime}}</p>
+                <p> - <strong>{{feature.requested_by}}</strong> posted this {{feature.posted_on|naturaltime}}</p>
                 {% if request.user == feature.requested_by %}
                     <p class="card-text">{{feature.details}} <a href="{% url 'edit_feature' feature.id %}"><i class="fas fa-edit"></i></a></p>
                 {% else %}
