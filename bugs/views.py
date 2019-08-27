@@ -14,13 +14,14 @@ def show_bugs(request):
     """
     This view will return a list of all
     bugs in date order and display them on the
-    'allbugs' template.
+    'allbugs' template. Pagination is used to
+    display eight bugs per page.
     """
     bugs = Bug.objects.order_by('-posted_on').all()
     paginator = Paginator(bugs, 8)
     page = request.GET.get('page')
     bugs = paginator.get_page(page)
-    return render(request, 'bugs/allbugs.html', {'bugs' : bugs})
+    return render(request, 'bugs/allbugs.html', {'bugs': bugs})
 
 
 @login_required()
@@ -34,13 +35,17 @@ def bug_description(request, pk):
     bug.views += 1
     bug.save()
     comments = Comment.objects.filter(bug=bug)
-    return render(request, "bugs/bugdescription.html", {"bug":bug, 'comments': comments})
+    return render(request, "bugs/bugdescription.html",
+                  {
+                     'bug': bug, 'comments': comments
+                   })
+
 
 @login_required()
 def add_bug(request):
     """
-    Create a view that allows a user to submit 
-    or edit a bug report
+    Creates a view that allows a user to submit
+    bug report
     """
     if request.method == "POST":
         form = AddBugForm(request.POST)
@@ -53,8 +58,13 @@ def add_bug(request):
         form = AddBugForm()
     return render(request, "bugs/addbug.html", {"form": form})
 
+
 @login_required()
 def edit_bug(request, pk=None):
+    """
+    A view that allows the author of a bug report to
+    edit it.
+    """
     bug = get_object_or_404(Bug, pk=pk)
     if request.user == bug.author:
         if request.method == "POST":
@@ -74,13 +84,13 @@ def edit_bug(request, pk=None):
 @login_required()
 def add_bug_comment(request, pk):
     """
-    Create a view that allows a user to comment 
+    This view allows a user to comment
     on a particular bug.
     """
     bug = get_object_or_404(Bug, pk=pk)
     if request.method == "POST":
         form = AddBugCommentForm(request.POST)
-    
+
         if form.is_valid():
             comment = form.save(commit=False)
             comment.author = request.user
@@ -89,11 +99,15 @@ def add_bug_comment(request, pk):
             return redirect('bug_description', pk=bug.pk)
     else:
         form = AddBugCommentForm()
-    return render(request, "bugs/addbugcomment.html", {"form":form})
+    return render(request, "bugs/addbugcomment.html", {"form": form})
 
 
 @login_required()
 def edit_bug_comment(request, pk):
+    """
+    This view allows the author of a comment to
+    edit it.
+    """
     comment = get_object_or_404(Comment, pk=pk)
     bug = comment.bug
     if request.user == comment.author:
@@ -106,18 +120,24 @@ def edit_bug_comment(request, pk):
             form = AddBugCommentForm(instance=comment)
         return render(request, "bugs/addbugcomment.html", {"form": form})
     else:
-        messages.info(request, 'Only the author of a comment has permission to edit it.')
+        messages.info(request,
+                      'Only the author of a comment can edit it.')
         form = AddBugCommentForm()
-    return render(request, "bugs/addbugcomment.html", {"form":form})
+    return render(request, "bugs/addbugcomment.html", {"form": form})
 
 
 @login_required()
 def delete_bug_comment(request, pk):
+    """
+    This view allows the author of a comment to
+    delete it.
+    """
     comment = get_object_or_404(Comment, pk=pk)
     bug = comment.bug
     if request.user == comment.author:
         comment.delete()
         messages.success(request, 'This comment has been deleted.')
     else:
-        messages.info(request, 'Only the author of a comment has permission to delete it.')
+        messages.info(request,
+                      'Only the author of a comment can delete it.')
     return redirect('bug_description', pk=bug.pk)

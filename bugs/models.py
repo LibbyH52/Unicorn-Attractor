@@ -10,7 +10,7 @@ class Bug(models.Model):
     Done = 'Done'
     Doing = 'Doing'
     ToDo = 'ToDo'
-    FIX_STATUS_CHOICES =[
+    FIX_STATUS_CHOICES = [
         (Done, 'Done'),
         (Doing, 'Doing'),
         (ToDo, 'ToDo'),
@@ -18,25 +18,40 @@ class Bug(models.Model):
 
     title = models.CharField(max_length=100)
     details = models.TextField()
-    fix_status = models.CharField(max_length=6, choices=FIX_STATUS_CHOICES, default='ToDo')
-    posted_on = models.DateTimeField(null=True, blank=True, default=timezone.now)
+    fix_status = models.CharField(
+                                  max_length=6,
+                                  choices=FIX_STATUS_CHOICES,
+                                  default='ToDo'
+                                )
+    posted_on = models.DateTimeField(
+                                     null=True,
+                                     blank=True,
+                                     default=timezone.now
+                                    )
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     views = models.IntegerField(default=0)
-    
+
     def __str__(self):
         return self.title
-    
-"""
-Code for comment model obtained from Django Girls                              https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/
-"""
+
 
 class Comment(models.Model):
     """
     Creates a model to allow a user to comment on a
-    bug report
+    bug report.
+    Code for comment model obtained from Django Girls
+    https://tutorial-extensions.djangogirls.org/en/homework_create_more_models/
     """
-    bug = models.ForeignKey(Bug, on_delete=models.CASCADE, related_name='comments')
-    created_on = models.DateTimeField(null=True, blank=True, default=timezone.now)
+    bug = models.ForeignKey(
+                            Bug,
+                            on_delete=models.CASCADE,
+                            related_name='comments'
+                            )
+    created_on = models.DateTimeField(
+                                      null=True,
+                                      blank=True,
+                                      default=timezone.now
+                                    )
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField()
 
