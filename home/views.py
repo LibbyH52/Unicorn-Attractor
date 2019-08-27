@@ -15,13 +15,14 @@ def index(request):
 def graphs(request):
     return render(request, 'home/graphs.html')
 
+
 def graph_data(request):
     todo_no = Bug.objects.filter(fix_status='ToDo').count()
     doing_no = Bug.objects.filter(fix_status='Doing').count()
     done_no = Bug.objects.filter(fix_status='Done').count()
     bug_labels = ['todo', 'doing', 'done']
-    bug_count = [todo_no, doing_no, done_no ]
-    
+    bug_count = [todo_no, doing_no, done_no]
+
     todo_no = Feature.objects.filter(phase_of_development='ToDo').count()
     doing_no = Feature.objects.filter(phase_of_development='Doing').count()
     done_no = Feature.objects.filter(phase_of_development='Done').count()
