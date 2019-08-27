@@ -2,13 +2,14 @@
 {% load bootstrap_tags %}
 {% block title %} Add a Bug{% endblock %}
 {% block content %}
-<div class="row">
+<div class="row form-row">
     <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
         <h1> Add a New Bug </h1>
         <!--Displays a form that allows users to file a bug report-->
         <form method="POST">
             {% csrf_token %}
             {{ form | as_bootstrap}}
+            <a type="button" class="btn btn-cancel" href="{% url 'show_bugs' %}">Cancel</a> 
             <button type="submit" class="btn btn-bug">Submit Bug</button>
         </form>
     </div>
