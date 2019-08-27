@@ -63,8 +63,8 @@
               {{comment.comment}}
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <a type="button" class="btn btn-primary" href="{% url 'delete_bug_comment' comment.id %}">Delete</a>
+              <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
+              <a type="button" class="btn btn-delete" href="{% url 'delete_bug_comment' comment.id %}">Delete</a>
             </div>
           </div>
         </div>
@@ -75,8 +75,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-11 offset-md-2 col-md-4 offset-lg-1 col-lg-2">
-        <a href="{% url 'add_bug_comment' bug.id %}" class="btn btn-comment">Add Comment</a>
+    <div class="col-11 offset-md-2 col-md-6 offset-lg-1 col-lg-4">
+        <a href="{% url 'add_bug_comment' bug.id %}" class="btn btn-bug">Add Comment</a>
     </div>
 </div>
 {% endblock %}
