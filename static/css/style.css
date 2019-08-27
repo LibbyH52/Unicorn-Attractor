@@ -400,6 +400,10 @@ select{
 }
 
 /************************Icon Styles*/
+.icon{
+    padding: 0 1rem;
+}
+
 .fa-edit{
     color: #003f5c;
     padding: 1rem 0.5rem;
