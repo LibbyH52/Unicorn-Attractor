@@ -1,3 +1,3 @@
-$(document).ready(function(){
-    $('#checkoutModal').modal('show')
+$(document).ready(function () {
+    $("#checkoutModal").modal("show");
 });
