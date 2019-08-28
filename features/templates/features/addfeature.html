@@ -10,8 +10,8 @@
         <form method="POST">
             {% csrf_token %}
             {{ form | as_bootstrap }}
-            <a type="button" class="btn btn-cancel" href="{% url 'get_features' %}">Cancel</a> 
             <button type="submit" class="btn btn-feature">Submit</button>
+            <a type="button" class="btn btn-cancel" href="{% url 'get_features' %}">Cancel</a> 
         </form>
     </div>
 </div>
