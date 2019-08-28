@@ -3,17 +3,14 @@
 {% load static %}
 {% block title %}Add Feature{% endblock %}
 {% block content %}
-<div class="row">
+<div class="row form-row">
     <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
         <h1> Request a Feature </h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8">
-         <!--Form to allow users request a new feature-->
+        <!--Form to allow users request a new feature-->
         <form method="POST">
             {% csrf_token %}
             {{ form | as_bootstrap }}
+            <a type="button" class="btn btn-cancel" href="{% url 'get_features' %}">Cancel</a> 
             <button type="submit" class="btn btn-feature">Submit</button>
         </form>
     </div>

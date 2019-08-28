@@ -16,10 +16,11 @@ def get_features(request):
     them to the template 'allfeatures.html.
     """
     features = Feature.objects.order_by('-posted_on').all()
-    paginator = Paginator(features, 5)
+    paginator = Paginator(features, 8)
     page = request.GET.get('page')
     features = paginator.get_page(page)
     return render(request, 'features/allfeatures.html', {'features': features})
+
 
 @login_required()
 def feature_description(request, pk):
@@ -31,7 +32,11 @@ def feature_description(request, pk):
     feature = get_object_or_404(Feature, pk=pk)
     feature.save()
     comments = Comment.objects.filter(feature=feature)
-    return render(request, "features/featuredescription.html", {"feature": feature, 'comments': comments})
+    return render(request, "features/featuredescription.html",
+                  {
+                    "feature": feature,
+                    'comments': comments
+                  })
 
 
 @login_required()
@@ -54,6 +59,10 @@ def new_feature(request):
 
 @login_required()
 def edit_feature(request, pk):
+    """
+    A view allows the user who requested
+    the feature to edit it.
+    """
     feature = get_object_or_404(Feature, pk=pk)
     if request.user == feature.requested_by:
         if request.method == "POST":
@@ -63,10 +72,27 @@ def edit_feature(request, pk):
                 return redirect('get_features')
         else:
             form = AddFeatureForm(instance=feature)
-    else: 
+    else:
         form = AddFeatureForm()
-        messages.info(request, 'You do not have permission to edit this feature.')
+        messages.info(request,
+                      'You do not have permission to edit this feature.')
     return render(request, "features/addfeature.html", {"form": form})
+
+
+@login_required()
+def delete_feature(request, pk):
+    """
+    A view allows the user who requested
+    the feature to delete it.
+    """
+    feature = get_object_or_404(Feature, pk=pk)
+    if request.user == feature.requested_by:
+        feature.delete()
+        messages.success(request, 'This feature has been deleted.')
+    else:
+        messages.info(request,
+                      'You do not have permission to delete this feature.')
+    return redirect('get_features')
 
 
 @login_required()
@@ -82,7 +108,8 @@ def add_feature_comment(request, pk):
             return redirect('feature_description', pk=feature.pk)
     else:
         form = AddFeatureCommentForm()
-    return render(request, "features/addfeaturecomment.html", {"form":form})   
+    return render(request, "features/addfeaturecomment.html", {"form": form})
+
 
 @login_required()
 def edit_feature_comment(request, pk):
@@ -96,11 +123,14 @@ def edit_feature_comment(request, pk):
                 return redirect('feature_description', pk=feature.pk)
         else:
             form = AddFeatureCommentForm(instance=comment)
-        return render(request, "features/addfeaturecomment.html", {"form": form})
+        return render(request, "features/addfeaturecomment.html",
+                      {"form": form})
     else:
-        messages.info(request, 'Only the author of a comment has permission to edit it.')
+        messages.info(request,
+                      'You do not have permission to edit this comment.')
         form = AddFeatureCommentForm()
-    return render(request, "features/addfeaturecomment.html", {"form":form})
+    return render(request, "features/addfeaturecomment.html", {"form": form})
+
 
 @login_required()
 def delete_feature_comment(request, pk):
@@ -108,8 +138,9 @@ def delete_feature_comment(request, pk):
     feature = comment.feature
     if request.user == comment.author:
         comment.delete()
-        messages.success(request, 'This comment has been deleted.')
+        messages.success(request,
+                         'This comment has been deleted.')
     else:
-        messages.info(request, 'Only the author of a comment had permission to delete it.')
+        messages.info(request,
+                      'You do not have permission to delete this comment.')
     return redirect('feature_description', pk=feature.pk)
-   

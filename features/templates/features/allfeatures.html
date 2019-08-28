@@ -4,10 +4,10 @@
 {% block title %}Features{% endblock %}
 {% block content %}
 <div class="row">
-    <div class="col-10 offset-1 offset-md-1 col-md-6 offset-lg-2 col-lg-6">
+    <div class="col-8 offset-md-1 col-md-6 offset-lg-2 col-lg-6">
         <h1 class="feature-title">Feature Requests</h1>
     </div>
-    <div class="col-5 offset-3 offset-md-0 col-md-4 col-lg-2">
+    <div class="col-4 col-md-4 col-lg-2">
         <a href="{% url 'new_feature' %}" class="btn btn-add" type="btn">Request Feature</a>
     </div>
 </div>
@@ -38,7 +38,7 @@
         <div class="pagination">
             {% if features.has_previous %}
                 <a class="btn btn-outline-info" href="?page=1">First</a>
-                <a class="btn btn-outline-info" href="?page={{ features.previous_page_number }}">Previous</a>
+                <a class="btn btn-outline-info" href="?page={{ features.previous_page_number }}">&lt;</a>
             {% endif %}
             {% for num in features.paginator.page_range %}
                 {% if features.number == num %}
@@ -48,7 +48,7 @@
                 {% endif %}
             {% endfor %}
             {% if features.has_next %}
-                <a class="btn btn-outline-info" href="?page={{ features.next_page_number }}">Next</a>
+                <a class="btn btn-outline-info" href="?page={{ features.next_page_number }}">&gt;</a>
                 <a class="btn btn-outline-info" href="?page={{ features.paginator.num_pages }}">last</a>
             {% endif %}
         </div>

@@ -18,20 +18,47 @@
                     {% elif feature.phase_of_development == 'ToDo' %}
                         <span class="badge badge-todo">{{ feature.phase_of_development }}</span>
                         {{feature.name}}
-                        <button type="button" class="btn btn-add votes" data-toggle="modal" data-target="#upVoteModal{{feature.id}}">
+                        <button type="button" class="btn btn-vote" data-toggle="modal" data-target="#upVoteModal{{feature.id}}">
                             {{feature.upvote }} <i class="far fa-thumbs-up"></i>
                         </button>
                     {% endif %}
                 </h3>
                 <p> - <strong>{{feature.requested_by}}</strong> posted this {{feature.posted_on|naturaltime}}</p>
-                {% if request.user == feature.requested_by %}
-                    <p class="card-text">{{feature.details}} <a href="{% url 'edit_feature' feature.id %}"><i class="fas fa-edit"></i></a></p>
+                <!--Edit and delete icons for a feature request available only to the user who requested the feature and only before it has been developed -->
+                {% if request.user == feature.requested_by and feature.phase_of_development == 'ToDo'%}
+                    <p class="card-text">{{feature.details}} <a href="{% url 'edit_feature' feature.id %}"><i class="fas fa-edit"></i></a>
+                        <i class="far fa-trash-alt" data-toggle="modal" data-target="#deleteFeatureModal{{feature.id}}"></i> 
+                    </p>
                 {% else %}
                     <p class="card-text">{{feature.details}} </p>
                 {% endif %}
             </div>
         </div>      
     </div>
+    <!--Popup modal for confirming feature delete-->
+    <div class="modal fade" id="deleteFeatureModal{{feature.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteFeatureModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteFeature">{{feature.name}}  
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   <p class="modal-paragraph"> Are you sure you want to delete this feature? </p>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-delete" href="{% url 'delete_feature' feature.id %}">
+                        Delete Feature
+                    </a>
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end feature delete modal-->
 
     <div class="row">
         <div class="col-12 offset-md-1 col-md-10 col-lg-9">
@@ -39,7 +66,7 @@
         </div>
     </div>
     <div class="row comment-row">
-        <div class="col-12 offset-md-1 col-md-10 col-lg-9">
+            <div class="col-12 offset-md-1 col-md-10 col-lg-9">
             <!--Displays each comment in a Bootstrap card-->
             {% for comment in comments %}
                 <div class="card comment-card">
@@ -60,61 +87,63 @@
                         {% endif %}
                     </div>
                 </div>
-                <!--Popup modal for confirming delete-->
-                    <div class="modal fade" id="featureCommentDeleteModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="featureCommentDeleteModal" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="featureComment">Delete this comment? </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    {{comment.comment}}
-                                </div>
-                                <div class="modal-footer">
-                                    <a class="btn btn-delete" href="{% url 'delete_feature_comment' comment.id %}">
-                                    Delete Comment
-                                    </a>
-                                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
-                                </div>
-                                </div>
+                <!--Popup modal for confirming comment delete-->
+                <div class="modal fade" id="featureCommentDeleteModal{{comment.id}}" tabindex="-1" role="dialog" aria-labelledby="featureCommentDeleteModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="featureComment">Delete this comment? </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="modal-paragraph">{{comment.comment}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-delete" href="{% url 'delete_feature_comment' comment.id %}">
+                                Delete Comment
+                                </a>
+                                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <!--end comment delete modal-->
                 {% empty %}
                 <p class="text-pale"> No comments to show </p>
             {% endfor %}
         </div>
     </div>
     <div class="row">
-        <div class="col-11 offset-md-2 col-md-4 offset-lg-1 col-lg-2">
+        <div class="col-12 offset-md-1 col-md-3 offset-lg-1 col-lg-2">
             <a href="{% url 'add_feature_comment' feature.id %}" class="btn btn-add">Add Comment</a>
         </div>
     </div>
 
-<!--Popup modal for upvoting a feature-->
-<div class="modal fade" id="upVoteModal{{feature.id}}" tabindex="-1" role="dialog" aria-labelledby="upVoteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Upvote Feature</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Upvoting a feature costs €10 per vote. You can purchase a maximum of 10 votes. In return for your payment, we promise to spend at least 50% of our time working on the feature that gets the most votes</p>
-            </div>
-            <div class="modal-footer">
-                <form method="POST" class="vote-form" action="{% url 'add_to_cart' feature.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-add" type="submit">Vote</button>
-                </form>
-                <br>
-                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+    <!--Popup modal for upvoting a feature-->
+    <div class="modal fade" id="upVoteModal{{feature.id}}" tabindex="-1" role="dialog" aria-labelledby="upVoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upvote Feature</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Upvoting a feature costs €10 per vote. You can purchase a maximum of 10 votes. In return for your payment, we promise to spend at least 50% of our time working on the feature that gets the most votes</p>
+                </div>
+                <div class="modal-footer">
+                    <form method="POST" class="vote-form" action="{% url 'add_to_cart' feature.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-add" type="submit">Vote</button>
+                    </form>
+                    <br>
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <!--end vote modal-->
 {% endblock %}
