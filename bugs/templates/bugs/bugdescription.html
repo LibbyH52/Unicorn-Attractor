@@ -93,8 +93,8 @@
                                 <p class="modal-paragraph">{{comment.comment}}</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
-                                <a class="btn btn-delete" href="{% url 'delete_bug_comment' comment.id %}">Delete</a>
+                                <a class="btn btn-delete" href="{% url 'delete_bug_comment' comment.id %}">Delete Comment</a>
+                                <button type="button" class="btn btn-cancel" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </div>
