@@ -9,7 +9,7 @@
             <form method="POST">
                 {% csrf_token %}
                 {{ form | as_bootstrap}}
-                <a class="btn btn-cancel" href="{% url 'show_bugs' %}">Cancel</a> 
+                <a class="btn btn-cancel" onclick="history.go(-1)">Cancel</a>
                 <button type="submit" class="btn btn-bug">Submit</button>
             </form>
         </div>
