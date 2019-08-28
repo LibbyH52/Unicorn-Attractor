@@ -80,6 +80,7 @@ def edit_bug(request, pk=None):
         form = AddBugForm()
     return render(request, "bugs/addbug.html", {"form": form})
 
+
 @login_required()
 def delete_bug(request, pk):
     """
@@ -91,8 +92,10 @@ def delete_bug(request, pk):
         bug.delete()
         messages.success(request, 'This bug has been deleted.')
     else:
-        messages.info(request, 'Only the author of a bug report has permission to delete it.')
+        messages.info(request,
+                      'You do not have permission to delete this bug.')
     return redirect('show_bugs')
+
 
 @login_required()
 def add_bug_comment(request, pk):
