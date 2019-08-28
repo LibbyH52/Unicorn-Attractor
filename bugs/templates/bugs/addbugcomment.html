@@ -9,8 +9,8 @@
             <form method="POST" class="comment-form">
                 {% csrf_token %}
                 {{ form | as_bootstrap }}
-                <a class="btn btn-cancel" onclick="history.go(-1)">Cancel</a>
                 <button type="submit" class="btn btn-bug">Comment</button>
+                <a class="btn btn-cancel" onclick="history.go(-1)">Cancel</a>
             </form> 
         </div> 
     </div>

@@ -124,13 +124,13 @@ h3{
 .btn-bug,
 .btn-feature{
     background-color: #dd5182;
-    margin: 1% 8% 1% 0;
+    margin: 1% 0 1% 8%;
     width: 40%;
 }
 
 .btn-cancel{
     background-color: #488f31; 
-    margin: 1% 0 1% 8%;
+    margin: 1% 8% 1% 0;
     width: 40%;
 }
 
