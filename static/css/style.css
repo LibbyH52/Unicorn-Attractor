@@ -84,7 +84,7 @@ h2{
 }
 
 h3{
-    color: #e67d85;
+    color: #6aaa96;
     font-weight: 700;
 }
 
@@ -133,6 +133,19 @@ h3{
     border: 2px solid #f1f1f1;
     margin: 1% 0 1% 8%;
     width: 40%;
+}
+
+.btn-cart{
+    background-color: #003f5c; 
+    border: 2px solid #f1f1f1;
+    margin-bottom: 1rem;
+    width: 80%;
+}
+
+.btn-votes{
+    background-color: #e67f83;
+    float: right;
+    margin-bottom: 2rem;
 }
 
 /***********From CSS Inspector*/
@@ -442,7 +455,7 @@ a:hover{
 /******************Pagination Styles*/
 .pagination{
     display: inline-block;
-    margin: 2% 15%;
+    margin: 4% 15%;
 }
 
 .pagination a{
@@ -497,7 +510,9 @@ a:hover{
 /**********************Table Styles*/
 
 .table{
-    background: #f1f1f1
+    background: #f1f1f1;
+    margin: 0 auto;
+    max-width: 95%;
 }
 .checkout-table{
     margin: 5% auto;
