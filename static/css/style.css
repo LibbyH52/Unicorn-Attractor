@@ -129,8 +129,7 @@ h3{
 }
 
 .btn-cancel{
-    background-color: #003f5c; 
-    border: 2px solid #f1f1f1;
+    background-color: #488f31; 
     margin: 1% 0 1% 8%;
     width: 40%;
 }
@@ -142,7 +141,7 @@ h3{
     width: 80%;
 }
 
-.btn-votes{
+.btn-vote{
     background-color: #e67f83;
     float: right;
     margin-bottom: 2rem;
@@ -159,7 +158,7 @@ a:not([href]):not([tabindex]){
 }
 
 .btn-delete{
-    background-color: #ff6e54; 
+    background-color: #de425b; 
 }
 
 .btn-login{
@@ -235,15 +234,32 @@ a:not([href]):not([tabindex]){
  }
 
  /*********************Modal Styles*/
+ .modal-content{
+     background-color: #f1f1f1;
+ }
+
  .modal-header{
-     background-color: #ff6e54;
+     background-color: #75a760;
      color: #f1f1f1;
      text-align: center;
+ }
+
+ .modal-title{
+     font-size: 1.5rem;
+     font-variant: small-caps;
+     font-weight: 700;
+     margin: 0 auto;
  }
 
  .modal-header .close{
      color: #f1f1f1;
      font-weight: 800;
+ }
+
+ .modal-paragraph{
+     color: #488f31;
+     font-size: 1.25rem;
+     text-align: center;
  }
 
  .modal-footer{
@@ -539,11 +555,12 @@ a:hover{
     }
 
     .form-row{
-        margin: 20% auto;
+        margin: 15% auto;
     }
 
     .btn-add{
         float: right; 
+        margin-top: 1rem;
         width: 100%;
     }
 
