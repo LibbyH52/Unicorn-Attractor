@@ -11,7 +11,7 @@
             {% csrf_token %}
             {{ form | as_bootstrap }}
             <button type="submit" class="btn btn-feature">Submit</button>
-            <a type="button" class="btn btn-cancel" href="{% url 'get_features' %}">Cancel</a> 
+            <a class="btn btn-cancel" onclick="history.go(-1)">Cancel</a>
         </form>
     </div>
 </div>
