@@ -12,8 +12,10 @@ from .forms import AddFeatureForm, AddFeatureCommentForm
 def get_features(request):
     """
     A view that returns a list
-    of all feature requests and render
+    of all feature requests and renders
     them to the template 'allfeatures.html.
+    Pagination displays eight features per
+    page.
     """
     features = Feature.objects.order_by('-posted_on').all()
     paginator = Paginator(features, 8)
@@ -61,7 +63,10 @@ def new_feature(request):
 def edit_feature(request, pk):
     """
     A view allows the user who requested
-    the feature to edit it.
+    the feature to edit it. Other users who
+    try to access this functionality using
+    the url will be redirected to a blank
+    form where they can add a new feature.
     """
     feature = get_object_or_404(Feature, pk=pk)
     if request.user == feature.requested_by:
@@ -69,20 +74,21 @@ def edit_feature(request, pk):
             form = AddFeatureForm(request.POST, instance=feature)
             if form.is_valid():
                 form.save()
-                return redirect('get_features')
+                return redirect('feature_description', pk=feature.pk)
         else:
             form = AddFeatureForm(instance=feature)
+        return render(request, "features/addfeature.html", {"form": form})
     else:
         form = AddFeatureForm()
         messages.info(request,
                       'You do not have permission to edit this feature.')
-    return render(request, "features/addfeature.html", {"form": form})
+    return redirect('new_feature')
 
 
 @login_required()
 def delete_feature(request, pk):
     """
-    A view allows the user who requested
+    A view that allows the user who requested
     the feature to delete it.
     """
     feature = get_object_or_404(Feature, pk=pk)
@@ -97,6 +103,10 @@ def delete_feature(request, pk):
 
 @login_required()
 def add_feature_comment(request, pk):
+    """
+    A view that allows a logged in user to
+    comment on a feature request.
+    """
     feature = get_object_or_404(Feature, pk=pk)
     if request.method == "POST":
         form = AddFeatureCommentForm(request.POST)
@@ -113,6 +123,13 @@ def add_feature_comment(request, pk):
 
 @login_required()
 def edit_feature_comment(request, pk):
+    """
+    A view allows the user who requested
+    the feature to edit it. Other users who
+    try to access this functionality using
+    the url will be redirected to a blank
+    form where they can add a new comment.
+    """
     comment = get_object_or_404(Comment, pk=pk)
     feature = comment.feature
     if request.user == comment.author:
@@ -129,11 +146,15 @@ def edit_feature_comment(request, pk):
         messages.info(request,
                       'You do not have permission to edit this comment.')
         form = AddFeatureCommentForm()
-    return render(request, "features/addfeaturecomment.html", {"form": form})
+    return redirect('add_feature_comment', pk=feature.pk)
 
 
 @login_required()
 def delete_feature_comment(request, pk):
+    """
+    A view allows the user who wrote
+    the comment to delete it.
+    """
     comment = get_object_or_404(Comment, pk=pk)
     feature = comment.feature
     if request.user == comment.author:
