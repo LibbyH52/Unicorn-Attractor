@@ -80,6 +80,19 @@ def edit_bug(request, pk=None):
         form = AddBugForm()
     return render(request, "bugs/addbug.html", {"form": form})
 
+@login_required()
+def delete_bug(request, pk):
+    """
+    A view allows the user who added
+    the bug report to delete it.
+    """
+    bug = get_object_or_404(Bug, pk=pk)
+    if request.user == bug.author:
+        bug.delete()
+        messages.success(request, 'This bug has been deleted.')
+    else:
+        messages.info(request, 'Only the author of a bug report has permission to delete it.')
+    return redirect('show_bugs')
 
 @login_required()
 def add_bug_comment(request, pk):
