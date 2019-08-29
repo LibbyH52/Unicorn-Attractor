@@ -63,7 +63,9 @@ def add_bug(request):
 def edit_bug(request, pk=None):
     """
     A view that allows the author of a bug report to
-    edit it.
+    edit it. Other users who try to access this
+    function using the url will be redirected to a
+    blank form where they can add a new bug.
     """
     bug = get_object_or_404(Bug, pk=pk)
     if request.user == bug.author:
@@ -76,9 +78,9 @@ def edit_bug(request, pk=None):
             form = AddBugForm(instance=bug)
         return render(request, "bugs/addbug.html", {"form": form})
     else:
-        messages.info(request, 'Only the author can edit this bug.')
+        messages.info(request, 'You do not have permission to edit this bug.')
         form = AddBugForm()
-    return render(request, "bugs/addbug.html", {"form": form})
+    return redirect('add_bug')
 
 
 @login_required()
@@ -122,7 +124,10 @@ def add_bug_comment(request, pk):
 def edit_bug_comment(request, pk):
     """
     This view allows the author of a comment to
-    edit it.
+    edit it. Other users who try to
+    access this function using the url will be
+    redirected to a blank form where they can
+    add a new comment.
     """
     comment = get_object_or_404(Comment, pk=pk)
     bug = comment.bug
@@ -137,9 +142,9 @@ def edit_bug_comment(request, pk):
         return render(request, "bugs/addbugcomment.html", {"form": form})
     else:
         messages.info(request,
-                      'Only the author of a comment can edit it.')
+                      'You do not have permission to edit this comment.')
         form = AddBugCommentForm()
-    return render(request, "bugs/addbugcomment.html", {"form": form})
+    return redirect('add_bug_comment', pk=bug.pk)
 
 
 @login_required()
@@ -155,5 +160,5 @@ def delete_bug_comment(request, pk):
         messages.success(request, 'This comment has been deleted.')
     else:
         messages.info(request,
-                      'Only the author of a comment can delete it.')
+                      'You do not have permission to delete this comment.')
     return redirect('bug_description', pk=bug.pk)
