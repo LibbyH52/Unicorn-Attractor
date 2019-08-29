@@ -23,9 +23,10 @@ def add_to_cart(request, id):
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
 
+
 def adjust_cart(request, id):
     """
-    A view to allow the user to increase / decrease the 
+    A view to allow the user to increase / decrease the
     number of upvotes for a particular feature.
     """
     quantity = int(request.POST.get('quantity'))
