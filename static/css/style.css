@@ -135,25 +135,17 @@ h3{
 }
 
 .btn-cart{
-    background-color: #003f5c; 
-    border: 2px solid #f1f1f1;
-    margin-bottom: 1rem;
-    width: 80%;
-}
-
-.btn-vote{
-    background-color: #e67f83;
-    float: right;
-    margin-bottom: 2rem;
-}
-
-/***********From CSS Inspector*/
-a:not([href]):not([tabindex]){
-    color: #f1f1f1;
+    background-color: #488f31; 
+    margin-top: 1rem;
+    margin-left: 1rem;
+    padding: .5rem 2rem;
+    width: 90%;
 }
 
 .btn-checkout{
-    margin: 0 5%;
+    background-color: #e67f83;
+    margin-right: 1rem;
+    margin-top: 1rem;
     width: 90%;
 }
 
@@ -169,6 +161,17 @@ a:not([href]):not([tabindex]){
 .btn-register{
     background-color: #d45087;
     margin-bottom: 1rem;
+}
+
+.btn-vote{
+    background-color: #e67f83;
+    float: right;
+    margin-bottom: 2rem;
+}
+
+/*******Selector from CSS Inspector*/
+a:not([href]):not([tabindex]){
+    color: #f1f1f1;
 }
 
 /*********************Card Styles*/
@@ -523,6 +526,11 @@ a:hover{
     width: 100%;
 }
 
+.cart-col{
+    margin: 0;
+    padding: 0;
+}
+
 /**********************Table Styles*/
 
 .table{
@@ -561,7 +569,10 @@ a:hover{
     .btn-add{
         float: right; 
         margin-top: 1rem;
-        width: 100%;
+    }
+
+    .btn-cart{
+        margin-left: .2rem;
     }
 
     .empty-cart{
@@ -575,6 +586,19 @@ a:hover{
 
     .pagination{
         margin: 2% 25%;
+    }
+
+    .cart-col{
+        margin: auto;
+        padding: auto;
+    }
+    
+    .input-group{
+        max-width: 70%;
+    }
+
+    .cart-form .btn-add{
+        margin: 0;
     }
 }
 

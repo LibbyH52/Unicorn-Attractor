@@ -10,7 +10,7 @@
     </div>
     {% if cart_items %}
         <div class="row">
-            <div class="col-12 col-md-12 offset-lg-2 col-lg-8">
+            <div class="col-12 col-md-12 offset-lg-2 col-lg-8 cart-col table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
@@ -32,18 +32,18 @@
                             {{item.quantity}}
                         </td>
                         <td>
-                            <form class="form-inline" method="POST" action="{% url 'adjust_cart' item.id %}">
+                            <form class="form-inline cart-form" method="POST" action="{% url 'adjust_cart' item.id %}">
                                 {% csrf_token %}
                                 <div class="input-group">
                                     <input name="quantity" type="number" min="0" max="10" class="form-control" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-add">Update</button>
                             </form>
                         </td>
                     </tr>
                 {% endfor %}
                     <tr>
-                        <td>
+                        <td colspan="12">
                             Total :
                             <i class="fas fa-euro-sign"></i>{{total}}
                         </td>
@@ -52,11 +52,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-8 offset-2 offset-md-0 col-md-6 offset-lg-2 col-lg-4">
-                <a class="btn btn-cancel" href="{% url 'get_features' %}" role="button">Continue Shopping</a>
+            <div class="col-6 col-md-3 offset-lg-2 col-lg-2">
+                <a class="btn btn-cart" onclick="history.go(-1)">Buy More</a>
             </div>
-            <div class="col-sm-8 offset-2 offset-md-0 col-md-6 col-lg-4">
-                <a class="btn btn-add" href="{% url 'checkout' %}" role="button">Proceed to checkout</a>
+            <div class="col-6 col-md-3 col-lg-2">
+                <a class="btn btn-checkout" href="{% url 'checkout' %}" role="button">Checkout Now</a>
             </div>
         </div>
     {% else %}
