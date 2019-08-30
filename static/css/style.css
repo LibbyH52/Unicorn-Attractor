@@ -314,6 +314,10 @@ a:not([href]):not([tabindex]){
     padding: 1rem;
 }
 
+.payment-form .btn-checkout{
+    width: 100%;
+}
+
 .payment-form label{
     color: #003f5c;
 }
@@ -371,6 +375,13 @@ select{
     max-width: 100%;
 }
 
+#stripe-error-message{
+    color: #488f31;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
 .text-pale{
     color: #f1f1f1;
     font-weight: 600;
@@ -403,6 +414,7 @@ select{
 
 .chart-col{
     border-bottom: 2px solid #f1f1f1;
+    margin-top: 2rem;
     padding-bottom: 2rem;
 }
 
@@ -538,14 +550,26 @@ a:hover{
     margin: 0 auto;
     max-width: 95%;
 }
+
 .checkout-table{
+    color: #003f5c;
     margin: 5% auto;
+}
+
+.checkout-table th{
+    font-size: 1.25rem;
 }
 
 .table td{
     padding: 1rem;
 } 
 
+.checkout-table .table-heading{
+    color: #003f5c;
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+}
 
 /*********************Media Queries*/
 
