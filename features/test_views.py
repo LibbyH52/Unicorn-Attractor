@@ -66,7 +66,7 @@ class TestFeatureViews(TestCase):
     def test_edit_feature_page(self):
         feature = Feature.objects.get(id=1)
         response = self.c.get('/features/{0}/edit_feature/'.format(feature.id))
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
 
     def test_edit_feature_page_for_item_that_does_not_exist(self):
         response = self.c.get('features/{1}/edit_feature')
