@@ -11,6 +11,7 @@ class FeatureModelTest(TestCase):
         feature = Feature(name='New Feature')
         self.assertEqual(str(feature), feature.name)
 
+
 class CommentModelTest(TestCase):
     """
     Test to be run against
