@@ -113,11 +113,9 @@ When a user is satisfied with the number of items in their cart they can click o
 * Postgres/ Sqlite3
 
 ## Deployment
-This project was created using Visual Studio Code text editor. Version control was carried out entirely using git. The GitHub repository can be found [here:] 
-(https://github.com/LibbyH52/Unicorn-Attractor)
+This project was created using Visual Studio Code text editor. Version control was carried out entirely using git. The GitHub repository can be found [here:](https://github.com/LibbyH52/Unicorn-Attractor)
 
-The project was hosted on Heroku. The running application is available [here:]
-(https://unicorn-attractor-milestone-4.herokuapp.com/)
+The project was hosted on Heroku. The running application is available [here:](https://unicorn-attractor-milestone-4.herokuapp.com/)
 
 #### To deploy to Heroku I took the following steps:
 * Created a requirements.txt file to hold a list of the dependencies needed to run the project
@@ -224,23 +222,19 @@ I confirmed that clicking on the checkout button would take me to a payment from
 ## Credits
 
 #### Content
-To create navbar links on the right I used the second answer from this [thread](https://stackoverflow.com/questions/53339351/how-to-create-navigation-bar-with-login-sign-up-button-in-bootstrap-4) on stackoverflow
+To create navbar links on the right I used the second answer from this         [thread](https://stackoverflow.com/questions/53339351/how-to-create-navigation-bar-with-login-sign-up-button-in-bootstrap-4) on stackoverflow
 
 The paginator came from the Django documentation and Corey Schafer's YouTube Django tutorials
 
 Xavier from tutor support reminded me that to render comments to my Bugs and Features template I had to return them in my view
 
-The code for toggling a modal using a font-awesome icon is from the first answer in this [thread]
-(https://stackoverflow.com/questions/52777550/how-to-make-font-awesome-icon-clickable-to-open-a-modal-in-bootstrap-3)
+The code for toggling a modal using a font-awesome icon is from the first answer in this [thread](https://stackoverflow.com/questions/52777550/how-to-make-font-awesome-icon-clickable-to-open-a-modal-in-bootstrap-3)
 
-The code for rending on modal on page load came from the first answer [here]
-(https://stackoverflow.com/questions/47486339display-this-bootstrap-modal-on-page-load)
+The code for rending on modal on page load came from the first answer [here](https://stackoverflow.com/questions/47486339display-this-bootstrap-modal-on-page-load)
 
-The code for removing bullets from inside modal I got from [here]
-(https://github.com/twbs/bootstrap/issues/15875)
+The code for removing bullets from inside modal I got from [here](https://github.com/twbs/bootstrap/issues/15875)
 
-The pattern for the payment form credit card number came from [here]
-(http://html5pattern.com/Cards)
+The pattern for the payment form credit card number came from [here](http://html5pattern.com/Cards)
 
 #### Media
 My background image came from [pixabay](https://pixabay.com/illustrations/singapore-web-network-ball-2064905/)
