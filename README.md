@@ -236,6 +236,8 @@ The code for removing bullets from inside modal I got from [here](https://github
 
 The pattern for the payment form credit card number came from [here](http://html5pattern.com/Cards)
 
+The colour scheme for my project was inspired by the following [site](https://learnui.design/tools/data-color-picker.html#divergent)[and](https://learnui.design/tools/data-color-picker.html#palette)
+
 #### Media
 My background image came from [pixabay](https://pixabay.com/illustrations/singapore-web-network-ball-2064905/)
 
