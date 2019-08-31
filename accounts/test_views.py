@@ -28,5 +28,3 @@ class TestAccountsViews(TestCase):
         response = self.client.get('/accounts/profile/')
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'accounts/profile.html')
-
-

@@ -71,7 +71,7 @@ class TestBugsViews(TestCase):
     def test_edit_bug_page_for_item_that_does_not_exist(self):
         response = self.c.get('bugs/{1}/edit_bug')
         self.assertEqual(response.status_code, 404)
-    
+
     def test_delete_bug_page(self):
         bug = Bug.objects.get(id=1)
         response = self.c.get(
@@ -85,12 +85,12 @@ class TestBugsViews(TestCase):
         response = self.c.get('/bugs/{0}/add_bug_comment/'.format(bug.id))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bugs/addbugcomment.html')
-    
+
     def test_POST_add_bug_comment_page(self):
         bug = Bug.objects.get(id=1)
-        response = self.client.post("/bugs/{0}/add_bug_comment/".format(bug.id), {
-            'comment': 'This would be a good feature'
-            }
+        response = self.client.post(
+                                    "/bugs/{0}/add_bug_comment/".format(bug.id),
+                                    {'comment': 'This would be a good feature'}
         )
         self.assertEqual(response.status_code, 302)
 
@@ -109,5 +109,7 @@ class TestBugsViews(TestCase):
 
     def test_delete_bug_comment_page(self):
         comment = Comment.objects.get(id=1)
-        response = self.c.get('/bugs/{0}/delete_bug_comment/'.format(comment.id))
+        response = self.c.get(
+            '/bugs/{0}/delete_bug_comment/'.format(comment.id)
+            )
         self.assertEqual(response.status_code, 302)

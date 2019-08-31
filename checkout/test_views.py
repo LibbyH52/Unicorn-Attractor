@@ -17,4 +17,4 @@ class TestCheckoutViews(TestCase):
     def test_checkout(self):
         response = self.c.get('/checkout/')
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'checkout/checkout.html')  
+        self.assertTemplateUsed(response, 'checkout/checkout.html')
