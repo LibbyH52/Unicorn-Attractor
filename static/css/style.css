@@ -333,6 +333,10 @@ a:not([href]):not([tabindex]){
     padding: 1rem;
 }
 
+.reset-form label{
+    color: #003f5c; 
+}
+
 .vote-form{
     float: right;
 }
