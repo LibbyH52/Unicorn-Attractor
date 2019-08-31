@@ -7,8 +7,10 @@
         <!--Displays a User Login Form-->
         <form method="POST" class="form login-form">
             {% csrf_token %}
-            <legend>Sign in to your account</legend>
-            {{ form | as_bootstrap }} 
+            <fieldset class="form-group">
+                <legend>Sign in to your account</legend>
+                {{ form | as_bootstrap }} 
+            </fieldset>
             <button type="submit" class="btn btn-login">Log In</button>
         </form>
         <p class="text-pale">
