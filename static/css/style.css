@@ -149,6 +149,10 @@ h3{
     width: 90%;
 }
 
+.btn-comment{
+    background-color: #e67f83;
+}
+
 .btn-delete{
     background-color: #de425b; 
 }
@@ -271,6 +275,9 @@ a:not([href]):not([tabindex]){
      padding-right: 1rem;
  }
 
+#checkoutModal .btn-cancel{
+    width: 40%;
+}
 /*********************Badge Styles*/
 .badge{
     color: #f1f1f1;
@@ -408,22 +415,10 @@ select{
 
 /**********************Chart Styles*/
 
-.charts-row{
-    padding: 4rem auto;
-}
-
 .chart-col{
     border-bottom: 2px solid #f1f1f1;
     margin-top: 2rem;
     padding-bottom: 2rem;
-}
-
-#myPieChart,
-#myPieChart2{
-    color: #f1f1f1;
-    padding: 2rem;
-    height: 300 !important;
-    width: 600 !important;
 }
 
 /*******************Profile Styles*/
@@ -614,7 +609,6 @@ a:hover{
 
     .cart-col{
         margin: auto;
-        padding: auto;
     }
     
     .input-group{
@@ -623,6 +617,13 @@ a:hover{
 
     .cart-form .btn-add{
         margin: 0;
+    }
+
+    .btn-bug,
+    .btn-feature,
+    .btn-cancel{
+        width: auto;
+        margin: 0 auto;
     }
 }
 
@@ -635,6 +636,10 @@ a:hover{
         font-size: 2rem;
     }
 
+    .charts-row{
+        padding: 2rem 0;
+    }
+    
     .chart-col{
         border-bottom: none;
     }
