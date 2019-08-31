@@ -113,9 +113,9 @@ When a user is satisfied with the number of items in their cart they can click o
 * Postgres/ Sqlite3
 
 ## Deployment
-This project was created using Visual Studio Code text editor. Version control was carried out entirely using git. The GitHub repository can be found [here:](https://github.com/LibbyH52/Unicorn-Attractor)
+This project was created using Visual Studio Code text editor. Version control was carried out entirely using git. The GitHub repository can be found [here](https://github.com/LibbyH52/Unicorn-Attractor)
 
-The project was hosted on Heroku. The running application is available [here:](https://unicorn-attractor-milestone-4.herokuapp.com/)
+The project was hosted on Heroku. The running application is available [here](https://unicorn-attractor-milestone-4.herokuapp.com/)
 
 #### To deploy to Heroku I took the following steps:
 * Created a requirements.txt file to hold a list of the dependencies needed to run the project
