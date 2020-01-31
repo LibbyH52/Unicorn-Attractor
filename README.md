@@ -243,4 +243,4 @@ My background image came from [pixabay](https://pixabay.com/illustrations/singap
 
 #### Acknowledgements
 Thanks to my course mates on Slack who helped solve errors during development and for reviewing my almost finished project and providing constructive feedback.  
-Thank you to my mentor Moosa Hassan for his help and support throughout development of the project.
+Thank you to my mentor Moosa Hassan for his help and support throughout the development of the project.
