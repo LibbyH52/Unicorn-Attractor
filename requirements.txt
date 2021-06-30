@@ -1,5 +1,5 @@
 asgiref==3.2.3
-astroid==2.1.0
+astroid==2.6.1
 certifi==2019.11.28
 chardet==3.0.4
 Click==7.0
